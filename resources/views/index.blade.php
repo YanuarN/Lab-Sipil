@@ -1,7 +1,7 @@
 @include('landing.head')
     <!-- Hero Section -->
     <section class="bg-eerieblack text-silver py-44 relative overflow-hidden">
-        <div class="container mx-auto px-2 py-5">
+        <div class="container mx-auto  py-5">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="relative z-10">
                     <h1 class="text-5xl font-bold mb-6">Building the <span class="text-yellow">Future</span> Through Engineering Excellence</h1>
