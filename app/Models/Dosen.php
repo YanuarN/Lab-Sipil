@@ -1,0 +1,38 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Dosen extends Model
+{
+    use HasFactory;
+
+    public $timestamps = false;
+    protected $table = 'dosen';
+    protected $fillable = [
+        'nama',
+        'keahlian'
+    ];
+
+    public function lab()
+    {
+        return $this->belongsTo(Lab::class, 'keahlian', 'id');
+    }
+
+    public function bookingsAsPembimbing()
+    {
+        return $this->hasMany(booking::class, 'pembimbing', 'id');
+    }
+
+    public function bookingsAsPenguji1()
+    {
+        return $this->hasMany(booking::class, 'penguji1', 'id');
+    }
+
+    public function bookingsAsPenguji2()
+    {
+        return $this->hasMany(booking::class, 'penguji2', 'id');
+    }
+}
