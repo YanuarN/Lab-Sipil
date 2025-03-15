@@ -33,8 +33,12 @@ class LabResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')->label('ID'),
-                TextColumn::make('nama_lab')->label('Nama'),
+                TextColumn::make('id')->label('ID')
+                ->sortable()
+                ->searchable(),
+                TextColumn::make('nama_lab')->label('Nama')
+                ->sortable()
+                ->searchable(),
             ])
             ->filters([
                 //

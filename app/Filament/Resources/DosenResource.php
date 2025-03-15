@@ -20,7 +20,7 @@ class DosenResource extends Resource
 {
     protected static ?string $model = Dosen::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
     public static function form(Form $form): Form
     {
@@ -38,9 +38,15 @@ class DosenResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')->label('ID'),
-                TextColumn::make('nama')->label('Nama'),
+                TextColumn::make('id')->label('ID')
+                ->sortable()
+                ->searchable(),
+                TextColumn::make('nama')->label('Nama')
+                ->sortable()
+                ->searchable(),
                 TextColumn::make('lab.nama_lab')->label('Keahlian (Lab)')
+                ->sortable()
+                ->searchable()
             ])
             ->filters([
                 //

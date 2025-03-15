@@ -27,8 +27,10 @@ class booking extends Model
         'instansi',
         'tanggal_mulai',
         'tanggal_selesai',
+        'alat',
         'status'
     ];
+
 
     public function lab()
     {

@@ -2,6 +2,8 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Resources\BookingEksternalResource\Widgets\BookingSummaryWidget;
+use App\Filament\Resources\BookingEksternalResource\Widgets\BookingTableWidget;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -27,9 +29,12 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->sidebarWidth('w-64')
+            ->maxContentWidth('full')
             ->colors([
                 'primary' => Color::Amber,
             ])
+            
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
@@ -39,6 +44,8 @@ class AdminPanelProvider extends PanelProvider
             ->widgets([
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
+                BookingSummaryWidget::class,
+                BookingTableWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,

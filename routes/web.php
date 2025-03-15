@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\BookingEksternalController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PermohonanController;
+
 
 Route::get('/', function () {
     
@@ -12,5 +14,7 @@ Route::get('/reserve', function () {
 });
 
 Route::resource('permohonan', PermohonanController::class);
+Route::resource('booking', BookingEksternalController::class);
+
 
 
