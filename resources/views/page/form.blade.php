@@ -44,22 +44,6 @@
         </select>
     </div>
     <div>
-        <label for="penguji1">Penguji 1:</label>
-        <select name="penguji1" id="penguji1" required>
-            @foreach($dosen as $item)
-                <option value="{{ $item->id }}">{{ $item->nama }}</option>
-            @endforeach
-        </select>
-    </div>
-    <div>
-        <label for="penguji2">Penguji 2:</label>
-        <select name="penguji2" id="penguji2" required>
-            @foreach($dosen as $item)
-                <option value="{{ $item->id }}">{{ $item->nama }}</option>
-            @endforeach
-        </select>
-    </div>
-    <div>
         <label for="instansi">Instansi:</label>
         <input type="text" name="instansi" id="instansi" required>
     </div>
@@ -71,6 +55,35 @@
         <label for="alamat_rumah">Alamat Rumah:</label>
         <input type="text" name="alamat_rumah" id="alamat_rumah" required>
     </div>
+    <div class="form-group mb-3">
+        <label for="kepala">Kepala Laboratorium <span class="text-danger">*</span></label>
+        <select class="form-control" id="kepalalab" name="kepalalab" required>
+            <option value="">-- Pilih Kepala Lab --</option>
+            @foreach ($kepala_lab as $kl)
+                <option value="{{ $kl->id }}">{{ $kl->nama }}</option>
+            @endforeach
+        </select>
+    </div>
+    <div>
+        <label>Alat:</label>
+        <div id="alat-container">
+            <!-- Loop untuk daftar alat dari database -->
+            @foreach($daftar_alat as $index => $item)
+                <div class="alat-item">
+                    <input type="hidden" name="alat[{{ $index }}][nama]" value="{{ $item->nama_alat }}">
+                    <label>{{ $item->nama_alat }}</label>
+                    <button type="button" class="hapus-alat">Hapus</button>
+                </div>
+            @endforeach
+        
+            <!-- Tempat alat tambahan manual -->
+        </div>
+        <button type="button" id="tambah-alat">Tambah Alat</button>
+    </div>
+    
+    <button type="button" id="tambah-alat">Tambah Alat</button>
+    
+    
     <div>
         <label for="tanggal_mulai">Tanggal Mulai:</label>
         <input type="date" name="tanggal_mulai" id="tanggal_mulai" required>
@@ -81,3 +94,32 @@
     </div>
     <button type="submit">Submit</button>
 </form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    let alatContainer = document.getElementById('alat-container');
+    let tambahAlatButton = document.getElementById('tambah-alat');
+
+    let index = alatContainer.querySelectorAll('.alat-item').length;
+
+    tambahAlatButton.addEventListener('click', function() {
+        let alatItem = document.createElement('div');
+        alatItem.classList.add('alat-item');
+        alatItem.innerHTML = `
+            <input type="text" name="alat[${index}][nama]" placeholder="Nama Alat">
+            <input type="number" name="alat[${index}][jumlah]" placeholder="Jumlah">
+            <button type="button" class="hapus-alat">Hapus</button>
+        `;
+        alatContainer.appendChild(alatItem);
+        index++;
+    });
+
+    // Untuk hapus alat secara dinamis
+    alatContainer.addEventListener('click', function(e) {
+        if (e.target.classList.contains('hapus-alat')) {
+            e.target.parentElement.remove();
+        }
+    });
+});
+
+</script>

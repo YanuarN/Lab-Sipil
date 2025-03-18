@@ -28,9 +28,14 @@ class booking extends Model
         'tanggal_mulai',
         'tanggal_selesai',
         'alat',
-        'status'
+        'status',
+        'kepala'
     ];
 
+    public function kepala()
+    {
+        return $this->belongsTo(KepalaLab::class, 'kepala', 'id');
+    }
 
     public function lab()
     {
@@ -51,4 +56,8 @@ class booking extends Model
     {
         return $this->belongsTo(Dosen::class, 'penguji2', 'id');
     }
+
+    protected $casts = [
+        'alat' => 'array', 
+    ];
 }

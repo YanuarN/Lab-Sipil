@@ -10,8 +10,10 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Notifications\Notification;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Actions\Action;
 
 class BookingEksternalResource extends Resource
 {
@@ -28,7 +30,7 @@ class BookingEksternalResource extends Resource
             Forms\Components\TextInput::make('nama_proyek')
                 ->required(),
             Forms\Components\DatePicker::make('tanggal_tes'),
-            Forms\Components\DatePicker::make('tanggal_pemesanan'),
+            Forms\Components\DatePicker::make('tanggal_pembuatan'),
             Forms\Components\TextInput::make('total_biaya')
                 ->numeric(),
             // Tambahkan field lain sesuai kebutuhan
@@ -47,7 +49,7 @@ class BookingEksternalResource extends Resource
                 ->searchable(),
             Tables\Columns\TextColumn::make('tanggal_tes')
                 ->date(),
-            Tables\Columns\TextColumn::make('tanggal_pemesanan')
+            Tables\Columns\TextColumn::make('tanggal_pembuatan')
                 ->date(),
             Tables\Columns\TextColumn::make('total_biaya')
                 ->money('IDR'),
@@ -70,6 +72,19 @@ class BookingEksternalResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\Action::make('cetakSurat')
+                    ->label('Cetak')
+                    ->icon('heroicon-o-printer')
+                    ->color('warning')
+                    ->requiresConfirmation()
+                    ->action(function (BookingEksternal $record) {
+                        Notification::make()
+                            ->title('Berhasil membuka nota')
+                            ->success()
+                            ->send();
+                    })
+                    ->url(fn (BookingEksternal $record) => route('nota.eksternal', ['id' => $record->id]))
+                    ->openUrlInNewTab() 
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -92,5 +107,10 @@ class BookingEksternalResource extends Resource
             'create' => Pages\CreateBookingEksternal::route('/create'),
             'edit' => Pages\EditBookingEksternal::route('/{record}/edit'),
         ];
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return 'Booking Eksternal';
     }
 }

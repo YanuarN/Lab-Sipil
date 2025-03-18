@@ -2,12 +2,14 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Resources\AgregatResource;
 use App\Filament\Resources\BookingEksternalResource\Widgets\BookingSummaryWidget;
 use App\Filament\Resources\BookingEksternalResource\Widgets\BookingTableWidget;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationBuilder;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -19,6 +21,15 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use App\Filament\Resources\BookingResource;
+use App\Filament\Resources\BookingEksternalResource;
+use App\Filament\Resources\DaftarAlatResource;
+use App\Filament\Resources\DaftarHargaResource;
+use App\Filament\Resources\DosenResource;
+use App\Filament\Resources\KepalaLabResource;
+use App\Filament\Resources\LabResource;
+use Filament\Navigation\NavigationGroup;
+
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -28,6 +39,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
+            ->brandName('Reservasi Laboratorium')
             ->login()
             ->sidebarWidth('w-64')
             ->maxContentWidth('full')
@@ -40,12 +52,31 @@ class AdminPanelProvider extends PanelProvider
             ->pages([
                 Pages\Dashboard::class,
             ])
+            ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
+                return $builder->groups([
+                    NavigationGroup::make('Booking')
+                        ->items([
+                            ...BookingResource::getNavigationItems(),
+                            ...BookingEksternalResource::getNavigationItems(),
+                            ...AgregatResource::getNavigationItems(),
+                        ]),
+                    NavigationGroup::make('Lab')
+                        ->items([
+                            ...KepalaLabResource::getNavigationItems(),
+                            ...LabResource::getNavigationItems(),
+                        ]),
+                    NavigationGroup::make('Master Data')
+                        ->items([
+                            ...DosenResource::getNavigationItems(),
+                            ...DaftarAlatResource::getNavigationItems(),
+                            ...DaftarHargaResource::getNavigationItems(),
+                        ]),
+                ]);
+            })
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
-                BookingSummaryWidget::class,
-                BookingTableWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,

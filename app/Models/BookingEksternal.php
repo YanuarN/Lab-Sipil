@@ -16,8 +16,7 @@ class BookingEksternal extends Model
         'nama_instansi', 
         'nama_proyek', 
         'tanggal_tes', 
-        'tanggal_pemesanan', 
-        'status_pembayaran', 
+        'tanggal_pembuatan', 
         'total_biaya'];
 
     public function bookingDetails()

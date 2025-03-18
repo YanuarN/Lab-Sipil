@@ -9,7 +9,7 @@ export default {
     extend: {
       colors:{
         eerieblack: "#141414ff",
-        davysgray: "545453",
+        davysgray: "#545453",
         silver: "#A9A9A7",
         yellow: "#FDFC01",
         night: "#141414",

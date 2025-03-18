@@ -40,7 +40,7 @@ class BookingTableWidget extends BaseWidget
                 Tables\Actions\Action::make('view')
                     ->url(fn (BookingEksternal $record): string => route('filament.admin.resources.booking-eksternals.view', $record))
                     ->icon('heroicon-o-eye'),
-            ])
-            ->paginate(5);
+            ]);
+
     }
 }

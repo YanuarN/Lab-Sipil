@@ -55,6 +55,10 @@ class BookingResource extends Resource
                     ->relationship('pembimbingRelation', 'nama')
                     ->required()
                     ->label('Pembimbing'),
+                Forms\Components\TextInput::make('judul_penelitian')
+                    ->required()
+                    ->maxLength(255)
+                    ->label('Judul Penelitian'),
                 Forms\Components\Select::make('status')
                     ->required()
                     ->options([
@@ -90,9 +94,21 @@ class BookingResource extends Resource
             TextColumn::make('pembimbingRelation.nama')->label('Pembimbing')
             ->sortable()
             ->searchable(),
-            TextColumn::make('status')->label('Status')
+            TextColumn::make('judul_penelitian')->label('Judul Penelitian')
             ->sortable()
             ->searchable(),
+            TextColumn::make('alat')->label('Alat')
+            ->formatStateUsing(function ($record) {
+                $result = [];
+                if ($record->alat) {
+                    foreach ($record->alat as $alat){
+                        $result[] = $alat['nama'];
+                    }
+                }
+                return implode(', ', $result);
+            })
+            ->wrap() // Allow wrapping
+
         ])
             ->filters([
                 //
@@ -108,14 +124,14 @@ class BookingResource extends Resource
                     ->color('warning')
                     ->requiresConfirmation()
                     ->action(function (Booking $record) {
-                        $record->status = 'proses';
-                        $record->save();
-                        
                         Notification::make()
-                            ->title('Status berhasil diubah menjadi proses')
+                            ->title('Berhasil membuka nota')
                             ->success()
                             ->send();
+                            $this->refreshFormData(['status']);
                     })
+                    ->url(fn (Booking $record) => route('generate.nota', ['id' => $record->id]))
+                    ->openUrlInNewTab() 
                     ->visible(fn (Booking $record) => $record->status != 'proses' && $record->status != 'selesai'),
                     
                 Action::make('setCompleted')
@@ -123,16 +139,16 @@ class BookingResource extends Resource
                     ->icon('heroicon-o-check-circle')
                     ->color('success')
                     ->requiresConfirmation()
+                    ->url(fn (Booking $record) => route('generate.bebas.lab', ['id' => $record->id]))
+                    ->openUrlInNewTab()
                     ->action(function (Booking $record) {
-                        $record->status = 'selesai';
-                        $record->save();
-                        
                         Notification::make()
                             ->title('Status berhasil diubah menjadi selesai')
                             ->success()
                             ->send();
                     })
-                    ->visible(fn (Booking $record) => $record->status != 'selesai'),
+                    ->visible(fn (Booking $record) => $record->status != 'selesai')
+                    ->after(fn () => redirect(request()->header('Referer'))),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -140,6 +156,7 @@ class BookingResource extends Resource
                 ]),
             ]);
     }
+    
 
     public static function getRelations(): array
     {
@@ -160,6 +177,11 @@ class BookingResource extends Resource
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()->with('pembimbingRelation');
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return 'Booking Mahasiswa';
     }
     
 }

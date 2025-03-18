@@ -25,14 +25,4 @@ class Dosen extends Model
     {
         return $this->hasMany(booking::class, 'pembimbing', 'id');
     }
-
-    public function bookingsAsPenguji1()
-    {
-        return $this->hasMany(booking::class, 'penguji1', 'id');
-    }
-
-    public function bookingsAsPenguji2()
-    {
-        return $this->hasMany(booking::class, 'penguji2', 'id');
-    }
 }
