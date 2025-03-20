@@ -8,11 +8,10 @@ export default {
   theme: {
     extend: {
       colors:{
-        eerieblack: "#141414ff",
-        davysgray: "#545453",
+        eerieblack: "#222831",
+        davysgray: "#393E46",
         silver: "#A9A9A7",
-        yellow: "#FDFC01",
-        night: "#141414",
+        yellow: "#FFD369",
       }
     },
   },

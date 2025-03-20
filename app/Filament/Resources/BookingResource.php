@@ -101,12 +101,55 @@ class BookingResource extends Resource
             ->formatStateUsing(function ($record) {
                 $result = [];
                 if ($record->alat) {
-                    foreach ($record->alat as $alat){
-                        $result[] = $alat['nama'];
+                    // Check if alat is a string (JSON)
+                    if (is_string($record->alat)) {
+                        try {
+                            $alat_data = json_decode($record->alat, true);
+                            if (json_last_error() === JSON_ERROR_NONE) {
+                                // Successfully parsed JSON
+                                if (is_array($alat_data)) {
+                                    foreach ($alat_data as $alat) {
+                                        if (isset($alat['nama'])) {
+                                            $result[] = $alat['nama'];
+                                        } elseif (is_string($alat)) {
+                                            $result[] = $alat;
+                                        }
+                                    }
+                                } elseif (isset($alat_data['nama'])) {
+                                    // Single alat as object with nama property
+                                    $result[] = $alat_data['nama'];
+                                }
+                            }
+                        } catch (\Exception $e) {
+                            // Failed to parse JSON, use as is
+                            $result[] = $record->alat;
+                        }
+                    } 
+                    // Handle case where alat is already an array
+                    elseif (is_array($record->alat)) {
+                        foreach ($record->alat as $alat) {
+                            if (is_array($alat) && isset($alat['nama'])) {
+                                $result[] = $alat['nama'];
+                            } elseif (is_string($alat)) {
+                                $result[] = $alat;
+                            }
+                        }
                     }
                 }
-                return implode(', ', $result);
+                
+                // Format as HTML bullet points
+                if (!empty($result)) {
+                    $html = '<ul class="list-disc pl-5">';
+                    foreach ($result as $item) {
+                        $html .= '<li>' . htmlspecialchars($item) . '</li>';
+                    }
+                    $html .= '</ul>';
+                    return new \Illuminate\Support\HtmlString($html);
+                }
+                
+                return '-';
             })
+            ->html() // Enable HTML rendering
             ->wrap() // Allow wrapping
 
         ])

@@ -24,7 +24,50 @@ class PermohonanController extends Controller
         $dosen = Dosen::all();
         $daftar_alat = DaftarAlat::all();
         $kepala_lab = KepalaLab::all();
-        return view('page.form', compact('lab', 'dosen', 'daftar_alat', 'kepala_lab'));
+        $booking = booking::all();
+        return view('page.BookingMahasiswa', compact('lab', 'dosen', 'daftar_alat', 'kepala_lab', 'booking'));
+    }
+
+// Add this method to your PermohonanController.php
+
+    public function getBookingEvents()
+    {
+        // Get counts of bookings by date
+        $bookings = booking::select('tanggal_mulai', DB::raw('count(*) as count'))
+            ->groupBy('tanggal_mulai')
+            ->get();
+        
+        $events = [];
+        foreach ($bookings as $booking) {
+            $events[] = [
+                'date' => $booking->tanggal_mulai,
+                'count' => $booking->count
+            ];
+        }
+        
+        return response()->json($events);
+    }
+
+    public function checkKuota(Request $request)
+    {
+        try {
+            $tanggal = $request->query('date');
+            $kuotaMaksimal = 10;
+    
+            // Sesuaikan model dengan nama tabel booking Anda
+            $jumlahBooking = booking::where('tanggal_mulai', $tanggal)->count();
+    
+            return response()->json([
+                'status' => ($jumlahBooking >= $kuotaMaksimal) ? 'penuh' : 'tersedia',
+                'sisa_kuota' => max(0, $kuotaMaksimal - $jumlahBooking),
+                'message' => ($jumlahBooking >= $kuotaMaksimal) ? 'Kuota penuh' : 'Kuota tersedia',
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Terjadi kesalahan',
+                'message' => $e->getMessage()
+            ], 500);
+        }
     }
 
     /**
@@ -32,7 +75,17 @@ class PermohonanController extends Controller
      */
     public function store(Request $request)
     {
-            // Validasi input
+        $existingBooking = booking::where('nim', $request->nim)
+            ->where('status', '!=', 'selesai')
+            ->first();
+
+        if ($existingBooking) {
+            return redirect()->back()
+                ->withInput()
+                ->withErrors(['nim' => 'NIM ini masih memiliki booking yang belum selesai. Silakan hubungi admin lab.']);
+        }
+
+        // Validasi input
         $validator = Validator::make($request->all(), [
             'nama' => 'required|string|max:255',
             'email' => 'required|email|max:255',
@@ -52,7 +105,7 @@ class PermohonanController extends Controller
             'status' => 'nullable|in:daftar,proses,selesai',
             'kepalalab' => 'nullable',
         ]);
-    
+
         // Simpan data ke database
         $booking = new booking();
         $booking->nama = $request->nama;
@@ -72,7 +125,6 @@ class PermohonanController extends Controller
         $booking->status = $request->status ?? 'daftar'; 
         $booking->kepala = $request->kepalalab;
         $booking->save();
-    
 
         // Generate and return the document
         return $this->generateDocument($booking);
@@ -114,6 +166,39 @@ class PermohonanController extends Controller
         // Replace placeholders with actual data
         foreach ($data as $key => $value) {
             $templateProcessor->setValue($key, $value);
+        }
+
+        $alatList = $booking->alat ?? [];
+        
+        // Filter out empty entries
+        $alatList = array_filter($alatList, function($alat) {
+            return !empty($alat['nama']) || !empty($alat['jumlah']);
+        });
+        
+        // Option 1: Convert to formatted string
+        $alatText = '';
+        foreach ($alatList as $index => $alat) {
+            $no = $index + 1;
+            $nama = htmlspecialchars($alat['nama'] ?? '-');
+            $jumlah = htmlspecialchars($alat['jumlah'] ?? '-');
+            $alatText .= "{$no}. {$nama} ({$jumlah})\n";
+        }
+        $templateProcessor->setValue('alat_text', $alatText ?: '(Tidak ada)');
+        
+        // Option 2: For table-based cloning
+        if (count($alatList) > 0) {
+            $templateProcessor->cloneRow('alat', count($alatList));
+            
+            foreach ($alatList as $index => $alat) {
+            $rowIndex = $index + 1;
+            $nama = htmlspecialchars($alat['nama'] ?? '-');
+            $templateProcessor->setValue('no#' . $rowIndex, $rowIndex);
+            $templateProcessor->setValue('alat#' . $rowIndex, $nama);
+            }
+        } else {
+            // Set default values if no alat
+            $templateProcessor->setValue('no#1', '1');
+            $templateProcessor->setValue('alat#1', '(Tidak ada)');
         }
 
         // Save the modified document with unique filename

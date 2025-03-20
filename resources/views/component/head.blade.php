@@ -18,8 +18,7 @@
                     <a href="#programs" class="text-silver uppercase text-sm font-medium hover:text-yellow transition-colors">Programs</a>
                     <a href="#faculty" class="text-silver uppercase text-sm font-medium hover:text-yellow transition-colors">Fakultas</a>
                     <a href="#research" class="text-silver uppercase text-sm font-medium hover:text-yellow transition-colors">Research</a>
-                    <a href="#facilities" class="text-silver uppercase text-sm font-medium hover:text-yellow transition-colors">Facilities</a>
-                    <a href="#contact" class="text-silver uppercase text-sm font-medium hover:text-yellow transition-colors">Contact</a>
+                    <a href="#facilities" class="text-silver uppercase text-sm font-medium hover:text-yellow transition-colors">Fasilitas</a>
                 </div>
                 <button class="bg-yellow text-eerieblack px-6 py-2 rounded-md font-semibold uppercase text-sm hover:bg-yellow-500 hover:shadow-lg transition-all"><a href="reserve">Reservasi</a></button>
                 <button class="md:hidden text-silver text-2xl" id="menu-toggle">☰</button>
@@ -27,8 +26,7 @@
                     <a href="#programs" class="text-silver uppercase text-sm font-medium hover:text-yellow transition-colors py-2">Programs</a>
                     <a href="#faculty" class="text-silver uppercase text-sm font-medium hover:text-yellow transition-colors py-2">Faculty</a>
                     <a href="#research" class="text-silver uppercase text-sm font-medium hover:text-yellow transition-colors py-2">Research</a>
-                    <a href="#facilities" class="text-silver uppercase text-sm font-medium hover:text-yellow transition-colors py-2">Facilities</a>
-                    <a href="#contact" class="text-silver uppercase text-sm font-medium hover:text-yellow transition-colors py-2">Contact</a>
+                    <a href="#facilities" class="text-silver uppercase text-sm font-medium hover:text-yellow transition-colors py-2">Fasilitas</a>
                 </div>
             </nav>
         </div>

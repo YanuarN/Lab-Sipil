@@ -5,7 +5,7 @@
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="relative z-10">
                     <h1 class="text-5xl font-bold mb-6">Building the <span class="text-yellow">Future</span> Through Engineering Excellence</h1>
-                    <p class="text-lg mb-8 opacity-90">The Department of Civil Engineering provides world-class education and research opportunities in structural engineering, geotechnical engineering, transportation systems, environmental engineering, and construction management.</p>
+                    <p class="text-lg mb-8 opacity-90">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet provident libero, sint aut consectetur enim vitae qui, itaque unde perferendis, fuga voluptate! Fugiat voluptatibus quaerat soluta, alias ut odit iure.</p>
                     <button class="bg-yellow text-eerieblack px-6 py-2 rounded-md font-semibold uppercase text-sm hover:bg-yellow-500 hover:shadow-lg transition-all">Discover Our Programs</button>
                     
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
@@ -43,90 +43,100 @@
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold mb-4">Fasilitas Lab</h2>
-                <p class="text-night max-w-2xl mx-auto">Comprehensive education pathways designed to equip future civil engineers with the knowledge and skills needed for professional success</p>
+                <p class="text-night max-w-2xl mx-auto">Layanan booking fasilitas lab kami dirancang untuk memenuhi kebutuhan penelitian, kolaborasi eksternal, dan pengelolaan bahan lab secara efisien.</p>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-davysgray rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow">
-                    <div class="h-48 bg-night relative">
-                        <div class="bg-yellow text-eerieblack w-12 h-12 rounded-full flex items-center justify-center font-bold absolute bottom-[-1.5rem] left-6 shadow-md">BS</div>
+                <!-- Card 1: Permohonan Penggunaan Lab untuk Penelitian -->
+                <a href="/permohonan" class="bg-davysgray rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow">
+                    <div class="h-48 bg-night relative flex items-center justify-center">
+                        <img src="{{ asset('image/research-icon.png') }}" alt="Penelitian" class="w-20 h-20 object-cover">
                     </div>
                     <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-4">Bachelor of Science</h3>
-                        <p class="text-night mb-6">Our ABET-accredited undergraduate program provides a strong foundation in civil engineering principles with hands-on project experience.</p>
+                        <h3 class="text-2xl text-yellow font-bold mb-4">Penggunaan Lab untuk Penelitian</h3>
+                        <p class="text-white mb-6">Ajukan permohonan penggunaan lab untuk keperluan penelitian penelitian tugas akhir.</p>
                         <div class="flex justify-between text-night text-sm border-t border-silver/20 pt-4">
-                            <span>4 Years</span>
-                            <span>140 Credit Hours</span>
+                            <span class="text-yellow">Maksimal 3 Bulan</span>
+                            <span class="text-yellow">10 Orang Per Hari</span>
                         </div>
                     </div>
-                </div>
-                <div class="bg-davysgray rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow">
-                    <div class="h-48 bg-night relative">
-                        <div class="bg-yellow text-eerieblack w-12 h-12 rounded-full flex items-center justify-center font-bold absolute bottom-[-1.5rem] left-6 shadow-md">MS</div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-4">Master of Science</h3>
-                        <p class="text-night mb-6">Advanced study with specialization options in structural engineering, geotechnical engineering, or transportation systems.</p>
-                        <div class="flex justify-between text-night text-sm border-t border-silver/20 pt-4">
-                            <span>2 Years</span>
-                            <span>30 Credit Hours</span>
+                </a>
+    
+                <!-- Card 2: Booking Lab untuk Eksternal -->
+                <a href="/booking-Eksternal">
+                    <div class="bg-davysgray rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow">
+                        <div class="h-48 bg-night relative flex items-center justify-center">
+                            <img src="{{ asset('image/external-icon.png') }}" alt="Eksternal" class="w-20 h-20 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl text-yellow font-bold mb-4">Booking Lab untuk Eksternal</h3>
+                            <p class="text-white mb-6">Fasilitas lab kami terbuka untuk kolaborasi dengan pihak eksternal seperti industri, lembaga penelitian, atau mitra lainnya.</p>
+                            <div class="flex justify-between text-night text-sm border-t border-silver/20 pt-4">
+                                <span class="text-yellow">Maksimal 1 Bulan</span>
+                                <span class="text-yellow">Prioritas Kolaborasi</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="bg-davysgray rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow">
-                    <div class="h-48 bg-night relative">
-                        <div class="bg-yellow text-eerieblack w-12 h-12 rounded-full flex items-center justify-center font-bold absolute bottom-[-1.5rem] left-6 shadow-md">PhD</div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-4">Doctoral Program</h3>
-                        <p class="text-night mb-6">Research-focused degree preparing students for leadership roles in academia, industry research, and advanced engineering practice.</p>
-                        <div class="flex justify-between text-night text-sm border-t border-silver/20 pt-4">
-                            <span>4-5 Years</span>
-                            <span>Research-based</span>
+                </a>
+    
+                <!-- Card 3: Pengajuan Permohonan Bahan Lab -->
+                <a href="/permohonan-bahan">
+                    <div class="bg-davysgray rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow">
+                        <div class="h-48 bg-night relative flex items-center justify-center">
+                            <img src="{{ asset('image/material-icon.png') }}" alt="Bahan Lab" class="w-20 h-20 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl text-yellow font-bold mb-4">Pengajuan Permohonan Bahan Lab</h3>
+                            <p class="text-white mb-6">Ajukan permohonan bahan lab yang diperlukan untuk penelitian atau praktikum dengan proses yang cepat dan transparan.</p>
+                            <div class="flex justify-between text-night text-sm border-t border-silver/20 pt-4">
+                                <span class="text-yellow">Ambil Surat Permohonan Ke Lab</span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Faculty Section -->
-    <section class="bg-silver py-20" id="faculty">
+    <section class="bg-eerieblack py-20" id="faculty">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Distinguished Faculty</h2>
-                <p class="text-night max-w-2xl mx-auto">Learn from world-renowned experts with extensive industry experience and research achievements</p>
+            <div class="text-center mb-16 text-white">
+                <h2 class="text-4xl font-bold mb-4">Laboratorium Teknik Sipil UMS</h2>
+                <p class="max-w-2xl mx-auto px-4">Learn from world-renowned experts with extensive industry experience and research achievements</p>
             </div>
-            <div class="grid md:grid-cols-4 gap-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 px-4 md:px-8 lg:px-20 xl:px-52">
+                <!-- Card 1 -->
                 <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow">
-                    <div class="h-64 bg-night"></div>
-                    <div class="p-6 text-center">
-                        <h3 class="text-2xl font-bold mb-2">Dr. Robert Chen</h3>
-                        <p class="text-night mb-4">Department Chair & Professor</p>
-                        <div class="bg-yellow/20 text-night px-4 py-1 rounded-full text-sm font-semibold">Structural Engineering</div>
+                    <div class="h-48 md:h-64 bg-night bg-cover bg-center" style="background-image: url('');"></div>
+                    <div class="p-4 md:p-6 text-center">
+                        <h3 class="text-xl md:text-2xl font-bold mb-2">Ir. Budi Setiawan,S.T.,M.T</h3>
+                        <p class="text-night mb-4">Struktur, Komputer dan Hidraulika</p>
+                        <div class="bg-yellow/20 text-night px-4 py-1 rounded-full text-sm font-semibold">Kepala Laboratorium</div>
                     </div>
                 </div>
+                <!-- Card 2 -->
                 <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow">
-                    <div class="h-64 bg-night"></div>
-                    <div class="p-6 text-center">
-                        <h3 class="text-2xl font-bold mb-2">Dr. Sarah Johnson</h3>
-                        <p class="text-night mb-4">Associate Professor</p>
-                        <div class="bg-yellow/20 text-night px-4 py-1 rounded-full text-sm font-semibold">Geotechnical Engineering</div>
+                    <div class="h-48 md:h-64 bg-night bg-cover bg-center" style="background-image: url('');"></div>
+                    <div class="p-4 md:p-6 text-center">
+                        <h3 class="text-xl md:text-2xl font-bold mb-2">Ir. Agus Riyanto.,M.T</h3>
+                        <p class="text-night mb-4">Transportasi, Geomatika dan Mekanika Tanah</p>
+                        <div class="bg-yellow/20 text-night px-4 py-1 rounded-full text-sm font-semibold">Kepala Laboratorium</div>
                     </div>
                 </div>
+                <!-- Card 3 -->
                 <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow">
-                    <div class="h-64 bg-night"></div>
-                    <div class="p-6 text-center">
-                        <h3 class="text-2xl font-bold mb-2">Dr. Michael Torres</h3>
-                        <p class="text-night mb-4">Assistant Professor</p>
-                        <div class="bg-yellow/20 text-night px-4 py-1 rounded-full text-sm font-semibold">Transportation Systems</div>
+                    <div class="h-48 md:h-64 bg-night bg-cover bg-center" style="background-image: url('');"></div>
+                    <div class="p-4 md:p-6 text-center">
+                        <h3 class="text-xl md:text-2xl font-bold mb-2">Bella Titisari,S.T</h3>
+                        <div class="bg-yellow/20 text-night px-4 py-1 rounded-full text-sm font-semibold">Laboran</div>
                     </div>
                 </div>
+                <!-- Card 4 -->
                 <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow">
-                    <div class="h-64 bg-night"></div>
-                    <div class="p-6 text-center">
-                        <h3 class="text-2xl font-bold mb-2">Dr. Emily Watson</h3>
-                        <p class="text-night mb-4">Associate Professor</p>
-                        <div class="bg-yellow/20 text-night px-4 py-1 rounded-full text-sm font-semibold">Environmental Engineering</div>
+                    <div class="h-48 md:h-64 bg-night bg-cover bg-center" style="background-image: url('');"></div>
+                    <div class="p-4 md:p-6 text-center">
+                        <h3 class="text-xl md:text-2xl font-bold mb-2">Didik Haryono,A.Md</h3>
+                        <div class="bg-yellow/20 text-night px-4 py-1 rounded-full text-sm font-semibold">Laboran</div>
                     </div>
                 </div>
             </div>
@@ -165,65 +175,7 @@
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="bg-eerieblack text-silver py-20 relative overflow-hidden" id="contact">
-        <div class="container mx-auto px-4">
-            <div class="text-center max-w-2xl mx-auto relative z-10">
-                <h2 class="text-4xl font-bold mb-6">Join Our Engineering Community</h2>
-                <p class="text-silver/90 mb-8">Take the first step toward a rewarding career in civil engineering by applying to our program today.</p>
-                <div class="flex justify-center gap-4">
-                    <button class="bg-yellow text-eerieblack px-6 py-2 rounded-md font-semibold uppercase text-sm hover:bg-yellow-500 hover:shadow-lg transition-all">Apply Now</button>
-                    <button class="border-2 border-yellow text-yellow px-6 py-2 rounded-md font-semibold uppercase text-sm hover:bg-yellow hover:text-eerieblack transition-all">Request Information</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
-    <footer class="bg-night text-silver py-16">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-8 mb-12">
-                <div>
-                    <div class="flex items-center gap-3 mb-6">
-                        <div class="bg-yellow text-eerieblack font-bold rounded-lg w-10 h-10 flex items-center justify-center text-xl">CE</div>
-                        <div class="text-silver text-2xl font-bold">Civil<span class="text-yellow">Engineering</span></div>
-                    </div>
-                    <p class="text-silver/80 mb-6">The Department of Civil Engineering is committed to excellence in education, research, and professional practice, preparing students to address society's infrastructure challenges.</p>
-                    <ul class="space-y-2">
-                        <li class="flex items-center">
-                            <span class="text-yellow mr-2">➦</span> 1234 University Drive
-                        </li>
-                        <li class="flex items-center">
-                            <span class="text-yellow mr-2">✆</span> (123) 456-7890
-                        </li>
-                        <li class="flex items-center">
-                            <span class="text-yellow mr-2">✉</span> info@civilengineering.edu
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-yellow text-lg font-bold mb-6">Quick Links</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#programs" class="text-silver/80 hover:text-yellow transition-colors">Programs</a></li>
-                        <li><a href="#faculty" class="text-silver/80 hover:text-yellow transition-colors">Faculty</a></li>
-                        <li><a href="#research" class="text-silver/80 hover:text-yellow transition-colors">Research</a></li>
-                        <li><a href="#facilities" class="text-silver/80 hover:text-yellow transition-colors">Facilities</a></li>
-                        <li><a href="#contact" class="text-silver/80 hover:text-yellow transition-colors">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-yellow text-lg font-bold mb-6">Social Media</h3>
-                    <div class="flex gap-4">
-                        <a href="#" class="bg-silver/20 text-silver w-10 h-10 rounded-full flex items-center justify-center hover:bg-yellow hover:text-eerieblack transition-colors">FB</a>
-                        <a href="#" class="bg-silver/20 text-silver w-10 h-10 rounded-full flex items-center justify-center hover:bg-yellow hover:text-eerieblack transition-colors">TW</a>
-                        <a href="#" class="bg-silver/20 text-silver w-10 h-10 rounded-full flex items-center justify-center hover:bg-yellow hover:text-eerieblack transition-colors">IN</a>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center text-silver/60 border-t border-silver/20 pt-8">
-                &copy; 2023 Teknik Sipil Universitas Muhammadiyah Surakarta. All rights reserved.
-            </div>
-        </div>
-    </footer>
+    @include('component.footer')
 </body>
 </html>

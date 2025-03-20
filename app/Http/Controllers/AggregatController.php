@@ -12,7 +12,7 @@ use PhpOffice\PhpWord\TemplateProcessor;
 class AggregatController extends Controller
 {
     public function create(){
-        return view('page.formAggre');
+        return view('page.PermohonanBahan');
     }
     public function store(Request $request)
     {
@@ -77,7 +77,6 @@ class AggregatController extends Controller
             'judul_penelitian' => $agregat->judul_penelitian,
             'instansi_tujuan' => $agregat->instansi_tujuan,
             'alamat_instansi' => $agregat->alamat_instansi,
-            // Arrays will be handled separately
         ];
         
         // Buat nama file output
@@ -98,7 +97,7 @@ class AggregatController extends Controller
     
         // Format nomor surat
         $noSurat = "{$newId}/PA/Lab.Sipil/I/2025";
-        $templateProcessor->setValue('nomor_surat', $noSurat);
+        $templateProcessor->setValue('no_surat', $noSurat);
     
         // Isi data utama (sanitize data untuk keamanan)
         foreach ($data as $key => $value) {

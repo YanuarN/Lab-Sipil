@@ -11,17 +11,18 @@ Route::get('/', function () {
     
     return view('index');
 });
-Route::get('/reserve', function () {
-    return view('reserve');
-});
+// Route::get('/reserve', function () {
+//     return view('calender');
+// });
 //Route Booking mahasiswa
 Route::resource('permohonan', PermohonanController::class);
+Route::get('/get-booking-events', [PermohonanController::class, 'getBookingEvents']);
+Route::get('/cek-kuota', [PermohonanController::class, 'checkKuota'])->name('cek-kuota');
 Route::get('/generate-nota/{id}', [PermohonanController::class, 'generateNota'])->name('generate.nota');
 Route::get('/generate-bebas-lab/{id}', [PermohonanController::class, 'generateBebasLab'])->name('generate.bebas.lab');
 
 //Route Booking Eksternal
-Route::resource('booking', BookingEksternalController::class);
-
+Route::resource('booking-Eksternal', BookingEksternalController::class);
 Route::get('/generate-nota-eks/{id}', [CetakNotaController::class, 'generateNota'])->name('nota.eksternal');
 
 
