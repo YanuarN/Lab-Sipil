@@ -76,7 +76,7 @@
                             <h2 class="text-2xl font-bold text-night mb-6">Permohonan <span class="text-yellow">Penelitian</span></h2>
                             <p class="text-gray-600 mb-8">Isi form permohonan penggunaan laboratorium dan peralatan penelitian. Pastikan untuk mengisi semua informasi dengan benar.</p>
     
-                            <form action="{{ route('permohonan.store') }}" method="POST">
+                            <form action="{{ route('permohonan.store') }}" method="POST"  onsubmit="return handleSubmit()">
                                 @csrf
                                 
                                 <!-- Data Pemohon Section -->
@@ -102,13 +102,6 @@
                                             <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow focus:border-transparent transition-all" id="nim" name="nim" 
                                             value="{{ old('nim') }}" required>
                                             @error('nim')
-                                            <script>
-                                            Swal.fire({
-                                                icon: "error",
-                                                title: "Oops...",
-                                                text: "{{ $message }}"
-                                            });  </script>
-                                            @enderror    @error('nim')
                                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                                             @enderror
                                         </div>
@@ -252,7 +245,7 @@
                                     <button type="button" id="tutup-form" class="px-6 py-3 border-2 border-night text-night font-semibold rounded-md hover:bg-night hover:text-white transition-all">
                                         Batal
                                     </button>
-                                    <button type="submit" class="px-6 py-3 bg-yellow text-eerieblack font-semibold rounded-md hover:bg-yellow-500 hover:shadow-lg transition-all" onclick="event.preventDefault(); this.closest('form').submit();">
+                                    <button type="submit" class="px-6 py-3 bg-yellow text-eerieblack font-semibold rounded-md hover:bg-yellow-500 hover:shadow-lg transition-all">
                                         Submit Permohonan
                                     </button>
                                 </div>

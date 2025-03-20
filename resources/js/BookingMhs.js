@@ -4,6 +4,27 @@ import interactionPlugin from '@fullcalendar/interaction';
 import Swal from 'sweetalert2'
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Check for NIM validation errors
+    const nimErrorElement = document.querySelector('[name="nim"]');
+    if (nimErrorElement) {
+        const nimErrorMessage = document.querySelector('[name="nim"] + p.text-red-500');
+        if (nimErrorMessage) {
+            // Get the error message text
+            const errorMessage = nimErrorMessage.textContent.trim();
+            
+            // Show SweetAlert with the error message
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: errorMessage
+            });
+            
+            // Focus and scroll to the NIM field
+            nimErrorElement.focus();
+            nimErrorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }
+
     // Initialize Calendar
     var calendarEl = document.getElementById('calendar');
     var calendar = new Calendar(calendarEl, {
@@ -138,20 +159,4 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
-    
-    const nimField = document.getElementById('nim');
-    
-    if (nimField) {
-        // Highlight the NIM field if there's an error
-        const nimError = document.querySelector('.border-red-500');
-        if (nimError) {
-            nimField.focus();
-            
-            // Scroll to the NIM field error message
-            const errorElement = document.querySelector('[for="nim"]');
-            if (errorElement) {
-                errorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        }
-    }
 });

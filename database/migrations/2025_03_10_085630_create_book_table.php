@@ -27,7 +27,6 @@ return new class extends Migration
             $table->string('alamat_di_solo');
             $table->string('alamat_rumah');
             $table->date('tanggal_mulai');
-            $table->date('tanggal_selesai');
             $table->enum('status', ['daftar', 'proses', 'selesai']);
         });
     }
