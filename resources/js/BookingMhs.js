@@ -1,6 +1,7 @@
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import Swal from 'sweetalert2'
 
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize Calendar
@@ -40,7 +41,11 @@ document.addEventListener('DOMContentLoaded', function() {
         eventClick: function(info) {
             const count = info.event.extendedProps.count;
             if (count >= 10) {
-                alert('Kuota untuk tanggal ini sudah penuh. Silakan pilih tanggal lain.');
+                Swal.fire({
+                    icon: "error",
+                    title: "Kuota Penuh",
+                    text: "Silahkan Pilih Tanggal Lain",
+                  });
             } else {
                 handleDateSelection(info.event.startStr);
             }
@@ -69,7 +74,11 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(data => {
                 if (data.kuotaPenuh) {
-                    alert('Kuota untuk tanggal ini sudah penuh. Silakan pilih tanggal lain.');
+                    Swal.fire({
+                        icon: "error",
+                        title: "Kuota Penuh",
+                        text: "Silahkan Pilih Tanggal Lain",
+                      });
                 } else {
                     // Show form and set date
                     document.getElementById('bookingForm').classList.remove('hidden');
@@ -84,7 +93,11 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('Terjadi kesalahan saat memeriksa ketersediaan. Silakan coba lagi.');
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Terjadi kesalahan saat memeriksa ketersediaan. Silakan coba lagi."
+                  });
             });
     }
 

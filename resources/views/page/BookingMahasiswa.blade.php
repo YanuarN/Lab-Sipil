@@ -103,8 +103,11 @@
                                             value="{{ old('nim') }}" required>
                                             @error('nim')
                                             <script>
-                                            alert("{{ $message }}");
-                                            </script>
+                                            Swal.fire({
+                                                icon: "error",
+                                                title: "Oops...",
+                                                text: "{{ $message }}"
+                                            });  </script>
                                             @enderror    @error('nim')
                                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                                             @enderror
