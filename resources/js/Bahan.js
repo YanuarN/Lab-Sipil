@@ -6,6 +6,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const container = document.getElementById('anggota-container');
             const index = container.querySelectorAll('.anggota-item').length;
             
+            // Check if we've reached the maximum of 5 anggota
+            if (index >= 5) {
+                return; // Don't add more if already at 5
+            }
+            
             const div = document.createElement('div');
             div.className = 'anggota-item grid md:grid-cols-2 gap-4 p-4 border border-gray-200 rounded-md bg-gray-50';
             
@@ -31,6 +36,9 @@ document.addEventListener('DOMContentLoaded', function() {
             
             container.appendChild(div);
             addDeleteListeners();
+            
+            // Check if we need to hide the button
+            checkAnggotaLimit();
         });
     }
 

@@ -27,11 +27,12 @@ class DosenResource extends Resource
         return $form
             ->schema([
                 TextInput::make('nama')->required(),
-                Select::make('lab_id')
+                Select::make('keahlian')
                     ->relationship('lab', 'nama_lab')
                     ->label('Keahlian (Lab)')
                     ->required()
             ]);
+
     }
 
     public static function table(Table $table): Table

@@ -31,7 +31,44 @@ class AgregatResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('nama')
+                    ->required()
+                    ->maxLength(255)
+                    ->label('Nama'),
+                Forms\Components\TextInput::make('nim')
+                    ->required()
+                    ->maxLength(255)
+                    ->label('NIM'),
+                Forms\Components\TextInput::make('judul_penelitian')
+                    ->required()
+                    ->maxLength(255)
+                    ->label('Judul Penelitian'),
+                Forms\Components\TextInput::make('instansi_tujuan')
+                    ->required()
+                    ->maxLength(255)
+                    ->label('Instansi Tujuan'),
+                Forms\Components\TextInput::make('alamat_instansi')
+                    ->required()
+                    ->maxLength(255)
+                    ->label('Alamat Instansi'),
+                Forms\Components\Repeater::make('anggota')
+                    ->schema([
+                        Forms\Components\TextInput::make('nama')
+                            ->required()
+                            ->label('Nama Anggota'),
+                        Forms\Components\TextInput::make('nim')
+                            ->required()
+                            ->label('NIM Anggota'),
+                    ]),
+                Forms\Components\Repeater::make('nama_material')
+                    ->schema([
+                        Forms\Components\TextInput::make('nama')
+                            ->required()
+                            ->label('Nama Material'),
+                        Forms\Components\TextInput::make('jumlah')
+                            ->required()
+                            ->label('Jumlah'),
+                    ]),
             ]);
     }
 

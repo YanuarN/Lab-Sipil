@@ -54,6 +54,20 @@ class CetakNotaController extends Controller
         // Mengganti placeholder untuk tabel
         $templateProcessor->cloneRowAndSetValues('jenis_pembiayaan', $testDetails);
 
+        $testDetails2 = [];
+        foreach ($details as $detail) {
+            $jenisTes = DaftarHarga::find($detail->jenis_tes);
+            $testDetails2[] = [
+                'jenis_pembiayaan2' => $jenisTes ? $jenisTes->order : 'Tidak Diketahui',
+                'jumlah2' => $detail->jumlah_pengetesan,
+                'harga_satuan2' => number_format($jenisTes ? $jenisTes->harga : 0, 2, ',', '.'),
+                'subtotal2' => number_format($detail->subtotal, 2, ',', '.')
+    ];
+}
+
+        // Clone row untuk tabel kedua
+        $templateProcessor->cloneRowAndSetValues('jenis_pembiayaan2', $testDetails2);
+
         // Simpan dokumen hasil
         $outputPath = storage_path('app/public/nota_' . $id . '.docx');
         $templateProcessor->saveAs($outputPath);

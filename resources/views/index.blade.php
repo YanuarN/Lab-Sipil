@@ -1,6 +1,6 @@
 @include('component.head')
     <!-- Hero Section -->
-    <section class="bg-eerieblack text-silver py-44 relative overflow-hidden">
+    <section class="bg-eerieblack text-silver py-44 relative overflow-hidden px-10">
         <div class="container mx-auto  py-5">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="relative z-10">

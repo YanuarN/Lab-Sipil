@@ -7,6 +7,7 @@ use App\Filament\Resources\KepalaLabResource\RelationManagers;
 use App\Models\KepalaLab;
 use Dom\Text;
 use Filament\Forms;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Resources\Resource;
@@ -25,7 +26,7 @@ class KepalaLabResource extends Resource
     {
         return $form
             ->schema([
-                //
+                TextInput::make('nama')->required(),
             ]);
     }
 
