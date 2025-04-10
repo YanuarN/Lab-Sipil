@@ -40,8 +40,10 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->brandName('Reservasi Laboratorium')
+            ->homeUrl('/admin')  
             ->login()
             ->sidebarWidth('w-64')
+            ->sidebarCollapsibleOnDesktop()
             ->maxContentWidth('full')
             ->colors([
                 'primary' => Color::Amber,
@@ -59,6 +61,7 @@ class AdminPanelProvider extends PanelProvider
                             ...BookingResource::getNavigationItems(),
                             ...BookingEksternalResource::getNavigationItems(),
                             ...AgregatResource::getNavigationItems(),
+                            ...PeminjamanRuangResource::getNavigationItems(),
                         ]),
                     NavigationGroup::make('Lab')
                         ->items([
@@ -74,7 +77,6 @@ class AdminPanelProvider extends PanelProvider
                     NavigationGroup::make('Ruangan')
                         ->items([
                             ...RuangResource::getNavigationItems(),
-                            ...PeminjamanRuangResource::getNavigationItems(),
                         ]),
                 ]);
             })

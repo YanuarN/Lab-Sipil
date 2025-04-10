@@ -1,67 +1,113 @@
+// 3D Carousel functionality
 document.addEventListener('DOMContentLoaded', function() {
-    const carousel = document.getElementById('lab-carousel');
-    const slides = carousel.querySelectorAll('.carousel-slide');
-    const prevButton = carousel.querySelector('.carousel-prev');
-    const nextButton = carousel.querySelector('.carousel-next');
-    const indicators = carousel.querySelectorAll('.carousel-indicator');
-    const slidesContainer = carousel.querySelector('.carousel-slides');
-    
-    let currentIndex = 0;
-    const totalSlides = slides.length;
-    
-    // Function to update carousel position
-    function updateCarousel() {
-        slidesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+    const carouselItems = document.querySelectorAll('.carousel-item-3d');
+    const carouselDots = document.querySelectorAll('.carousel-dot-3d');
+    let currentSlide = 1;
+    let isAnimating = false;
+    let carouselInterval;
+
+    // Function to show a specific slide
+    function showSlide(slideNumber) {
+        if (isAnimating) return;
+        isAnimating = true;
         
-        // Update indicators
-        indicators.forEach((indicator, index) => {
-            if (index === currentIndex) {
-                indicator.classList.add('bg-yellow');
-                indicator.classList.remove('bg-silver/50');
+        // Hide all slides
+        carouselItems.forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'rotateY(90deg)';
+            item.style.zIndex = '0';
+        });
+        
+        // Show active slide
+        const activeSlide = document.querySelector(`.carousel-item-3d[data-slide="${slideNumber}"]`);
+        activeSlide.style.opacity = '1';
+        activeSlide.style.transform = 'rotateY(0deg)';
+        activeSlide.style.zIndex = '10';
+        
+        // Update dots
+        carouselDots.forEach(dot => dot.classList.remove('active', 'bg-yellow', 'opacity-100'));
+        const activeDot = document.querySelector(`.carousel-dot-3d[data-dot="${slideNumber}"]`);
+        activeDot.classList.add('active', 'bg-yellow', 'opacity-100');
+        
+        // Update current slide
+        currentSlide = slideNumber;
+        
+        // Allow animation again after transition completes
+        setTimeout(() => {
+            isAnimating = false;
+        }, 1000);
+    }
+
+    // Set up click events for dots
+    carouselDots.forEach(dot => {
+        dot.addEventListener('click', function() {
+            const slideNumber = parseInt(this.getAttribute('data-dot'));
+            showSlide(slideNumber);
+            resetAutoPlay();
+        });
+    });
+
+    // Auto rotation
+    function startAutoPlay() {
+        carouselInterval = setInterval(() => {
+            const nextSlide = currentSlide >= carouselItems.length ? 1 : currentSlide + 1;
+            showSlide(nextSlide);
+        }, 5000);
+    }
+
+    function resetAutoPlay() {
+        clearInterval(carouselInterval);
+        startAutoPlay();
+    }
+
+    // Initialize the carousel
+    startAutoPlay();
+    
+    // Add hover pause functionality
+    const carousel = document.querySelector('.carousel-3d');
+    carousel.addEventListener('mouseenter', () => clearInterval(carouselInterval));
+    carousel.addEventListener('mouseleave', startAutoPlay);
+});
+
+// Counter animation (for the stats counters)
+document.addEventListener('DOMContentLoaded', function() {
+    const counters = document.querySelectorAll('.counter');
+    
+    const animateCounter = (counter, target) => {
+        let count = 0;
+        const speed = 2000 / target; // Adjust animation speed based on target value
+        
+        const updateCount = () => {
+            const increment = target / (2000 / 16); // For smoother animation
+            
+            if (count < target) {
+                count += increment;
+                counter.innerText = Math.ceil(count);
+                requestAnimationFrame(updateCount);
             } else {
-                indicator.classList.remove('bg-yellow');
-                indicator.classList.add('bg-silver/50');
+                counter.innerText = target;
+                if (target >= 100) {
+                    counter.innerText = '100+';
+                }
+            }
+        };
+        
+        updateCount();
+    };
+    
+    // Intersection Observer to start counter when visible
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counter = entry.target;
+                const target = parseInt(counter.getAttribute('data-target'));
+                animateCounter(counter, target);
+                observer.unobserve(counter);
             }
         });
-    }
+    }, { threshold: 0.5 });
     
-    // Next slide
-    function nextSlide() {
-        currentIndex = (currentIndex + 1) % totalSlides;
-        updateCarousel();
-    }
-    
-    // Previous slide
-    function prevSlide() {
-        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-        updateCarousel();
-    }
-    
-    // Set up event listeners
-    nextButton.addEventListener('click', nextSlide);
-    prevButton.addEventListener('click', prevSlide);
-    
-    // Set up indicator clicks
-    indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', () => {
-            currentIndex = index;
-            updateCarousel();
-        });
+    counters.forEach(counter => {
+        observer.observe(counter);
     });
-    
-    // Auto-advance slides every 5 seconds
-    let autoplayInterval = setInterval(nextSlide, 5000);
-    
-    // Pause autoplay on hover
-    carousel.addEventListener('mouseenter', () => {
-        clearInterval(autoplayInterval);
-    });
-    
-    // Resume autoplay when mouse leaves
-    carousel.addEventListener('mouseleave', () => {
-        autoplayInterval = setInterval(nextSlide, 5000);
-    });
-    
-    // Initialize carousel
-    updateCarousel();
 });

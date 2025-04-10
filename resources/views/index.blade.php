@@ -1,6 +1,6 @@
 @include('component.head')
     <!-- Hero Section -->
-    <section class="bg-eerieblack text-silver py-28 relative overflow-hidden">
+    <section class="bg-eerieblack text-silver py-28 px-9 relative overflow-hidden">
         <!-- Background animated pattern -->
         <div class="absolute inset-0 opacity-10">
             <div class="absolute w-full h-full bg-grid-pattern"></div>
@@ -13,7 +13,8 @@
                         UNIVERSITAS MUHAMMADIYAH SURAKARTA
                     </div>
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">Laboratorium <span class="text-yellow relative">Teknik Sipil<span class="absolute -bottom-2 left-0 w-full h-1 bg-yellow/30"></span></span></h1>
-                    <p class="text-lg mb-8 text-silver/90 leading-relaxed">Fasilitas modern untuk eksperimen, pengujian, dan riset dalam berbagai disiplin teknik sipil. Kami menyediakan layanan terbaik untuk mendukung keberhasilan riset dan pembelajaran anda.</p>
+                    <p class="text-lg mb-8 text-silver/90 leading-relaxed">Laboratorium Teknik Sipil adalah fasilitas yang digunakan untuk melakukan eksperimen, pengujian, dan riset dalam bidang teknik sipil. 
+                        Bidang ini mencakup berbagai disiplin ilmu yang berhubungan dengan konstruksi dan infrastruktur, seperti struktur bangunan, material, geoteknik, transportasi, serta manajemen konstruksi.</p>
                     
                     <div class="flex flex-wrap gap-4 mb-12">
                         <a href="#programs" class="bg-yellow text-eerieblack px-8 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-all duration-300 shadow-lg hover:shadow-yellow/30 flex items-center group">
@@ -49,28 +50,16 @@
                             <div class="carousel-item-3d absolute w-full h-full transition-all duration-1000 opacity-100 transform-style-preserve-3d" data-slide="1">
                                 <div class="absolute inset-0 rounded-xl overflow-hidden border-4 border-yellow/50 shadow-2xl">
                                     <img src="{{ asset('image/Budi.jpg')}}" alt="Pengujian Struktur" class="w-full h-full object-cover">
-                                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-eerieblack to-transparent p-8">
-                                        <h3 class="font-bold text-2xl mb-2 text-yellow">Pengujian Struktur</h3>
-                                        <p class="text-silver opacity-90">Eksperimen kekuatan dan perilaku struktur bangunan modern</p>
-                                    </div>
                                 </div>
                             </div>
                             <div class="carousel-item-3d absolute w-full h-full transition-all duration-1000 opacity-0 transform-style-preserve-3d" data-slide="2">
                                 <div class="absolute inset-0 rounded-xl overflow-hidden border-4 border-yellow/50 shadow-2xl">
                                     <img src="{{ asset('image/laboran1.jpg')}}" alt="Analisis Material" class="w-full h-full object-cover">
-                                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-eerieblack to-transparent p-8">
-                                        <h3 class="font-bold text-2xl mb-2 text-yellow">Analisis Material</h3>
-                                        <p class="text-silver opacity-90">Pengujian sifat fisik dan mekanik material konstruksi</p>
-                                    </div>
                                 </div>
                             </div>
                             <div class="carousel-item-3d absolute w-full h-full transition-all duration-1000 opacity-0 transform-style-preserve-3d" data-slide="3">
                                 <div class="absolute inset-0 rounded-xl overflow-hidden border-4 border-yellow/50 shadow-2xl">
                                     <img src="{{ asset('image/bg-img.svg')}}" alt="Simulasi Geoteknik" class="w-full h-full object-cover">
-                                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-eerieblack to-transparent p-8">
-                                        <h3 class="font-bold text-2xl mb-2 text-yellow">Simulasi Geoteknik</h3>
-                                        <p class="text-silver opacity-90">Pemodelan perilaku tanah dan fondasi</p>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -204,72 +193,109 @@
 
     <!-- Lab Features Section -->
     <section class="bg-gray-50 py-20">
-        <div class="container mx-auto px-4">
+        <div class="container mx-auto px-20">
             <div class="text-center mb-16">
-                <span class="inline-block px-4 py-1 rounded-full bg-yellow/20 text-night font-medium text-sm mb-4">KEUNGGULAN KAMI</span>
                 <h2 class="text-4xl font-bold mb-4 text-night">Fasilitas Unggulan Lab Teknik Sipil</h2>
                 <p class="text-night/70 max-w-2xl mx-auto">Laboratorium kami dilengkapi dengan peralatan modern yang mendukung penelitian dan pengujian berbagai aspek teknik sipil.</p>
             </div>
             
-            <div class="grid md:grid-cols-3 gap-8 mx-6">
-                <!-- Feature 1 -->
+            <div class="grid md:grid-cols-2 gap-8 mx-6">
+                <!-- Feature 3 - Teknologi Bahan -->
                 <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
                     <div class="w-16 h-16 bg-yellow/20 rounded-xl flex items-center justify-center mb-6">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-yellow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-night">Laboratorium Struktur</h3>
-                    <p class="text-night/70 mb-4">Peralatan pengujian untuk elemen struktur bangunan, seperti balok, kolom, dan sambungan dengan kapasitas beban hingga 50 ton.</p>
+                    <h3 class="text-xl font-bold mb-3 text-night">Laboratorium Teknologi Bahan</h3>
+                    <p class="text-night/70 mb-4">Pengujian berbagai jenis material konstruksi untuk memastikan kualitas dan kesesuaian dengan standar teknis.</p>
                     <ul class="space-y-2 text-night/70">
                         <li class="flex items-start">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-yellow flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
-                            Universal Testing Machine (UTM)
+                            Pengujian Kuat Tekan Beton
                         </li>
                         <li class="flex items-start">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-yellow flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
-                            Compression Testing Machine
+                            Pengujian Kuat Lentur
                         </li>
                         <li class="flex items-start">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-yellow flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
-                            Strain Measurement System
+                            Pengujian Baja Bahan
                         </li>
                     </ul>
                 </div>
                 
-                <!-- Feature 2 -->
+                <!-- Feature 4 - Bahan Perkerasan -->
                 <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
                     <div class="w-16 h-16 bg-yellow/20 rounded-xl flex items-center justify-center mb-6">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-yellow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-night">Laboratorium Komputer</h3>
-                    <p class="text-night/70 mb-4">Fasilitas komputasi dengan software engineering terkini untuk desain, analisis dan pemodelan struktur teknik sipil.</p>
+                    <h3 class="text-xl font-bold mb-3 text-night">Laboratorium Bahan Perkerasan</h3>
+                    <p class="text-night/70 mb-4">Pengujian material perkerasan jalan dan aspal untuk mengevaluasi ketahanan, durabilitas, dan properti fisik.</p>
                     <ul class="space-y-2 text-night/70">
                         <li class="flex items-start">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-yellow flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
-                            SAP2000 & ETABS Software
+                            Pengujian Ekstraksi
                         </li>
                         <li class="flex items-start">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-yellow flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
-                            AutoCAD & Civil 3D
+                            Pengujian Density
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 5 - Geomatika -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-yellow/20 rounded-xl flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-yellow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-night">Laboratorium Geomatika</h3>
+                    <p class="text-night/70 mb-4">Peralatan modern untuk pengukuran, pemetaan, dan survei topografi dengan tingkat akurasi tinggi.</p>
+                    <ul class="space-y-2 text-night/70">
+                        <li class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-yellow flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Pengujian Pemetaan
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 6 - Mekanika Tanah -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-yellow/20 rounded-xl flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-yellow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-night">Laboratorium Mekanika Tanah</h3>
+                    <p class="text-night/70 mb-4">Analisis dan pengujian properti tanah untuk dasar perencanaan fondasi dan struktur bawah tanah.</p>
+                    <ul class="space-y-2 text-night/70">
+                        <li class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-yellow flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Pengujian Sondir
                         </li>
                         <li class="flex items-start">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-yellow flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
-                            Plaxis & ANSYS
+                            Pengujian CBR
                         </li>
                     </ul>
                 </div>
@@ -382,154 +408,8 @@
         </div>
     </section>
 
-    <!-- Research Section -->
-    <section class="bg-white py-20" id="research">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="h-[450px] bg-night rounded-lg overflow-hidden"></div>
-                <div>
-                    <h2 class="text-4xl font-bold mb-6">Research Excellence</h2>
-                    <p class="text-night mb-8">Our department conducts cutting-edge research addressing critical challenges in civil infrastructure, sustainability, and resilience. Faculty and students collaborate on innovative solutions to real-world engineering problems.</p>
-                    <div class="space-y-4 mb-8">
-                        <div class="flex items-center">
-                            <div class="bg-yellow w-6 h-6 rounded-full flex items-center justify-center text-eerieblack font-bold mr-4">●</div>
-                            <p class="text-night">Sustainable Infrastructure Materials and Design</p>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="bg-yellow w-6 h-6 rounded-full flex items-center justify-center text-eerieblack font-bold mr-4">●</div>
-                            <p class="text-night">Smart Cities and Transportation Networks</p>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="bg-yellow w-6 h-6 rounded-full flex items-center justify-center text-eerieblack font-bold mr-4">●</div>
-                            <p class="text-night">Structural Health Monitoring and Resilience</p>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="bg-yellow w-6 h-6 rounded-full flex items-center justify-center text-eerieblack font-bold mr-4">●</div>
-                            <p class="text-night">Water Resources and Environmental Engineering</p>
-                        </div>
-                    </div>
-                    <button class="bg-yellow text-eerieblack px-6 py-2 rounded-md font-semibold uppercase text-sm hover:bg-yellow-500 hover:shadow-lg transition-all">Explore Research Labs</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     @include('component.footer')
-    <script>
-        // 3D Carousel functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const carouselItems = document.querySelectorAll('.carousel-item-3d');
-            const carouselDots = document.querySelectorAll('.carousel-dot-3d');
-            let currentSlide = 1;
-            let isAnimating = false;
-            let carouselInterval;
-    
-            // Function to show a specific slide
-            function showSlide(slideNumber) {
-                if (isAnimating) return;
-                isAnimating = true;
-                
-                // Hide all slides
-                carouselItems.forEach(item => {
-                    item.style.opacity = '0';
-                    item.style.transform = 'rotateY(90deg)';
-                    item.style.zIndex = '0';
-                });
-                
-                // Show active slide
-                const activeSlide = document.querySelector(`.carousel-item-3d[data-slide="${slideNumber}"]`);
-                activeSlide.style.opacity = '1';
-                activeSlide.style.transform = 'rotateY(0deg)';
-                activeSlide.style.zIndex = '10';
-                
-                // Update dots
-                carouselDots.forEach(dot => dot.classList.remove('active', 'bg-yellow', 'opacity-100'));
-                const activeDot = document.querySelector(`.carousel-dot-3d[data-dot="${slideNumber}"]`);
-                activeDot.classList.add('active', 'bg-yellow', 'opacity-100');
-                
-                // Update current slide
-                currentSlide = slideNumber;
-                
-                // Allow animation again after transition completes
-                setTimeout(() => {
-                    isAnimating = false;
-                }, 1000);
-            }
-    
-            // Set up click events for dots
-            carouselDots.forEach(dot => {
-                dot.addEventListener('click', function() {
-                    const slideNumber = parseInt(this.getAttribute('data-dot'));
-                    showSlide(slideNumber);
-                    resetAutoPlay();
-                });
-            });
-    
-            // Auto rotation
-            function startAutoPlay() {
-                carouselInterval = setInterval(() => {
-                    const nextSlide = currentSlide >= carouselItems.length ? 1 : currentSlide + 1;
-                    showSlide(nextSlide);
-                }, 5000);
-            }
-    
-            function resetAutoPlay() {
-                clearInterval(carouselInterval);
-                startAutoPlay();
-            }
-    
-            // Initialize the carousel
-            startAutoPlay();
-            
-            // Add hover pause functionality
-            const carousel = document.querySelector('.carousel-3d');
-            carousel.addEventListener('mouseenter', () => clearInterval(carouselInterval));
-            carousel.addEventListener('mouseleave', startAutoPlay);
-        });
-    
-        // Counter animation (for the stats counters)
-        document.addEventListener('DOMContentLoaded', function() {
-            const counters = document.querySelectorAll('.counter');
-            
-            const animateCounter = (counter, target) => {
-                let count = 0;
-                const speed = 2000 / target; // Adjust animation speed based on target value
-                
-                const updateCount = () => {
-                    const increment = target / (2000 / 16); // For smoother animation
-                    
-                    if (count < target) {
-                        count += increment;
-                        counter.innerText = Math.ceil(count);
-                        requestAnimationFrame(updateCount);
-                    } else {
-                        counter.innerText = target;
-                        if (target >= 100) {
-                            counter.innerText = '100+';
-                        }
-                    }
-                };
-                
-                updateCount();
-            };
-            
-            // Intersection Observer to start counter when visible
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const counter = entry.target;
-                        const target = parseInt(counter.getAttribute('data-target'));
-                        animateCounter(counter, target);
-                        observer.unobserve(counter);
-                    }
-                });
-            }, { threshold: 0.5 });
-            
-            counters.forEach(counter => {
-                observer.observe(counter);
-            });
-        });
-    </script>
+    @vite(['resources/js/Landing.js'])
 </body>
 </html>

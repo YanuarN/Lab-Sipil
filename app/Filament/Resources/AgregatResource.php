@@ -163,4 +163,17 @@ class AgregatResource extends Resource
     {
         return 'Permohonan Bahan';
     }
+    public static function getLabel(): string
+    {
+        return 'Permohonan Bahan'; // label tunggal
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+    public static function getNavigationBadgeColor(): string|array|null
+    {
+        return 'success';
+    }
 }

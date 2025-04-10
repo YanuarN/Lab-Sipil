@@ -68,4 +68,9 @@ class LabResource extends Resource
             'edit' => Pages\EditLab::route('/{record}/edit'),
         ];
     }
+
+    public static function getNavigationLabel(): string
+    {
+        return 'Lab';
+    }
 }

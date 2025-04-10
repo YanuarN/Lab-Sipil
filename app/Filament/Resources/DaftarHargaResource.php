@@ -85,4 +85,9 @@ class DaftarHargaResource extends Resource
             'edit' => Pages\EditDaftarHarga::route('/{record}/edit'),
         ];
     }
+
+    public static function getNavigationLabel(): string
+    {
+        return 'Daftar Harga';
+    }
 }

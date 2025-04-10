@@ -42,7 +42,7 @@ class PinjamRuangController extends Controller
         $pinjam->status = 'menunggu';
         $pinjam->save();
 
-        $phoneNumber = '62895633067032'; // Contoh nomor dengan kode negara 62 (Indonesia)
+        $phoneNumber = '6282226821294'; // Contoh nomor dengan kode negara 62 (Indonesia)
     
     // Pesan WhatsApp
         $message = "Halo, saya ingin mengkonfirmasi peminjaman dengan detail berikut:\n" .

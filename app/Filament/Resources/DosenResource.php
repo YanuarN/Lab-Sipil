@@ -83,4 +83,9 @@ class DosenResource extends Resource
         return parent::getEloquentQuery()->with('lab');
     }
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Dosen';
+    }
+
 }

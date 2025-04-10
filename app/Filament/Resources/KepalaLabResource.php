@@ -69,4 +69,9 @@ class KepalaLabResource extends Resource
             'edit' => Pages\EditKepalaLab::route('/{record}/edit'),
         ];
     }
+
+    public static function getNavigationLabel(): string
+    {
+        return 'Kepala Lab';
+    }
 }

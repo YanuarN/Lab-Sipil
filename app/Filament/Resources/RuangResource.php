@@ -68,4 +68,9 @@ class RuangResource extends Resource
             'edit' => Pages\EditRuang::route('/{record}/edit'),
         ];
     }
+
+    public static function getNavigationLabel(): string
+    {
+        return 'Ruangan';
+    }
 }

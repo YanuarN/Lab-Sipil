@@ -41,8 +41,12 @@ class PeminjamanRuangResource extends Resource
                     ->label('Tanggal')
                     ->type('date')
                     ->required(),
-                TextInput::make('jam')
-                    ->label('Jam')
+                TextInput::make('jam_mulai')
+                    ->label('Jam Mulai')
+                    ->type('time')
+                    ->required(),
+                TextInput::make('jam_selesai')
+                    ->label('Jam Selesai')
                     ->type('time')
                     ->required(),
                 TextInput::make('keperluan')
@@ -74,8 +78,12 @@ class PeminjamanRuangResource extends Resource
                 TextColumn::make('tanggal')
                     ->label('Tanggal')
                     ->date('d M Y'),
-                TextColumn::make('jam')
-                    ->label('Jam'),
+                TextColumn::make('jam_mulai')
+                    ->label('Jam Mulai')
+                    ->time('H:i'),
+                TextColumn::make('jam_selesai')
+                    ->label('Jam Selesai')
+                    ->time('H:i'),
                 TextColumn::make('keperluan')
                     ->label('Keperluan'),
                 TextColumn::make('status')
@@ -118,5 +126,19 @@ class PeminjamanRuangResource extends Resource
             'create' => Pages\CreatePeminjamanRuang::route('/create'),
             'edit' => Pages\EditPeminjamanRuang::route('/{record}/edit'),
         ];
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return 'Booking Ruangan';
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::where('status', 'Menunggu')->count();
+    }
+    public static function getNavigationBadgeColor(): string|array|null
+    {
+        return 'warning';
     }
 }

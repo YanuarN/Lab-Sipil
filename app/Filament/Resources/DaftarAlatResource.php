@@ -70,4 +70,9 @@ class DaftarAlatResource extends Resource
             'edit' => Pages\EditDaftarAlat::route('/{record}/edit'),
         ];
     }
+
+    public static function getNavigationLabel(): string
+    {
+        return 'Daftar Alat';
+    }
 }

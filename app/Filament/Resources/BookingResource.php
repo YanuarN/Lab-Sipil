@@ -74,87 +74,84 @@ class BookingResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-        ->columns([
-            TextColumn::make('id')->label('ID'),
-            TextColumn::make('nama')->label('Nama')
-            ->sortable()
-            ->searchable(),
-            TextColumn::make('nim')->label('NIM')
-            ->sortable()
-            ->searchable(),
-            TextColumn::make('email')->label('Email')
-            ->sortable()
-            ->searchable(),
-            TextColumn::make('nomor')->label('Nomor')
-            ->sortable()
-            ->searchable(),
-            TextColumn::make('prodi')->label('Prodi')
-            ->sortable()
-            ->searchable(),
-            TextColumn::make('pembimbingRelation.nama')->label('Pembimbing')
-            ->sortable()
-            ->searchable(),
-            TextColumn::make('judul_penelitian')->label('Judul Penelitian')
-            ->sortable()
-            ->searchable(),
-            TextColumn::make('alat')->label('Alat')
-            ->formatStateUsing(function ($record) {
-                $result = [];
-                if ($record->alat) {
-                    // Check if alat is a string (JSON)
-                    if (is_string($record->alat)) {
-                        try {
-                            $alat_data = json_decode($record->alat, true);
-                            if (json_last_error() === JSON_ERROR_NONE) {
-                                // Successfully parsed JSON
-                                if (is_array($alat_data)) {
-                                    foreach ($alat_data as $alat) {
-                                        if (isset($alat['nama'])) {
-                                            $result[] = $alat['nama'];
-                                        } elseif (is_string($alat)) {
-                                            $result[] = $alat;
+            ->columns([
+                TextColumn::make('nama')->label('Nama')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('nim')->label('NIM')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('email')->label('Email')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('nomor')->label('Nomor')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('prodi')->label('Prodi')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('pembimbingRelation.nama')->label('Pembimbing')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('judul_penelitian')->label('Judul Penelitian')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('alat')->label('Alat')
+                    ->formatStateUsing(function ($record) {
+                        $result = [];
+                        if ($record->alat) {
+                            if (is_string($record->alat)) {
+                                try {
+                                    $alat_data = json_decode($record->alat, true);
+                                    if (json_last_error() === JSON_ERROR_NONE) {
+                                        if (is_array($alat_data)) {
+                                            foreach ($alat_data as $alat) {
+                                                if (isset($alat['nama'])) {
+                                                    $result[] = $alat['nama'];
+                                                } elseif (is_string($alat)) {
+                                                    $result[] = $alat;
+                                                }
+                                            }
+                                        } elseif (isset($alat_data['nama'])) {
+                                            $result[] = $alat_data['nama'];
                                         }
                                     }
-                                } elseif (isset($alat_data['nama'])) {
-                                    // Single alat as object with nama property
-                                    $result[] = $alat_data['nama'];
+                                } catch (\Exception $e) {
+                                    $result[] = $record->alat;
+                                }
+                            } elseif (is_array($record->alat)) {
+                                foreach ($record->alat as $alat) {
+                                    if (is_array($alat) && isset($alat['nama'])) {
+                                        $result[] = $alat['nama'];
+                                    } elseif (is_string($alat)) {
+                                        $result[] = $alat;
+                                    }
                                 }
                             }
-                        } catch (\Exception $e) {
-                            // Failed to parse JSON, use as is
-                            $result[] = $record->alat;
                         }
-                    } 
-                    // Handle case where alat is already an array
-                    elseif (is_array($record->alat)) {
-                        foreach ($record->alat as $alat) {
-                            if (is_array($alat) && isset($alat['nama'])) {
-                                $result[] = $alat['nama'];
-                            } elseif (is_string($alat)) {
-                                $result[] = $alat;
-                            }
-                        }
-                    }
-                }
-                
-                // Format as HTML bullet points
-                if (!empty($result)) {
-                    $html = '<ul class="list-disc pl-5">';
-                    foreach ($result as $item) {
-                        $html .= '<li>' . htmlspecialchars($item) . '</li>';
-                    }
-                    $html .= '</ul>';
-                    return new \Illuminate\Support\HtmlString($html);
-                }
-                
-                return '-';
-            })
-            ->html() // Enable HTML rendering
-            ->wrap() // Allow wrapping
 
-        ])
+                        if (!empty($result)) {
+                            $html = '<ul class="list-disc pl-5 text-sm">';  // Added text-sm class for smaller text
+                            foreach ($result as $item) {
+                                $html .= '<li>' . htmlspecialchars($item) . '</li>';
+                            }
+                            $html .= '</ul>';
+                            return new \Illuminate\Support\HtmlString($html);
+                        }
+
+                        return '-';
+                    })
+                    ->html()
+                    ->wrap()
+            ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('status')
+                    ->options([
+                        'daftar' => 'Daftar',
+                        'proses' => 'Proses',
+                        'selesai' => 'Selesai',
+                    ])
+                    ->label('Status')
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -171,18 +168,18 @@ class BookingResource extends Resource
                             ->title('Berhasil membuka nota')
                             ->success()
                             ->send();
-                            $this->refreshFormData(['status']);
+                        $this->refreshFormData(['status']);
                     })
-                    ->url(fn (Booking $record) => route('generate.nota', ['id' => $record->id]))
-                    ->openUrlInNewTab() 
-                    ->visible(fn (Booking $record) => $record->status != 'proses' && $record->status != 'selesai'),
-                    
+                    ->url(fn(Booking $record) => route('generate.nota', ['id' => $record->id]))
+                    ->openUrlInNewTab()
+                    ->visible(fn(Booking $record) => $record->status != 'proses' && $record->status != 'selesai'),
+
                 Action::make('setCompleted')
                     ->label('Selesai')
                     ->icon('heroicon-o-check-circle')
                     ->color('success')
                     ->requiresConfirmation()
-                    ->url(fn (Booking $record) => route('generate.bebas.lab', ['id' => $record->id]))
+                    ->url(fn(Booking $record) => route('generate.bebas.lab', ['id' => $record->id]))
                     ->openUrlInNewTab()
                     ->action(function (Booking $record) {
                         Notification::make()
@@ -190,8 +187,8 @@ class BookingResource extends Resource
                             ->success()
                             ->send();
                     })
-                    ->visible(fn (Booking $record) => $record->status != 'selesai')
-                    ->after(fn () => redirect(request()->header('Referer'))),
+                    ->visible(fn(Booking $record) => $record->status != 'selesai')
+                    ->after(fn() => redirect(request()->header('Referer'))),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -199,7 +196,7 @@ class BookingResource extends Resource
                 ]),
             ]);
     }
-    
+
 
     public static function getRelations(): array
     {
@@ -226,5 +223,19 @@ class BookingResource extends Resource
     {
         return 'Booking Mahasiswa';
     }
-    
+
+    public static function canCreate(): bool
+    {
+        return false;
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::where('status', 'daftar')->count();
+    }
+
+    public static function getNavigationBadgeColor(): string|array|null
+    {
+        return 'warning';
+    }
 }

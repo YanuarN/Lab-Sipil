@@ -30,7 +30,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                         </svg>
-                        <span class="text-silver/80">+62 271-717417</span>
+                        <span class="text-silver/80">+62 822 2682 1294</span>
                     </li>
                     <li class="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -64,7 +64,7 @@
 
         <!-- Copyright -->
         <div class="border-t border-silver/10 pt-6 text-center">
-            <p class="text-sm text-silver/60">
+            <p class="text-xs text-silver/60">
                 &copy; 2025 Laboratorium Teknik Sipil Universitas Muhammadiyah Surakarta. All rights reserved.
             </p>
         </div>
