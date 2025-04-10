@@ -20,7 +20,7 @@ class BookingEksternalController extends Controller
     public function store(Request $request)
     {
         try {
-            $validated = $request->validate([
+            $request->validate([
                 'nama_instansi' => 'required',
                 'nama_proyek' => 'required',
                 'tanggal_tes' => 'required|date',

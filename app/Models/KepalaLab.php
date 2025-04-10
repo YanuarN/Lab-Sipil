@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class KepalaLab extends Model
 {
     use HasFactory;
-    public $timeStamps = false;
+    public $timestamps = false;
     protected $table = 'kepala_lab';
     protected $fillable = [
         'nama',

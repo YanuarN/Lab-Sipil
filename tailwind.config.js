@@ -8,13 +8,15 @@ export default {
   theme: {
     extend: {
       colors:{
-        eerieblack: "#222831",
-        davysgray: "#393E46",
-        silver: "#A9A9A7",
-        yellow: "#FFD369",
+        eerieblack: "#2F318Bff",
+        davysgray: "#FFFFFFff",
+        silver: "#BFC0D3ff",
+        yellow: "#F9CB13ff",
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('flowbite/plugin')
+  ],
 }
 

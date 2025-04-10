@@ -31,11 +31,11 @@ document.addEventListener('DOMContentLoaded', function() {
         plugins: [ dayGridPlugin, interactionPlugin ],
         initialView: 'dayGridMonth',
         headerToolbar: {
-            left: 'prev,next today',
+            left: 'today',
             center: 'title',
-            right: 'dayGridMonth,timeGridWeek'
+            right: 'prev,next'
         },
-        events: '/get-booking-events', // Ambil data events dari route
+        events: '/get-booking-events',
         eventContent: function(arg) {
             const count = arg.event.extendedProps.count;
             let color = 'bg-green-500';
@@ -56,17 +56,34 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         selectable: true,
         selectMirror: true,
+        selectConstraint: {
+            start: new Date().toISOString().split('T')[0] // Prevent selecting dates before today
+        },
+        // Removed validRange to allow viewing past months
         select: function(info) {
             handleDateSelection(info.startStr);
         },
         eventClick: function(info) {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const selectedDate = new Date(info.event.startStr);
+            
+            if (selectedDate < today) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Tanggal Tidak Valid",
+                    text: "Tidak dapat memilih tanggal yang sudah lewat",
+                });
+                return;
+            }
+
             const count = info.event.extendedProps.count;
             if (count >= 10) {
                 Swal.fire({
                     icon: "error",
                     title: "Kuota Penuh",
                     text: "Silahkan Pilih Tanggal Lain",
-                  });
+                });
             } else {
                 handleDateSelection(info.event.startStr);
             }
@@ -133,15 +150,40 @@ document.addEventListener('DOMContentLoaded', function() {
     let tambahAlatButton = document.getElementById('tambah-alat');
     let index = alatContainer.querySelectorAll('.alat-item').length;
 
+    // Get all available equipment from the existing select element
+    function getDaftarAlat() {
+        const alatOptions = [];
+        const selectElement = document.querySelector('select[name="alat[][nama]"]');
+        if (selectElement) {
+            const options = selectElement.querySelectorAll('option');
+            options.forEach(option => {
+                if (option.value !== "") {
+                    alatOptions.push({
+                        value: option.value,
+                        text: option.textContent
+                    });
+                }
+            });
+        }
+        return alatOptions;
+    }
+
+    // Store available equipment in a variable
+    const daftarAlat = getDaftarAlat();
+
     tambahAlatButton.addEventListener('click', function() {
         let alatItem = document.createElement('div');
         alatItem.classList.add('alat-item', 'flex', 'items-center', 'space-x-2', 'p-3', 'bg-gray-50', 'rounded-md');
+        
+        // Build options HTML
+        let optionsHtml = '<option value="">-- Pilih Alat --</option>';
+        daftarAlat.forEach(alat => {
+            optionsHtml += `<option value="${alat.value}">${alat.text}</option>`;
+        });
+        
         alatItem.innerHTML = `
             <select name="alat[][nama]" class="flex-grow px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow focus:border-transparent transition-all" required>
-                <option value="">-- Pilih Alat --</option>
-                @foreach($daftar_alat as $item)
-                    <option value="{{ $item->nama_alat }}">{{ $item->nama_alat }}</option>
-                @endforeach
+                ${optionsHtml}
             </select>
             <button type="button" class="hapus-alat px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition-all">Hapus</button>
         `;

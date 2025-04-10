@@ -3,124 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Civil Engineering Department</title>
+    <title>Laboratorium Teknik Sipil UMS</title>
     <link rel="stylesheet" href="{{ asset('build/assets/app.css') }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-davysgray text-eerieblack font-montserrat">
     <!-- Header -->
-    <header class="bg-eerieblack shadow-md fixed w-full z-50">
+    <header class="bg-eerieblack fixed w-full z-50">
         <div class="container mx-auto px-4">
             <nav class="flex justify-between items-center py-5">
-                <div class="flex items-center gap-3">
-                    <div class="text-silver text-2xl font-bold">Civil<span class="text-yellow">Engineering</span></div>
+                <div class="flex items-center gap-3 pl-3">
+                    <a href="/" class="text-silver text-xl font-bold px-2">Lab <span class="text-yellow">Teknik Sipil UMS</span></a>
                 </div>
+                <!-- Desktop Navigation -->
                 <div class="hidden md:flex gap-8">
-                    <a href="#programs" class="text-silver uppercase text-sm font-medium hover:text-yellow transition-colors">Programs</a>
-                    <a href="#faculty" class="text-silver uppercase text-sm font-medium hover:text-yellow transition-colors">Fakultas</a>
-                    <a href="#research" class="text-silver uppercase text-sm font-medium hover:text-yellow transition-colors">Research</a>
-                    <a href="#facilities" class="text-silver uppercase text-sm font-medium hover:text-yellow transition-colors">Fasilitas</a>
+                    <!-- Dropdown 1 -->
+                    <div class="relative group">
+                        <button class="text-silver  text-sm font-medium hover:text-yellow transition-colors flex items-center">
+                            Tentang Lab Sipil
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-48 bg-eerieblack rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                            <div class="py-2 px-4">
+                                <a href="/" class="block text-silver text-sm py-2 hover:text-yellow">Profil</a>
+                                <a href="/profil#structure" class="block text-silver text-sm py-2 hover:text-yellow">Struktur Organisasi</a>
+                                <a href="/profil#lab-types" class="block text-silver text-sm py-2 hover:text-yellow">Jenis Lab</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Dropdown 2 -->
+                    <div class="relative group">
+                        <button class="text-silver text-sm font-medium hover:text-yellow transition-colors flex items-center">
+                            Fakultas dan Layanan
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-48 bg-eerieblack rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                            <div class="py-2 px-4">
+                                <a href="/permohonan" class="block text-silver text-sm py-2 hover:text-yellow">Permohonan Penelitian</a>
+                                <a href="/booking-Eksternal" class="block text-silver text-sm py-2 hover:text-yellow">Book Lab Eksternal</a>
+                                <a href="/permohonan-bahan" class="block text-silver text-sm py-2 hover:text-yellow">Permohonan Bahan</a>
+                                <a href="/pinjam-ruang" class="block text-silver text-sm py-2 hover:text-yellow">Booking Ruang</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Dropdown 3 -->
+                    <div class="relative group">
+                        <button class="text-silver  text-sm font-medium hover:text-yellow transition-colors flex items-center">
+                            Informasi
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-48 bg-eerieblack rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                            <div class="py-2 px-4">
+                                <a href="/informasi#kontak" class="block text-silver text-sm py-2 hover:text-yellow">Kontak Layanan</a>
+                                <a href="/informasi#tata-tertib" class="block text-silver text-sm py-2 hover:text-yellow">Tata Tertib</a>
+                                <a href="/informasi#sop" class="block text-silver text-sm py-2 hover:text-yellow">SOP</a>
+                                <a href="/informasi#safety" class="block text-silver text-sm py-2 hover:text-yellow">Safety Instruction</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <button class="bg-yellow text-eerieblack px-6 py-2 rounded-md font-semibold uppercase text-sm hover:bg-yellow-500 hover:shadow-lg transition-all"><a href="reserve">Reservasi</a></button>
+                
+                <button class="bg-yellow text-eerieblack px-6 py-2 rounded-md font-semibold  text-sm hover:bg-yellow-500 hover:shadow-lg transition-all">
+                    <a href="/#programs">Reservasi</a>
+                </button>
+                
+                <!-- Mobile menu button -->
                 <button class="md:hidden text-silver text-2xl" id="menu-toggle">☰</button>
-                <div class="hidden md:flex gap-8 md:flex-row bg-eerie-black p-4 absolute top-16 right-0 w-full md:w-auto z-50" id="nav-links">
-                    <a href="#programs" class="text-silver uppercase text-sm font-medium hover:text-yellow transition-colors py-2">Programs</a>
-                    <a href="#faculty" class="text-silver uppercase text-sm font-medium hover:text-yellow transition-colors py-2">Faculty</a>
-                    <a href="#research" class="text-silver uppercase text-sm font-medium hover:text-yellow transition-colors py-2">Research</a>
-                    <a href="#facilities" class="text-silver uppercase text-sm font-medium hover:text-yellow transition-colors py-2">Fasilitas</a>
-                </div>
             </nav>
         </div>
+        
+        <!-- Mobile Navigation Menu -->
+        <div class="hidden md:hidden bg-eerieblack w-full border-t border-gray-700 shadow-lg" id="mobile-menu">
+            <!-- Mobile dropdown 1 -->
+            <div class="mobile-dropdown">
+                <button class="w-full text-silver flex justify-between items-center px-4 py-3 hover:bg-gray-800 transition-colors" data-dropdown="dropdown1">
+                    <span class=" text-sm font-medium">Tentang Lab Sipil</span>
+                    <svg class="w-4 h-4 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div class="hidden bg-gray-800 px-4 py-2" id="dropdown1">
+                    <a href="#visi-misi" class="block text-silver text-sm py-2 hover:text-yellow">Visi & Misi</a>
+                    <a href="#sejarah" class="block text-silver text-sm py-2 hover:text-yellow">Sejarah</a>
+                    <a href="#struktur" class="block text-silver text-sm py-2 hover:text-yellow">Struktur Organisasi</a>
+                </div>
+            </div>
+            
+            <!-- Mobile dropdown 2 -->
+            <div class="mobile-dropdown">
+                <button class="w-full text-silver flex justify-between items-center px-4 py-3 hover:bg-gray-800 transition-colors" data-dropdown="dropdown2">
+                    <span class=" text-sm font-medium">Fakultas dan Layanan</span>
+                    <svg class="w-4 h-4 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div class="hidden bg-gray-800 px-4 py-2" id="dropdown2">
+                    <a href="#pengujian" class="block text-silver text-sm py-2 hover:text-yellow">Layanan Pengujian</a>
+                    <a href="#konsultasi" class="block text-silver text-sm py-2 hover:text-yellow">Konsultasi</a>
+                    <a href="#pelatihan" class="block text-silver text-sm py-2 hover:text-yellow">Pelatihan</a>
+                </div>
+            </div>
+            
+            <!-- Mobile dropdown 3 -->
+            <div class="mobile-dropdown">
+                <button class="w-full text-silver flex justify-between items-center px-4 py-3 hover:bg-gray-800 transition-colors" data-dropdown="dropdown3">
+                    <span class=" text-sm font-medium">Informasi</span>
+                    <svg class="w-4 h-4 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div class="hidden bg-gray-800 px-4 py-2" id="dropdown3">
+                    <a href="#berita" class="block text-silver text-sm py-2 hover:text-yellow">Berita</a>
+                    <a href="#penelitian" class="block text-silver text-sm py-2 hover:text-yellow">Penelitian</a>
+                    <a href="#kegiatan" class="block text-silver text-sm py-2 hover:text-yellow">Kegiatan</a>
+                </div>
+            </div>
+            
+            <!-- Mobile button -->
+            <div class="px-4 py-4">
+                <button class="bg-yellow text-eerieblack w-full py-2 rounded-md font-semibold  text-sm hover:bg-yellow-500 hover:shadow-lg transition-all">
+                    <a href="reserve">Reservasi</a>
+                </button>
+            </div>
+        </div>
     </header>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-          // Get references to the necessary elements
-          const menuToggle = document.getElementById('menu-toggle');
-          const navLinks = document.getElementById('nav-links');
-          
-          // Initialize menu state
-          let isOpen = false;
-          
-          // Toggle function to handle menu visibility
-          function toggleMenu() {
-            isOpen = !isOpen;
+            // Menu toggle functionality
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
             
-            // Change hamburger icon to X when open
-            menuToggle.textContent = isOpen ? '✕' : '☰';
+            // Initialize menu state
+            let isMenuOpen = false;
             
-            // Toggle nav visibility with animation
-            if (isOpen) {
-              navLinks.classList.remove('hidden');
-              
-              // Add animation classes
-              setTimeout(() => {
-                navLinks.classList.add('opacity-100');
-                navLinks.classList.add('translate-y-0');
-                navLinks.classList.remove('opacity-0');
-                navLinks.classList.remove('-translate-y-2');
-              }, 10);
-            } else {
-              // Add animation classes for closing
-              navLinks.classList.add('opacity-0');
-              navLinks.classList.add('-translate-y-2');
-              navLinks.classList.remove('opacity-100');
-              navLinks.classList.remove('translate-y-0');
-              
-              // Hide after animation completes
-              setTimeout(() => {
-                navLinks.classList.add('hidden');
-              }, 300);
+            // Toggle function for main mobile menu
+            function toggleMenu() {
+                isMenuOpen = !isMenuOpen;
+                
+                // Change hamburger icon to X when open
+                menuToggle.textContent = isMenuOpen ? '✕' : '☰';
+                
+                // Toggle menu visibility with animation
+                if (isMenuOpen) {
+                    mobileMenu.classList.remove('hidden');
+                    setTimeout(() => {
+                        mobileMenu.classList.add('opacity-100');
+                        mobileMenu.classList.remove('opacity-0');
+                    }, 10);
+                } else {
+                    mobileMenu.classList.add('opacity-0');
+                    mobileMenu.classList.remove('opacity-100');
+                    
+                    // Hide after animation completes
+                    setTimeout(() => {
+                        mobileMenu.classList.add('hidden');
+                    }, 300);
+                }
             }
-          }
-          
-          // Add animation classes to navLinks
-          navLinks.classList.add('transition-all', 'duration-300', 'ease-in-out', 'opacity-0', '-translate-y-2');
-          
-          // Enhance background and drop shadow for better appearance
-          navLinks.classList.add('shadow-lg', 'border-t', 'bg-eerieblack');
-          
-          // Enhance mobile styling
-          if (!navLinks.classList.contains('md:p-0')) {
-            navLinks.classList.add('md:border-none', 'md:shadow-none', 'md:bg-transparent');
-          }
-          
-          // Toggle mobile menu when hamburger is clicked
-          menuToggle.addEventListener('click', toggleMenu);
-          
-          // Close mobile menu when a link is clicked
-          const links = navLinks.querySelectorAll('a');
-          links.forEach(link => {
-            link.addEventListener('click', function() {
-              if (window.innerWidth < 768 && isOpen) {
-                toggleMenu();
-              }
+            
+            // Add animation classes
+            mobileMenu.classList.add('transition-all', 'duration-300', 'ease-in-out', 'opacity-0');
+            
+            // Toggle mobile menu when hamburger is clicked
+            menuToggle.addEventListener('click', toggleMenu);
+            
+            // Mobile dropdown functionality
+            const mobileDropdownButtons = document.querySelectorAll('.mobile-dropdown button');
+            
+            mobileDropdownButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const dropdownId = this.getAttribute('data-dropdown');
+                    const dropdownContent = document.getElementById(dropdownId);
+                    const icon = this.querySelector('svg');
+                    
+                    // Toggle dropdown content
+                    if (dropdownContent.classList.contains('hidden')) {
+                        dropdownContent.classList.remove('hidden');
+                        icon.classList.add('rotate-180');
+                    } else {
+                        dropdownContent.classList.add('hidden');
+                        icon.classList.remove('rotate-180');
+                    }
+                });
             });
-          });
-          
-          // Close mobile menu on window resize if screen becomes larger
-          window.addEventListener('resize', function() {
-            if (window.innerWidth >= 768 && isOpen) {
-              isOpen = false;
-              menuToggle.textContent = '☰';
-              navLinks.classList.remove('hidden', 'md:flex');
-              navLinks.classList.add('md:flex');
-            }
-          });
-          
-          // Apply mobile-specific styling to links
-          if (window.innerWidth < 768) {
-            links.forEach(link => {
-              link.classList.add('block', 'text-center', 'border-b', 'border-gray-700', 'pb-2', 'w-full');
+            
+            // Close mobile menu on window resize if screen becomes larger
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 768 && isMenuOpen) {
+                    isMenuOpen = false;
+                    menuToggle.textContent = '☰';
+                    mobileMenu.classList.add('hidden');
+                }
             });
-          }
-          
-          // Initial setup to ensure correct display state based on screen size
-          if (window.innerWidth >= 768) {
-            navLinks.classList.remove('hidden');
-            navLinks.classList.add('md:flex');
-          } else {
-            navLinks.classList.add('hidden');
-          }
+            
+            // Close mobile menu when a link is clicked
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (isMenuOpen) {
+                        toggleMenu();
+                    }
+                });
+            });
         });
-        </script>
+    </script>
+</body>
+</html>

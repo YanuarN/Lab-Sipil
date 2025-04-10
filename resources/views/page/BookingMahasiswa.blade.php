@@ -1,11 +1,32 @@
     @include('component.head')
 
-    <section class="page-header bg-eerieblack text-silver pt-32 pb-10 relative overflow-hidden">
-        <div class="container mx-auto px-4">
-            <h1 class="text-4xl font-bold mb-4">Jadwal <span class="text-yellow">Laboratorium</span></h1>
-            <p class="text-lg max-w-2xl">Lihat ketersediaan laboratorium dan reservasi untuk kegiatan penelitian Anda. Pilih tanggal untuk melihat detail dan membuat reservasi.</p>
+    <section class="page-header relative overflow-hidden bg-eerieblack pt-36 pb-16">
+        <div class="container px-4 mx-5">
+            <div class="max-w-4xl">
+                <h1 class="text-3xl font-bold mb-6 text-white tracking-tight">
+                    Permohonan Penggunaan <span class="text-yellow inline-block transform hover:scale-105 transition-transform duration-300">Laboratorium Untuk Penelitian</span>
+                </h1>
+                <p class="text-xl leading-relaxed text-gray-300 mb-8">
+                    Selamat datang di sistem reservasi laboratorium! Kami menyediakan fasilitas modern dan lengkap untuk mendukung penelitian Anda. Jadwalkan kunjungan Anda sekarang untuk pengalaman penelitian yang optimal.
+                </p>
+                <div class="flex items-center text-gray-300 text-sm">
+                    <svg class="w-5 h-5 mr-2 text-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <span>Pilih tanggal untuk melihat ketersediaan dan membuat reservasi</span>
+                </div>
+            </div>
         </div>
-        <div class="container mx-auto px-4 py-8 bg-eerieblack">
+        <div class="absolute bottom-0 left-0 w-full h-24 overflow-hidden">
+            <div class="absolute inset-0 bg-gray-100"></div>
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="absolute bottom-0 w-full h-full">
+                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" 
+                      class="fill-current text-eerieblack"></path>
+            </svg>
+        </div>
+    </section>
+    <section>
+        <div class="container mx-auto px-4 py-8 bg-gray-100">
             <div class="max-w-5xl mx-auto">
                 <!-- Calendar Card -->
                 <div class="bg-white rounded-lg overflow-hidden shadow-2xl mb-8">
@@ -200,14 +221,13 @@
                                         <div>
                                             <label for="tanggal_mulai" class="block text-gray-700 font-medium mb-2">Tanggal Mulai <span class="text-red-500">*</span></label>
                                             <input type="date" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow focus:border-transparent transition-all" 
-                                                id="tanggal_mulai" name="tanggal_mulai" value="{{ old('tanggal_mulai') }}" required readonly>
+                                                id="tanggal_mulai" name="tanggal_mulai" value="{{ old('tanggal_mulai') }}" required readonly onchange="updateMinEndDate()">
                                         </div>
                                         <div>
                                             <label for="tanggal_selesai" class="block text-gray-700 font-medium mb-2">Tanggal Selesai <span class="text-red-500">*</span></label>
                                             <input type="date" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow focus:border-transparent transition-all" 
-                                                id="tanggal_selesai" name="tanggal_selesai" value="{{ old('tanggal_selesai') }}" required>
+                                                id="tanggal_selesai" name="tanggal_selesai" value="{{ old('tanggal_selesai') }}" required min="" onchange="validateDates()">
                                         </div>
-                                    </div>
                                 </div>
                                 
                                 <!-- Alat Penelitian Section -->

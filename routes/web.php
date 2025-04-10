@@ -5,11 +5,17 @@ use App\Http\Controllers\BookingEksternalController;
 use App\Http\Controllers\CetakNotaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PermohonanController;
-
+use App\Http\Controllers\PinjamRuangController;
 
 Route::get('/', function () {
     
     return view('index');
+});
+Route::get('/profil', function () {
+    return view('page.Profil');
+});
+Route::get('/informasi', function () {
+    return view('page.Informasi');
 });
 // Route::get('/reserve', function () {
 //     return view('calender');
@@ -30,6 +36,10 @@ Route::get('/generate-nota-eks/{id}', [CetakNotaController::class, 'generateNota
 Route::post('/permohonan-bahan', [AggregatController::class, 'store'])->name('permohonan-bahan.store');
 Route::get('/permohonan-bahan', [AggregatController::class, 'create'])->name('permohonan-bahan.create');
 Route::get('/generate-word-document/{id}', [AggregatController::class, 'generatePermohonanBahan'])->name('generate.word.document');
+
+//Route Peminjaman Ruang
+Route::post('/pemijaman-ruang', [PinjamRuangController::class, 'store'])->name('pinjam-ruang.store');
+Route::get('/pinjam-ruang', [PinjamRuangController::class, 'create'])->name('pinjam.ruang.create');
 
 
 

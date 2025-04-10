@@ -3,8 +3,6 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Resources\AgregatResource;
-use App\Filament\Resources\BookingEksternalResource\Widgets\BookingSummaryWidget;
-use App\Filament\Resources\BookingEksternalResource\Widgets\BookingTableWidget;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -28,6 +26,8 @@ use App\Filament\Resources\DaftarHargaResource;
 use App\Filament\Resources\DosenResource;
 use App\Filament\Resources\KepalaLabResource;
 use App\Filament\Resources\LabResource;
+use App\Filament\Resources\PeminjamanRuangResource;
+use App\Filament\Resources\RuangResource;
 use Filament\Navigation\NavigationGroup;
 
 
@@ -70,6 +70,11 @@ class AdminPanelProvider extends PanelProvider
                             ...DosenResource::getNavigationItems(),
                             ...DaftarAlatResource::getNavigationItems(),
                             ...DaftarHargaResource::getNavigationItems(),
+                        ]),
+                    NavigationGroup::make('Ruangan')
+                        ->items([
+                            ...RuangResource::getNavigationItems(),
+                            ...PeminjamanRuangResource::getNavigationItems(),
                         ]),
                 ]);
             })

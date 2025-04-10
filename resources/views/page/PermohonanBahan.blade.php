@@ -1,15 +1,34 @@
 @include('component.head')
 <section class="page-header bg-eerieblack text-silver pt-32 pb-10 relative overflow-hidden">
-    <div class="container mx-auto px-4">
-        <h1 class="text-4xl font-bold mb-4">Permohonan <span class="text-yellow">Bahan</span></h1>
-        <p class="text-lg max-w-2xl">Ajukan permohonan bahan untuk kebutuhan penelitian Anda. Lengkapi formulir berikut dengan informasi yang diperlukan.</p>
+    <div class="container mx-auto px-4 my-16">
+        <div class="max-w-3xl">
+            <h1 class="text-4xl font-bold mb-6 leading-tight">
+                Permohonan <span class="text-yellow">Bahan</span> Untuk Penelitian
+            </h1>
+            <p class="text-xl leading-relaxed opacity-90">
+                Lengkapi Formulir di bawah ini untuk mengajukan permohonan bahan penelitian. Pastikan semua informasi yang diperlukan sudah diisi dengan benar.
+            </p>
+            <div class="mt-6 flex items-center text-sm">
+                <svg class="w-5 h-5 text-yellow mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span class="opacity-75">Ambil Surat Ke Laboran</span>
+            </div>
+        </div>
+    </div>
+    <div class="absolute bottom-0 left-0 w-full h-24 overflow-hidden">
+        <div class="absolute inset-0 bg-white"></div>
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="absolute bottom-0 w-full h-full">
+            <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" 
+                  class="fill-current text-eerieblack"></path>
+        </svg>
     </div>
 </section>
-<div class="bg-slate-600 min-h-screen pt-10 pb-40">
+<section class="bg-white min-h-screen pt-10 pb-40">
     <div class="container mx-auto px-4">
         <div class="max-w-5xl mx-auto">
             <!-- Card Container -->
-            <div class="bg-white rounded-lg overflow-hidden shadow-2xl">
+            <div class="bg-grey-100 rounded-lg overflow-hidden shadow-2xl">
                 <!-- Success Alert -->
                 @if(session('success'))
                     <div class="bg-green-50 border-l-4 border-green-500 p-4 m-6">
@@ -214,7 +233,7 @@
                                 <div class="material-item grid md:grid-cols-2 gap-4 p-4 border border-gray-200 rounded-md bg-gray-50">
                                     <div>
                                         <label class="block text-gray-700 font-medium mb-2">Nama Material</label>
-                                        <input type="text" placeholder="Agregart Halus" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow focus:border-transparent transition-all" 
+                                        <input type="text" placeholder="contoh: Agregart Halus" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow focus:border-transparent transition-all" 
                                             name="nama_material[0][nama]" required>
                                     </div>
                                     <div class="relative">
@@ -253,6 +272,6 @@
             </div>
         </div>
     </div>
-</div>
+</section>
 @include('component.footer')
 @vite(['resources/js/Bahan.js'])
