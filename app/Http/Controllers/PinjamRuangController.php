@@ -9,15 +9,19 @@ use Illuminate\Http\Request;
 
 class PinjamRuangController extends Controller
 {
-    public function index(){
+    public function index() {
         $ruang = Ruang::all();
-        return view('page.pinjamRuang', compact('ruang'));
+        $peminjaman = PeminjamanRuang::all();
+        dd($ruang);
+        dd($peminjaman);
+        return view('page.pinjamRuang', compact('ruang', 'peminjaman'));
     }
 
     public function create()
     {
         $ruang = Ruang::all();
-        return view('page.pinjamRuang', compact('ruang'));
+        $peminjaman = PeminjamanRuang::all();
+        return view('page.pinjamRuang', compact('ruang','peminjaman'));
     }
 
     public function store(Request $request){
@@ -33,7 +37,7 @@ class PinjamRuangController extends Controller
 
         $pinjam = new PeminjamanRuang();
         $pinjam->nama = $request->nama;
-        $pinjam->ruang = $request->ruang_id;
+        $pinjam->ruang_id = $request->ruang_id;
         $pinjam->notelf = $request->notelf;
         $pinjam->keperluan = $request->keperluan;
         $pinjam->tanggal = $request->tanggal;
@@ -42,7 +46,7 @@ class PinjamRuangController extends Controller
         $pinjam->status = 'menunggu';
         $pinjam->save();
 
-        $phoneNumber = '6282226821294'; // Contoh nomor dengan kode negara 62 (Indonesia)
+        $phoneNumber = '6282226821294'; 
     
     // Pesan WhatsApp
         $message = "Halo, saya ingin mengkonfirmasi peminjaman dengan detail berikut:\n" .

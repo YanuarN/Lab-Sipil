@@ -100,10 +100,33 @@ class PeminjamanRuangResource extends Resource
                     ->sortable(),
             ])
             ->filters([
+                Tables\Filters\SelectFilter::make('status')
+                ->options([
+                    'Menunggu' => 'Menunggu',
+                    'Disetujui' => 'Disetujui',
+                    'Ditolak' => 'Ditolak',
+                ])
+                ->label('Status')
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
+                Tables\Actions\Action::make('approve')
+                    ->label('Setujui')
+                    ->icon('heroicon-o-check')
+                    ->color('success')
+                    ->visible(fn ($record) => $record->status === 'Menunggu')
+                    ->action(function ($record) {
+                        $record->update(['status' => 'Disetujui']);
+                    }),
+                Tables\Actions\Action::make('reject')
+                    ->label('Tolak')
+                    ->icon('heroicon-o-x-mark')
+                    ->color('danger')
+                    ->visible(fn ($record) => $record->status === 'Menunggu')
+                    ->action(function ($record) {
+                        $record->update(['status' => 'Ditolak']);
+                    }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

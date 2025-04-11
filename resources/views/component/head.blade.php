@@ -20,15 +20,15 @@
                 <div class="hidden md:flex gap-8">
                     <!-- Dropdown 1 -->
                     <div class="relative group">
-                        <button class="text-silver  text-sm font-medium hover:text-yellow transition-colors flex items-center">
+                        <a href="/profil" class="text-silver  text-sm font-medium hover:text-yellow transition-colors flex items-center">
                             Tentang Lab Sipil
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
-                        </button>
+                        </a>
                         <div class="absolute left-0 mt-2 w-48 bg-eerieblack rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                             <div class="py-2 px-4">
-                                <a href="/" class="block text-silver text-sm py-2 hover:text-yellow">Profil</a>
+                                <a href="/profil" class="block text-silver text-sm py-2 hover:text-yellow">Profil</a>
                                 <a href="/profil#structure" class="block text-silver text-sm py-2 hover:text-yellow">Struktur Organisasi</a>
                                 <a href="/profil#lab-types" class="block text-silver text-sm py-2 hover:text-yellow">Jenis Lab</a>
                             </div>
@@ -37,12 +37,12 @@
                     
                     <!-- Dropdown 2 -->
                     <div class="relative group">
-                        <button class="text-silver text-sm font-medium hover:text-yellow transition-colors flex items-center">
+                        <a href="/#programs" class="text-silver text-sm font-medium hover:text-yellow transition-colors flex items-center">
                             Fakultas dan Layanan
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
-                        </button>
+                        </a>
                         <div class="absolute left-0 mt-2 w-48 bg-eerieblack rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                             <div class="py-2 px-4">
                                 <a href="/permohonan" class="block text-silver text-sm py-2 hover:text-yellow">Permohonan Penelitian</a>
@@ -55,18 +55,18 @@
                     
                     <!-- Dropdown 3 -->
                     <div class="relative group">
-                        <button class="text-silver  text-sm font-medium hover:text-yellow transition-colors flex items-center">
+                        <a href="/informasi" class="text-silver  text-sm font-medium hover:text-yellow transition-colors flex items-center">
                             Informasi
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
-                        </button>
+                        </a>
                         <div class="absolute left-0 mt-2 w-48 bg-eerieblack rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                             <div class="py-2 px-4">
                                 <a href="/informasi#kontak" class="block text-silver text-sm py-2 hover:text-yellow">Kontak Layanan</a>
                                 <a href="/informasi#tata-tertib" class="block text-silver text-sm py-2 hover:text-yellow">Tata Tertib</a>
                                 <a href="/informasi#sop" class="block text-silver text-sm py-2 hover:text-yellow">SOP</a>
-                                <a href="/informasi#safety" class="block text-silver text-sm py-2 hover:text-yellow">Safety Instruction</a>
+                                <a href="/informasi#kebijakan-k3" class="block text-silver text-sm py-2 hover:text-yellow">Safety Instruction</a>
                             </div>
                         </div>
                     </div>
@@ -85,47 +85,49 @@
         <div class="hidden md:hidden bg-eerieblack w-full border-t border-gray-700 shadow-lg" id="mobile-menu">
             <!-- Mobile dropdown 1 -->
             <div class="mobile-dropdown">
-                <button class="w-full text-silver flex justify-between items-center px-4 py-3 hover:bg-gray-800 transition-colors" data-dropdown="dropdown1">
-                    <span class=" text-sm font-medium">Tentang Lab Sipil</span>
-                    <svg class="w-4 h-4 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </button>
-                <div class="hidden bg-gray-800 px-4 py-2" id="dropdown1">
-                    <a href="#visi-misi" class="block text-silver text-sm py-2 hover:text-yellow">Visi & Misi</a>
-                    <a href="#sejarah" class="block text-silver text-sm py-2 hover:text-yellow">Sejarah</a>
-                    <a href="#struktur" class="block text-silver text-sm py-2 hover:text-yellow">Struktur Organisasi</a>
-                </div>
+            <a href="/profil" class="w-full text-silver flex justify-between items-center px-4 py-3 hover:bg-gray-800 transition-colors" data-dropdown="dropdown1">
+                <span class=" text-sm font-medium">Tentang Lab Sipil</span>
+                <svg class="w-4 h-4 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </a>
+            <div class="hidden bg-gray-800 px-4 py-2" id="dropdown1">
+                <a href="/profil" class="block text-silver text-sm py-2 hover:text-yellow">Profil</a>
+                <a href="/profil#structure" class="block text-silver text-sm py-2 hover:text-yellow">Struktur Organisasi</a>
+                <a href="/profil#lab-types" class="block text-silver text-sm py-2 hover:text-yellow">Jenis Lab</a>
+            </div>
             </div>
             
             <!-- Mobile dropdown 2 -->
             <div class="mobile-dropdown">
-                <button class="w-full text-silver flex justify-between items-center px-4 py-3 hover:bg-gray-800 transition-colors" data-dropdown="dropdown2">
-                    <span class=" text-sm font-medium">Fakultas dan Layanan</span>
-                    <svg class="w-4 h-4 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </button>
-                <div class="hidden bg-gray-800 px-4 py-2" id="dropdown2">
-                    <a href="#pengujian" class="block text-silver text-sm py-2 hover:text-yellow">Layanan Pengujian</a>
-                    <a href="#konsultasi" class="block text-silver text-sm py-2 hover:text-yellow">Konsultasi</a>
-                    <a href="#pelatihan" class="block text-silver text-sm py-2 hover:text-yellow">Pelatihan</a>
-                </div>
+            <a href="/#programs" class="w-full text-silver flex justify-between items-center px-4 py-3 hover:bg-gray-800 transition-colors" data-dropdown="dropdown2">
+                <span class=" text-sm font-medium">Fakultas dan Layanan</span>
+                <svg class="w-4 h-4 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </a>
+            <div class="hidden bg-gray-800 px-4 py-2" id="dropdown2">
+                <a href="/permohonan" class="block text-silver text-sm py-2 hover:text-yellow">Permohonan Penelitian</a>
+                <a href="/booking-Eksternal" class="block text-silver text-sm py-2 hover:text-yellow">Book Lab Eksternal</a>
+                <a href="/permohonan-bahan" class="block text-silver text-sm py-2 hover:text-yellow">Permohonan Bahan</a>
+                <a href="/pinjam-ruang" class="block text-silver text-sm py-2 hover:text-yellow">Booking Ruang</a>
+            </div>
             </div>
             
             <!-- Mobile dropdown 3 -->
             <div class="mobile-dropdown">
-                <button class="w-full text-silver flex justify-between items-center px-4 py-3 hover:bg-gray-800 transition-colors" data-dropdown="dropdown3">
-                    <span class=" text-sm font-medium">Informasi</span>
-                    <svg class="w-4 h-4 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </button>
-                <div class="hidden bg-gray-800 px-4 py-2" id="dropdown3">
-                    <a href="#berita" class="block text-silver text-sm py-2 hover:text-yellow">Berita</a>
-                    <a href="#penelitian" class="block text-silver text-sm py-2 hover:text-yellow">Penelitian</a>
-                    <a href="#kegiatan" class="block text-silver text-sm py-2 hover:text-yellow">Kegiatan</a>
-                </div>
+            <a href="/informasi" class="w-full text-silver flex justify-between items-center px-4 py-3 hover:bg-gray-800 transition-colors" data-dropdown="dropdown3">
+                <span class=" text-sm font-medium">Informasi</span>
+                <svg class="w-4 h-4 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </a>
+            <div class="hidden bg-gray-800 px-4 py-2" id="dropdown3">
+                <a href="/informasi#kontak" class="block text-silver text-sm py-2 hover:text-yellow">Kontak Layanan</a>
+                <a href="/informasi#tata-tertib" class="block text-silver text-sm py-2 hover:text-yellow">Tata Tertib</a>
+                <a href="/informasi#sop" class="block text-silver text-sm py-2 hover:text-yellow">SOP</a>
+                <a href="/informasi#kebijakan-k3" class="block text-silver text-sm py-2 hover:text-yellow">Safety Instruction</a>
+            </div>
             </div>
             
             <!-- Mobile button -->

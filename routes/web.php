@@ -39,6 +39,7 @@ Route::get('/generate-word-document/{id}', [AggregatController::class, 'generate
 
 //Route Peminjaman Ruang
 Route::post('/pemijaman-ruang', [PinjamRuangController::class, 'store'])->name('pinjam-ruang.store');
+Route::get('/pinjam-ruang', [PinjamRuangController::class, 'index'])->name('pinjam-ruang');
 Route::get('/pinjam-ruang', [PinjamRuangController::class, 'create'])->name('pinjam.ruang.create');
 
 

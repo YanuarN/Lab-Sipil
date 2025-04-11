@@ -14,7 +14,7 @@ class PeminjamanRuang extends Model
     protected $table = 'peminjaman_ruang';
     protected $fillable = [
         'nama',
-        'ruang',
+        'ruang_id',
         'notelf',
         'tanggal',
         'jam_mulai',
@@ -23,9 +23,9 @@ class PeminjamanRuang extends Model
         'status',
     ];
 
-    public function lab()
+    public function ruang()
     {
-        return $this->belongsTo(Ruang::class, 'ruang', 'id');
+        return $this->belongsTo(Ruang::class, 'ruang_id');
     }
 
 }

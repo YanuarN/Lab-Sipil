@@ -114,6 +114,11 @@ class BookingEksternalResource extends Resource
         return 'Booking Eksternal';
     }
 
+    public static function canCreate(): bool
+    {
+        return false;
+    }
+
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();

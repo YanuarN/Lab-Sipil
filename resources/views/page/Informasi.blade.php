@@ -569,7 +569,7 @@
         </div>
     </section>
 
-    <section class="bg-gradient-to-b from-white to-grey-50 py-16" id="safety-regulations">
+    {{-- <section class="bg-gradient-to-b from-white to-grey-50 py-16" id="safety-regulations">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
                 <h2 class="text-4xl font-bold mb-4 text-night">Peraturan Umum Keselamatan</h2>
@@ -679,6 +679,6 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     @include('component.footer')
