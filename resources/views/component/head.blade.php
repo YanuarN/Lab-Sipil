@@ -38,7 +38,7 @@
                     <!-- Dropdown 2 -->
                     <div class="relative group">
                         <a href="/#programs" class="text-silver text-sm font-medium hover:text-yellow transition-colors flex items-center">
-                            Fakultas dan Layanan
+                            Fasilitas dan Layanan
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
@@ -101,7 +101,7 @@
             <!-- Mobile dropdown 2 -->
             <div class="mobile-dropdown">
             <a href="/#programs" class="w-full text-silver flex justify-between items-center px-4 py-3 hover:bg-gray-800 transition-colors" data-dropdown="dropdown2">
-                <span class=" text-sm font-medium">Fakultas dan Layanan</span>
+                <span class=" text-sm font-medium">Fasilitas dan Layanan</span>
                 <svg class="w-4 h-4 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                 </svg>

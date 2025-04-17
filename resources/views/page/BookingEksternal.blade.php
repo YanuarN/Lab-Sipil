@@ -48,7 +48,7 @@
                     @endif
     
                     <!-- Form Content -->
-                    <form method="POST" action="{{ route('booking-Eksternal.store') }}" class="p-8">
+                    <form method="POST" action="{{ route('booking-Eksternal.store') }}" class="p-8" id="bookingForm">
                         <div class="overflow-x-auto"><!-- Add horizontal scroll wrapper -->
                         @csrf
                         
@@ -130,7 +130,7 @@
                         
                         <!-- Actions -->
                         <div class="flex justify-center mt-12 space-x-4">
-                            <button type="submit" class="px-6 py-3 bg-yellow text-eerieblack font-semibold rounded-md hover:bg-yellow-500 hover:shadow-lg transition-all">
+                            <button type="button" id="submitBtn" class="px-6 py-3 bg-yellow text-eerieblack font-semibold rounded-md hover:bg-yellow-500 hover:shadow-lg transition-all">
                                 Submit Reservasi
                             </button>
                         </div>
