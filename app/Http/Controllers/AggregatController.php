@@ -52,16 +52,11 @@ class AggregatController extends Controller
             $agregat->nama_material= $data['nama_material'];
             $agregat->save();
             
-            
-            // Generate dan download Word document
-            // return $this->generateWordDocument($request);
+            return redirect()->back()->with('success', 'Data berhasil disimpan');
             
         } catch (Exception $e) {
-            // Log error untuk debugging
             Log::error('Error saat menyimpan data agregat: ' . $e->getMessage());
-            
-            return redirect()->back()
-                ->with('error', 'Gagal menyimpan data: ' . $e->getMessage());
+            return back()->with('error', 'Gagal menyimpan data: ' . $e->getMessage());
         }
     }
 

@@ -29,53 +29,18 @@
         <div class="max-w-5xl mx-auto">
             <!-- Card Container -->
             <div class="bg-grey-100 rounded-lg overflow-hidden shadow-2xl">
-                <!-- Success Alert -->
                 @if(session('success'))
-                    <div class="bg-green-50 border-l-4 border-green-500 p-4 m-6">
-                        <div class="flex items-center mb-2">
-                            <div class="bg-green-500 rounded-full p-1">
-                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                            </div>
-                            <p class="text-green-800 font-medium ml-2">{{ session('success') }}</p>
+                <div class="bg-green-50 border-l-4 border-green-500 p-4 m-6">
+                    <div class="flex items-center mb-2">
+                        <div class="bg-green-500 rounded-full p-1">
+                            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
                         </div>
+                        <p class="text-green-800 font-medium ml-2">{{ session('success') }}</p>
                     </div>
-                @endif
-
-                <!-- Error Alert -->
-                @if(session('error'))
-                    <div class="bg-red-50 border-l-4 border-red-500 p-4 m-6">
-                        <div class="flex items-center mb-2">
-                            <div class="bg-red-500 rounded-full p-1">
-                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                                </svg>
-                            </div>
-                            <p class="text-red-800 font-medium ml-2">{{ session('error') }}</p>
-                        </div>
-                    </div>
-                @endif
-
-                <!-- Form Validation Errors -->
-                @if ($errors->any())
-                    <div class="bg-red-50 border-l-4 border-red-500 p-4 m-6">
-                        <div class="flex items-center mb-2">
-                            <div class="bg-red-500 rounded-full p-1">
-                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                                </svg>
-                            </div>
-                            <p class="text-red-800 font-medium ml-2">Mohon perbaiki kesalahan berikut:</p>
-                        </div>
-                        <ul class="list-disc pl-8 text-red-700">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-
+                </div>
+            @endif
                 <!-- Form Content -->
                 <form action="{{ route('permohonan-bahan.store') }}" method="POST" class="p-8">
                     @csrf

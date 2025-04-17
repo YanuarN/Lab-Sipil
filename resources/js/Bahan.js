@@ -1,4 +1,17 @@
+import Swal from 'sweetalert2';
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Check for success flash message and show SweetAlert
+    if (document.querySelector('.bg-green-50')) {
+        Swal.fire({
+            title: 'Permohonan Berhasil!',
+            text: 'Permohonan bahan sudah berhasil dibuat. Silahkan datang ke laboratorium.',
+            icon: 'success',
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#facc15', // yellow color to match your theme
+        });
+    }
+
     // Script untuk menambah anggota
     const tambahAnggotaBtn = document.getElementById('tambah-anggota');
     if (tambahAnggotaBtn) {
@@ -40,6 +53,18 @@ document.addEventListener('DOMContentLoaded', function() {
             // Check if we need to hide the button
             checkAnggotaLimit();
         });
+    }
+
+    // Function to check anggota limit
+    function checkAnggotaLimit() {
+        const container = document.getElementById('anggota-container');
+        const tambahAnggotaBtn = document.getElementById('tambah-anggota');
+        
+        if (container.querySelectorAll('.anggota-item').length >= 5) {
+            tambahAnggotaBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        } else {
+            tambahAnggotaBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
     }
 
     // Script untuk menambah material
@@ -84,6 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
             button.onclick = function() {
                 this.closest('.anggota-item').remove();
                 reindexInputs('anggota-container', 'anggota');
+                checkAnggotaLimit(); // Re-check the limit after deletion
             };
         });
         
@@ -112,4 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize delete listeners for existing items
     addDeleteListeners();
+    
+    // Initialize anggota limit check
+    checkAnggotaLimit();
 });
