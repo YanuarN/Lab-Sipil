@@ -7,11 +7,14 @@ use App\Models\Lab;
 use App\Models\booking;
 use App\Models\DaftarAlat;
 use App\Models\KepalaLab;
+use App\Models\AlatBooking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use PhpOffice\PhpWord\TemplateProcessor;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class PermohonanController extends Controller
 {
@@ -28,7 +31,7 @@ class PermohonanController extends Controller
         return view('page.BookingMahasiswa', compact('lab', 'dosen', 'daftar_alat', 'kepala_lab', 'booking'));
     }
 
-// Add this method to your PermohonanController.php
+    // Add this method to your PermohonanController.php
 
     public function getBookingEvents()
     {
@@ -36,7 +39,7 @@ class PermohonanController extends Controller
         $bookings = booking::select('tanggal_mulai', DB::raw('count(*) as count'))
             ->groupBy('tanggal_mulai')
             ->get();
-        
+
         $events = [];
         foreach ($bookings as $booking) {
             $events[] = [
@@ -44,7 +47,7 @@ class PermohonanController extends Controller
                 'count' => $booking->count
             ];
         }
-        
+
         return response()->json($events);
     }
 
@@ -53,10 +56,10 @@ class PermohonanController extends Controller
         try {
             $tanggal = $request->query('date');
             $kuotaMaksimal = 10;
-    
+
             // Sesuaikan model dengan nama tabel booking Anda
             $jumlahBooking = booking::where('tanggal_mulai', $tanggal)->count();
-    
+
             return response()->json([
                 'status' => ($jumlahBooking >= $kuotaMaksimal) ? 'penuh' : 'tersedia',
                 'sisa_kuota' => max(0, $kuotaMaksimal - $jumlahBooking),
@@ -121,10 +124,18 @@ class PermohonanController extends Controller
         $booking->alamat_rumah = $request->alamat_rumah;
         $booking->tanggal_mulai = $request->tanggal_mulai;
         $booking->tanggal_selesai = $request->tanggal_selesai;
-        $booking->alat = $request['alat'];
-        $booking->status = $request->status ?? 'daftar'; 
+        $booking->status = $request->status ?? 'daftar';
         $booking->kepala = $request->kepalalab;
         $booking->save();
+
+        if (!empty($request->alat)) {
+            foreach ($request->alat as $alatId) {
+                AlatBooking::create([
+                    'booking_id' => $booking->id,
+                    'alat_id' => $alatId
+                ]);
+            }
+        }
 
         // Generate and return the document
         return $this->generateDocument($booking);
@@ -136,7 +147,7 @@ class PermohonanController extends Controller
     public function generateDocument($booking)
     {
         // Path to the template file
-        $templatePath = public_path('Template B.docx');
+        $templatePath = storage_path('app/private/Template Permohonan.docx');
 
         // Create a new TemplateProcessor instance
         $templateProcessor = new TemplateProcessor($templatePath);
@@ -145,9 +156,15 @@ class PermohonanController extends Controller
         $lab = Lab::find($booking->lab_tujuan);
         $pembimbing = Dosen::find($booking->pembimbing);
         $kepalaLab = KepalaLab::find($booking->kepala);
+        $id = $booking->orderBy('id', 'desc')->first()->id + 1;
+
+        // Get current date in Indonesian format
+        setlocale(LC_TIME, 'id_ID');
+        $currentDate = \Carbon\Carbon::now()->isoFormat('D MMMM Y');
 
         // Data to replace placeholders in the template
         $data = [
+            'id' => $id,
             'nama' => $booking->nama,
             'nim' => $booking->nim,
             'email' => $booking->email,
@@ -161,6 +178,7 @@ class PermohonanController extends Controller
             'instansi' => $booking->instansi,
             'alamat_di_solo' => $booking->alamat_di_solo,
             'alamat_rumah' => $booking->alamat_rumah,
+            'tanggal' => $currentDate, // Add current date
         ];
 
         // Replace placeholders with actual data
@@ -168,75 +186,76 @@ class PermohonanController extends Controller
             $templateProcessor->setValue($key, $value);
         }
 
-        $alatList = $booking->alat ?? [];
-        
-        // Filter out empty entries
-        $alatList = array_filter($alatList, function($alat) {
-            return !empty($alat['nama']) || !empty($alat['jumlah']);
-        });
-        
-        // Option 1: Convert to formatted string
-        $alatText = '';
-        foreach ($alatList as $index => $alat) {
-            $no = $index + 1;
-            $nama = htmlspecialchars($alat['nama'] ?? '-');
-            $jumlah = htmlspecialchars($alat['jumlah'] ?? '-');
-            $alatText .= "{$no}. {$nama} ({$jumlah})\n";
+        // Get booked equipment
+        $alatBookings = AlatBooking::where('booking_id', $booking->id)->get();
+        $alatItems = [];
+
+        foreach ($alatBookings as $alatBooking) {
+            $alat = DaftarAlat::find($alatBooking->alat_id);
+            if ($alat) {
+                $alatItems[] = [
+                    'nama' => $alat->nama_alat,
+                ];
+            }
         }
-        $templateProcessor->setValue('alat_text', $alatText ?: '(Tidak ada)');
-        
-        // Option 2: For table-based cloning
-        if (count($alatList) > 0) {
-            $templateProcessor->cloneRow('alat', count($alatList));
+
+        if (count($alatItems) > 0) {
+            $templateProcessor->cloneRow('no', count($alatItems));
             
-            foreach ($alatList as $index => $alat) {
-            $rowIndex = $index + 1;
-            $nama = htmlspecialchars($alat['nama'] ?? '-');
-            $templateProcessor->setValue('no#' . $rowIndex, $rowIndex);
-            $templateProcessor->setValue('alat#' . $rowIndex, $nama);
+            foreach ($alatItems as $index => $item) {
+                $rowNum = $index + 1;
+                $templateProcessor->setValue("no#$rowNum", $rowNum);
+                $templateProcessor->setValue("nama_alat#$rowNum", $item['nama']);
             }
         } else {
-            // Set default values if no alat
-            $templateProcessor->setValue('no#1', '1');
-            $templateProcessor->setValue('alat#1', '(Tidak ada)');
+            // Handle empty case
+            $templateProcessor->setValue("no", "");
+            $templateProcessor->setValue("nama_alat", "(Tidak ada alat yang dipinjam)");
         }
 
         // Save the modified document with unique filename
         $filename = 'permohonan_' . $booking->nim . '_' . date('Ymd_His') . '.docx';
         $path = storage_path('app/public/documents/' . $filename);
-        
+
         // Make sure the directory exists
         if (!file_exists(dirname($path))) {
             mkdir(dirname($path), 0755, true);
         }
-        
+
         $templateProcessor->saveAs($path);
 
         // Download the document
         return response()->download($path, $filename)->deleteFileAfterSend(true);
     }
 
+    // Add new method for URL-based document generation
+    public function generateDocumentById($id)
+    {
+        $booking = booking::findOrFail($id);
+        return $this->generateDocument($booking);
+    }
+
     public function generateNota(string $id)
     {
         $asisten = Auth::user(); // Mengambil data user yang sedang login
-        $asistenNama = $asisten->name; 
+        $asistenNama = $asisten->name;
         // Find the booking by ID
         $booking = booking::findOrFail($id);
-        
+
         $kepalaLab = KepalaLab::find($booking->kepala);
-        
+
         $booking->status = 'proses';
         $booking->save();
         // Generate the surat number
         $today = now();
-        $nomorSurat = $today->format('Ymd').$booking->id;
-        
+        $nomorSurat = $today->format('Ymd') . $booking->id;
+
         // Path to the nota template file
         $templatePath = public_path('NotaMahasiswa.docx');
-    
+
         // Create a new TemplateProcessor instance
         $templateProcessor = new TemplateProcessor($templatePath);
-        
+
         // Data to replace placeholders in the template
         $data = [
             'nama' => $booking->nama,
@@ -246,48 +265,48 @@ class PermohonanController extends Controller
             'nomorSurat' => $nomorSurat,
             'asisten' => $asistenNama
         ];
-        
+
         // Replace placeholders with actual data
         foreach ($data as $key => $value) {
             $templateProcessor->setValue($key, $value);
         }
-        
+
         // Save the modified document with unique filename
         $filename = 'Nota' . $booking->nim . '_' .  '.docx';
         $path = storage_path('app/public/documents/' . $filename);
-        
+
         // Make sure the directory exists
         if (!file_exists(dirname($path))) {
             mkdir(dirname($path), 0755, true);
         }
-        
+
         $templateProcessor->saveAs($path);
-        
+
         // Download the document
         return response()->download($path, $filename)->deleteFileAfterSend(true);
     }
-    
+
     public function generateBebasLab(string $id)
     {
         // Find the booking by ID
         $booking = booking::findOrFail($id);
-        
+
         $kepalaLab = KepalaLab::find($booking->kepala);
 
         $booking->status = 'selesai';
         $booking->save();
-        
+
         // Generate the surat number
         $today = now();
         $bulan = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
-        $nomorSurat = $booking->id . '/Lab. Sipil/BL/' . $bulan[$today->format('n')-1] . '/' . $today->format('Y');
-        
+        $nomorSurat = $booking->id . '/Lab. Sipil/BL/' . $bulan[$today->format('n') - 1] . '/' . $today->format('Y');
+
         // Path to the surat template file
         $templatePath = public_path('BebasLab.docx');
-    
+
         // Create a new TemplateProcessor instance
         $templateProcessor = new TemplateProcessor($templatePath);
-        
+
         // Data to replace placeholders in the template
         $data = [
             'nama' => $booking->nama,
@@ -296,24 +315,115 @@ class PermohonanController extends Controller
             'kepala' => $kepalaLab ? $kepalaLab->nama : 'Unknown',
             'nomorSurat' => $nomorSurat
         ];
-        
+
         // Replace placeholders with actual data
         foreach ($data as $key => $value) {
             $templateProcessor->setValue($key, $value);
         }
-        
+
         // Save the modified document with unique filename
         $filename = 'Bebas Lab' . $booking->nim . '_' . '.docx';
         $path = storage_path('app/public/documents/' . $filename);
-        
+
         // Make sure the directory exists
         if (!file_exists(dirname($path))) {
             mkdir(dirname($path), 0755, true);
         }
-        
+
         $templateProcessor->saveAs($path);
-        
+
         // Download the document
         return response()->download($path, $filename)->deleteFileAfterSend(true);
+    }
+
+    public function generateBebasLabPDF(string $id)
+    {
+        // Find the booking by ID
+        $booking = booking::findOrFail($id);
+
+        $kepalaLab = KepalaLab::find($booking->kepala);
+
+        $booking->status = 'selesai';
+        $booking->save();
+
+        // Generate the surat number
+        $today = now();
+        $bulan = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
+        $nomorSurat = $booking->id . '/Lab. Sipil/BL/' . $bulan[$today->format('n') - 1] . '/' . $today->format('Y');
+
+        // Prepare data for PDF
+        $data = [
+            'nama' => $booking->nama,
+            'nim' => $booking->nim,
+            'judul_penelitian' => $booking->judul_penelitian,
+            'kepala' => $kepalaLab ? $kepalaLab->nama : 'Unknown',
+            'nomorSurat' => $nomorSurat
+        ];
+
+        // Generate PDF using view template
+        $pdf = PDF::loadView('template.bebasLab', $data);
+
+        // Set paper size and orientation
+        $pdf->setPaper('A4', 'portrait');
+
+        // For improved image and CSS support
+        $pdf->setOptions([
+            'isHtml5ParserEnabled' => true,
+            'isRemoteEnabled' => true,
+            'defaultFont' => 'sans-serif'
+        ]);
+
+        // Generate filename
+        $filename = 'BebasLab_' . $booking->nim . '.pdf';
+
+        // Return view with print script
+        return $pdf->stream($filename);
+    }
+
+    public function generateNotaPDF(string $id)
+    {
+        $laboran = Auth::user(); // Get logged in user
+        $laboranNama = $laboran->name;
+
+        // Find the booking by ID
+        $booking = booking::findOrFail($id);
+
+        $kepalaLab = KepalaLab::find($booking->kepala);
+
+        $booking->status = 'proses';
+        $booking->save();
+
+        // Generate the surat number
+        $today = now();
+        $nomorSurat = $today->format('Ymd') . $booking->id;
+
+        // Prepare data for PDF
+        $data = [
+            'nama' => $booking->nama,
+            'nim' => $booking->nim,
+            'judul_penelitian' => $booking->judul_penelitian,
+            'kepala' => $kepalaLab ? $kepalaLab->nama : 'Unknown',
+            'nomorSurat' => $nomorSurat,
+            'laboran' => $laboranNama
+        ];
+
+        // Generate PDF using view template
+        $pdf = PDF::loadView('template.notaMhs', $data);
+
+        // Set paper size and orientation
+        $pdf->setPaper('A4', 'portrait');
+
+        // Set PDF options
+        $pdf->setOptions([
+            'isHtml5ParserEnabled' => true,
+            'isRemoteEnabled' => true,
+            'defaultFont' => 'sans-serif'
+        ]);
+
+        // Generate filename
+        $filename = 'Nota_' . $booking->nim . '.pdf';
+
+        // Return PDF response
+        return $pdf->stream($filename);
     }
 }

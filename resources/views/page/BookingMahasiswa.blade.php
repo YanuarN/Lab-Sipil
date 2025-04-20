@@ -240,10 +240,10 @@
                                     <div class="mb-4">
                                         <div id="alat-container" class="space-y-3">
                                             <div class="alat-item flex items-center space-x-2 p-3 bg-gray-50 rounded-md">
-                                                <select name="alat[][nama]" class="flex-grow px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow focus:border-transparent transition-all" required>
+                                                <select name="alat[]" class="flex-grow px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow focus:border-transparent transition-all" required>
                                                     <option value="">-- Pilih Alat --</option>
                                                     @foreach($daftar_alat as $item)
-                                                        <option value="{{ $item->nama_alat }}">{{ $item->nama_alat }}</option>
+                                                        <option value="{{ $item->id }}">{{ $item->nama_alat }}</option>
                                                     @endforeach
                                                 </select>
                                                 <button type="button" class="hapus-alat px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition-all">

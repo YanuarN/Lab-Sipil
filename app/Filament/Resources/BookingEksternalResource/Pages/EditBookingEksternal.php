@@ -16,4 +16,10 @@ class EditBookingEksternal extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+
+    protected function afterSave(): void
+    {
+        // Update total biaya setelah data diubah
+        $this->record->updateTotalBiaya();
+    }
 }

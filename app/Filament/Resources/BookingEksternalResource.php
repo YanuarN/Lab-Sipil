@@ -24,48 +24,62 @@ class BookingEksternalResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-        ->schema([
-            Forms\Components\TextInput::make('nama_instansi')
-                ->required(),
-            Forms\Components\TextInput::make('nama_proyek')
-                ->required(),
-            Forms\Components\DatePicker::make('tanggal_tes'),
-            Forms\Components\DatePicker::make('tanggal_pembuatan'),
-            Forms\Components\TextInput::make('total_biaya')
-                ->numeric(),
-            // Tambahkan field lain sesuai kebutuhan
-        ]);
+            ->schema([
+                Forms\Components\TextInput::make('nama_instansi')
+                    ->required(),
+                Forms\Components\TextInput::make('nama_proyek')
+                    ->required(),
+                Forms\Components\DatePicker::make('tanggal_tes'),
+                Forms\Components\DatePicker::make('tanggal_pembuatan'),
+                Forms\Components\Repeater::make('details')
+                ->relationship() // Pastikan relasi ke 'details'
+                ->schema([
+                    Forms\Components\Select::make('jenis_tes')
+                        ->label('Jenis Tes')
+                        ->relationship('jenisTest', 'order') // Ganti ke relasi yang benar
+                        ->required()
+                        ->reactive()
+                        ->afterStateUpdated(function ($state, callable $set, $get) {
+                            $harga = \App\Models\DaftarHarga::find($state)?->harga ?? 0;
+                            $set('sub_total', $harga * $get('jumlah_pengetesan'));
+                        }),
+                    Forms\Components\TextInput::make('jumlah_pengetesan')
+                        ->numeric()
+                        ->required()
+                        ->reactive()
+                        ->afterStateUpdated(function ($state, callable $set, $get) {
+                            $harga = \App\Models\DaftarHarga::find($get('jenis_tes'))?->harga ?? 0;
+                            $set('sub_total', $harga * $state);
+                        }),
+                    Forms\Components\TextInput::make('sub_total')
+                        ->disabled()
+                        ->numeric()
+                        ->prefix('Rp'),
+                ])
+                ->columns(3),
+            ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
-        ->columns([
-            Tables\Columns\TextColumn::make('id')
-                ->sortable(),
-            Tables\Columns\TextColumn::make('nama_instansi')
-                ->searchable(),
-            Tables\Columns\TextColumn::make('nama_proyek')
-                ->searchable(),
-            Tables\Columns\TextColumn::make('tanggal_tes')
-                ->date(),
-            Tables\Columns\TextColumn::make('tanggal_pembuatan')
-                ->date(),
-            Tables\Columns\TextColumn::make('total_biaya')
-                ->money('IDR'),
-            // Kolom untuk menampilkan detail jenis tes dan jumlah tes
-            Tables\Columns\TextColumn::make('details')
-            ->label('Jenis dan Jumlah Tes')
-            ->formatStateUsing(function ($record) {
-                $result = [];
-                foreach ($record->details as $detail) {
-                    // Jika perlu, ambil nama jenis tes dari tabel referensi
-                    $jenisTes = \App\Models\DaftarHarga::find($detail->jenis_tes)?->order ?? 'Jenis Tes #' . $detail->jenis_tes;
-                    $result[] = "{$jenisTes}: {$detail->jumlah_pengetesan} pengetesan";
-                }
-                return implode("<br>", $result);
-            })
-            ->html(),
+            ->columns([
+                Tables\Columns\TextColumn::make('id')
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('nama_instansi')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('nama_proyek')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('tanggal_tes')
+                    ->date(),
+                Tables\Columns\TextColumn::make('tanggal_pembuatan')
+                    ->date(),
+                Tables\Columns\TextColumn::make('total_biaya')
+                    ->money('IDR'),
+                // Kolom untuk menampilkan detail jenis tes dan jumlah tes
+                Tables\Columns\TextColumn::make('details')
+                    ->label('Jenis dan Jumlah Tes')
+                    ->view('filament.tables.columns.jenis-dan-jumlah-tes'),
             ])
             ->filters([
                 //
@@ -83,8 +97,8 @@ class BookingEksternalResource extends Resource
                             ->success()
                             ->send();
                     })
-                    ->url(fn (BookingEksternal $record) => route('nota.eksternal', ['id' => $record->id]))
-                    ->openUrlInNewTab() 
+                    ->url(fn(BookingEksternal $record) => route('nota.eksternal', ['id' => $record->id]))
+                    ->openUrlInNewTab()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -96,7 +110,7 @@ class BookingEksternalResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            // RelationManagers\DetailsRelationManager::class,
         ];
     }
 

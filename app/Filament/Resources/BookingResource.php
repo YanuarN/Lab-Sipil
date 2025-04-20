@@ -5,6 +5,8 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\BookingResource\Pages;
 use App\Filament\Resources\BookingResource\RelationManagers;
 use App\Models\Booking;
+use App\Models\DaftarAlat;
+use App\Models\AlatBooking;
 use Dom\Text;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -12,10 +14,12 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ViewColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Actions\Action;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\DB;
 
 class BookingResource extends Resource
 {
@@ -59,6 +63,48 @@ class BookingResource extends Resource
                     ->required()
                     ->maxLength(255)
                     ->label('Judul Penelitian'),
+                Forms\Components\Select::make('lab_id')
+                    ->relationship('lab', 'nama_lab')
+                    ->required()
+                    ->label('Kepala Lab'),
+                Forms\Components\TextInput::make('alamat_di_solo')
+                    ->required()
+                    ->maxLength(255)
+                    ->label('Alamat di Solo'),
+                Forms\Components\TextInput::make('alamat_rumah')
+                    ->required()
+                    ->maxLength(255)
+                    ->label('Alamat Rumah'),
+                Forms\Components\TextInput::make('instansi')
+                    ->required()
+                    ->maxLength(255)
+                    ->label('Instansi'),
+                Forms\Components\DatePicker::make('tanggal_mulai')
+                    ->required()
+                    ->label('Tanggal Mulai'),
+                Forms\Components\DatePicker::make('tanggal_selesai')
+                    ->required()
+                    ->label('Tanggal Selesai'),
+                Forms\Components\Select::make('kepala_id')
+                    ->relationship('kepala', 'nama')
+                    ->required()
+                    ->label('Kepala Lab'),
+                Forms\Components\Repeater::make('alatBookings')
+                    ->relationship()
+                    ->schema([
+                        Forms\Components\Select::make('alat_id')
+                            ->label('Alat')
+                            ->options(function () {
+                                return DaftarAlat::pluck('nama_alat', 'id')->toArray();
+                            })
+                            ->required()
+                            ->searchable()
+                            ->preload(),
+                    ])
+                    ->label('Pilih Alat')
+                    ->defaultItems(1)
+                    ->addActionLabel('Tambah Alat')
+                    ->reorderableWithButtons(),
                 Forms\Components\Select::make('status')
                     ->required()
                     ->options([
@@ -66,7 +112,7 @@ class BookingResource extends Resource
                         'proses' => 'Proses',
                         'selesai' => 'Selesai',
                     ])
-                    ->default('pending')
+                    ->default('daftar')
                     ->label('Status')
             ]);
     }
@@ -96,53 +142,9 @@ class BookingResource extends Resource
                 TextColumn::make('judul_penelitian')->label('Judul Penelitian')
                     ->sortable()
                     ->searchable(),
-                TextColumn::make('alat')->label('Alat')
-                    ->formatStateUsing(function ($record) {
-                        $result = [];
-                        if ($record->alat) {
-                            if (is_string($record->alat)) {
-                                try {
-                                    $alat_data = json_decode($record->alat, true);
-                                    if (json_last_error() === JSON_ERROR_NONE) {
-                                        if (is_array($alat_data)) {
-                                            foreach ($alat_data as $alat) {
-                                                if (isset($alat['nama'])) {
-                                                    $result[] = $alat['nama'];
-                                                } elseif (is_string($alat)) {
-                                                    $result[] = $alat;
-                                                }
-                                            }
-                                        } elseif (isset($alat_data['nama'])) {
-                                            $result[] = $alat_data['nama'];
-                                        }
-                                    }
-                                } catch (\Exception $e) {
-                                    $result[] = $record->alat;
-                                }
-                            } elseif (is_array($record->alat)) {
-                                foreach ($record->alat as $alat) {
-                                    if (is_array($alat) && isset($alat['nama'])) {
-                                        $result[] = $alat['nama'];
-                                    } elseif (is_string($alat)) {
-                                        $result[] = $alat;
-                                    }
-                                }
-                            }
-                        }
-
-                        if (!empty($result)) {
-                            $html = '<ul class="list-disc pl-5 text-sm">';  // Added text-sm class for smaller text
-                            foreach ($result as $item) {
-                                $html .= '<li>' . htmlspecialchars($item) . '</li>';
-                            }
-                            $html .= '</ul>';
-                            return new \Illuminate\Support\HtmlString($html);
-                        }
-
-                        return '-';
-                    })
-                    ->html()
-                    ->wrap()
+                ViewColumn::make('daftar_alat')
+                    ->label('Alat Dipinjam')
+                    ->view('filament.tables.columns.daftar-alat'),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('status')
@@ -152,9 +154,6 @@ class BookingResource extends Resource
                         'selesai' => 'Selesai',
                     ])
                     ->label('Status')
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -197,11 +196,10 @@ class BookingResource extends Resource
             ]);
     }
 
-
     public static function getRelations(): array
     {
         return [
-            //
+            // RelationManagers\AlatRelationManager::class,
         ];
     }
 
@@ -216,7 +214,7 @@ class BookingResource extends Resource
 
     public static function getEloquentQuery(): Builder
     {
-        return parent::getEloquentQuery()->with('pembimbingRelation');
+        return parent::getEloquentQuery()->with(['pembimbingRelation', 'alatBookings.alat']);
     }
 
     public static function getNavigationLabel(): string

@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Get all available equipment from the existing select element
     function getDaftarAlat() {
         const alatOptions = [];
-        const selectElement = document.querySelector('select[name="alat[][nama]"]');
+        const selectElement = document.querySelector('select[name="alat[]"]');
         if (selectElement) {
             const options = selectElement.querySelectorAll('option');
             options.forEach(option => {
@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         alatItem.innerHTML = `
-            <select name="alat[][nama]" class="flex-grow px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow focus:border-transparent transition-all" required>
+            <select name="alat[]" class="flex-grow px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow focus:border-transparent transition-all" required>
                 ${optionsHtml}
             </select>
             <button type="button" class="hapus-alat px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition-all">Hapus</button>

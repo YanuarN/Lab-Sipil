@@ -13,5 +13,9 @@ class DaftarAlat extends Model
     protected $fillable = [
         'nama_alat',
     ];
-
+    
+    public function alatBooking()
+    {
+        return $this->hasMany(AlatBooking::class, 'alat_id');
+    }
 }

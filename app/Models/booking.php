@@ -57,7 +57,10 @@ class booking extends Model
         return $this->belongsTo(Dosen::class, 'penguji2', 'id');
     }
 
-    protected $casts = [
-        'alat' => 'array', 
-    ];
+    public function alatBookings()
+    {
+        return $this->hasMany(AlatBooking::class, 'booking_id');
+    }
+
+
 }

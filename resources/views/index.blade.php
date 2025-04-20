@@ -31,7 +31,7 @@
                                 d="M14 5l7 7m0 0l-7 7m7-7H3" />
                         </svg>
                     </a>
-                    <a href="#contact"
+                    <a href="/informasi#kontak"
                         class="border-2 border-silver/30 text-silver px-8 py-3 rounded-lg font-semibold hover:border-yellow hover:text-yellow transition-all duration-300">
                         Hubungi Kami
                     </a>
@@ -60,21 +60,28 @@
                     <div class="carousel-item-3d absolute w-full h-full transition-all duration-1000 opacity-100 transform-style-preserve-3d"
                         data-slide="1">
                         <div class="absolute inset-0 rounded-xl overflow-hidden border-4 border-yellow/50 shadow-2xl">
-                            <img src="{{ asset('image/Budi.jpg') }}" alt="Pengujian Struktur"
+                            <img src="{{ asset('image/Budi.jpg') }}"
                                 class="w-full h-full object-cover">
                         </div>
                     </div>
-                    <div class="carousel-item-3d absolute w-full h-full transition-all duration-1000 opacity-0 transform-style-preserve-3d"
-                        data-slide="2">
-                        <div class="absolute inset-0 rounded-xl overflow-hidden border-4 border-yellow/50 shadow-2xl">
-                            <img src="{{ asset('image/laboran1.jpg') }}" alt="Analisis Material"
-                                class="w-full h-full object-cover">
-                        </div>
+                    <div class="carousel-item-3d absolute w-full h-full transition-all duration-1000 opacity-100 transform-style-preserve-3d"
+                    data-slide="2">
+                    <div class="absolute inset-0 rounded-xl overflow-hidden border-4 border-yellow/50 shadow-2xl">
+                        <img src="{{ asset('image/agus.jpg') }}" 
+                            class="w-full h-full object-cover">
                     </div>
+                </div>
                     <div class="carousel-item-3d absolute w-full h-full transition-all duration-1000 opacity-0 transform-style-preserve-3d"
                         data-slide="3">
                         <div class="absolute inset-0 rounded-xl overflow-hidden border-4 border-yellow/50 shadow-2xl">
-                            <img src="{{ asset('image/bg-img.svg') }}" alt="Simulasi Geoteknik"
+                            <img src="{{ asset('image/laboran2.jpg') }}" 
+                                class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div class="carousel-item-3d absolute w-full h-full transition-all duration-1000 opacity-0 transform-style-preserve-3d"
+                        data-slide="4">
+                        <div class="absolute inset-0 rounded-xl overflow-hidden border-4 border-yellow/50 shadow-2xl">
+                            <img src="{{ asset('image/laboran1.jpg') }}"
                                 class="w-full h-full object-cover">
                         </div>
                     </div>
@@ -89,6 +96,9 @@
                     <button
                         class="carousel-dot-3d w-3 h-3 rounded-full bg-silver opacity-50 hover:opacity-100 transition-opacity duration-300"
                         data-dot="3"></button>
+                    <button
+                        class="carousel-dot-3d w-3 h-3 rounded-full bg-silver opacity-50 hover:opacity-100 transition-opacity duration-300"
+                        data-dot="4"></button>
                 </div>
             </div>
         </div>
@@ -107,44 +117,46 @@
 
 <!-- Fasilitas Lab Section -->
 <section class="bg-white py-20" id="programs">
-    <div class="container mx-auto px-4">
+    <div class="container mx-auto px-4 max">
         <div class="text-center mb-16">
             <h2 class="text-4xl font-bold mb-4 text-night">Layanan Lab Teknik Sipil</h2>
             <p class="text-night/70 max-w-2xl mx-auto">Layanan booking fasilitas lab kami dirancang untuk memenuhi
                 kebutuhan penelitian, kolaborasi eksternal, dan pengelolaan bahan lab secara efisien.</p>
         </div>
 
-        <div class="grid md:grid-cols-4 gap-8 mx-10">
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mx-4 md:mx-10">
             <!-- Card 1: Permohonan Penggunaan Lab untuk Penelitian -->
             <a href="/permohonan" class="group">
                 <div
                     class="h-full bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100">
-                    <div class="h-56 bg-yellow/10 relative flex items-center justify-center overflow-hidden">
+                    <div class="h-48 bg-yellow/10 relative flex items-center justify-center overflow-hidden">
                         <div
                             class="absolute inset-0 bg-gradient-to-br from-yellow/20 to-yellow/5 group-hover:scale-110 transition-transform duration-500">
                         </div>
                         <div class="relative z-10 text-night">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 mx-auto" fill="none"
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                     d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
                             </svg>
                         </div>
                     </div>
-                    <div class="p-6">
+                    <div class="p-4">
                         <h3
-                            class="text-2xl text-night font-bold mb-4 group-hover:text-yellow transition-colors duration-300">
+                            class="text-xl lg:text-2xl text-night font-bold mb-2 group-hover:text-yellow transition-colors duration-300">
                             Penggunaan Lab untuk Penelitian</h3>
-                        <p class="text-night/70 mb-6">Ajukan permohonan penggunaan lab untuk keperluan penelitian tugas
-                            akhir dengan prosedur yang mudah dan sistematis.</p>
-                        <div class="flex justify-between text-night/70 text-sm border-t border-gray-100 pt-4">
+                        <p class="text-night/70 mb-4 text-sm">Ajukan permohonan penggunaan lab untuk keperluan
+                            penelitian tugas
+                            akhir.</p>
+                        <div
+                            class="flex justify-between text-night/70 text-xs lg:text-sm border-t border-gray-100 pt-2">
                             <span class="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-eerieblack" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-eerieblack"
+                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
-                                Maksimal 3 Bulan
+                                Maks 3 Bulan
                             </span>
                             <span class="flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-eerieblack"
@@ -152,7 +164,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                                 </svg>
-                                10 Orang Per Hari
+                                10 Orang/Hari
                             </span>
                         </div>
                     </div>
@@ -163,24 +175,24 @@
             <a href="/booking-Eksternal" class="group">
                 <div
                     class="h-full bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100">
-                    <div class="h-56 bg-night/10 relative flex items-center justify-center overflow-hidden">
+                    <div class="h-48 bg-night/10 relative flex items-center justify-center overflow-hidden">
                         <div
                             class="absolute inset-0 bg-gradient-to-br from-night/20 to-night/5 group-hover:scale-110 transition-transform duration-500">
                         </div>
                         <div class="relative z-10 text-night">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 mx-auto" fill="none"
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                     d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" />
                             </svg>
                         </div>
                     </div>
-                    <div class="p-6">
+                    <div class="p-4">
                         <h3
-                            class="text-2xl text-night font-bold mb-4 group-hover:text-yellow transition-colors duration-300">
+                            class="text-xl lg:text-2xl text-night font-bold mb-2 group-hover:text-yellow transition-colors duration-300">
                             Booking Lab untuk Eksternal</h3>
-                        <p class="text-night/70 mb-6">Fasilitas lab kami terbuka untuk kolaborasi dengan pihak
-                            eksternal seperti industri, lembaga penelitian, atau mitra lainnya.</p>
+                        <p class="text-night/70 mb-4 text-sm">Fasilitas lab kami terbuka untuk kolaborasi dengan pihak
+                            eksternal.</p>
                     </div>
                 </div>
             </a>
@@ -189,32 +201,33 @@
             <a href="/permohonan-bahan" class="group">
                 <div
                     class="h-full bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100">
-                    <div class="h-56 bg-yellow/10 relative flex items-center justify-center overflow-hidden">
+                    <div class="h-48 bg-yellow/10 relative flex items-center justify-center overflow-hidden">
                         <div
                             class="absolute inset-0 bg-gradient-to-br from-yellow/20 to-yellow/5 group-hover:scale-110 transition-transform duration-500">
                         </div>
                         <div class="relative z-10 text-night">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 mx-auto" fill="none"
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                     d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
                             </svg>
                         </div>
                     </div>
-                    <div class="p-6">
+                    <div class="p-4">
                         <h3
-                            class="text-2xl text-night font-bold mb-4 group-hover:text-yellow transition-colors duration-300">
+                            class="text-xl lg:text-2xl text-night font-bold mb-2 group-hover:text-yellow transition-colors duration-300">
                             Pengajuan Permohonan Bahan Lab</h3>
-                        <p class="text-night/70 mb-6">Ajukan permohonan bahan lab yang diperlukan untuk penelitian atau
-                            praktikum dengan proses yang cepat dan transparan.</p>
-                        <div class="flex justify-between text-night/70 text-sm border-t border-gray-100 pt-4">
+                        <p class="text-night/70 mb-4 text-sm">Ajukan permohonan bahan lab untuk penelitian atau
+                            praktikum.</p>
+                        <div
+                            class="flex justify-between text-night/70 text-xs lg:text-sm border-t border-gray-100 pt-2">
                             <span class="flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-eerieblack"
                                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                 </svg>
-                                Ambil Surat Permohonan Ke Lab
+                                Ambil Surat di Lab
                             </span>
                         </div>
                     </div>
@@ -225,27 +238,24 @@
             <a href="/pinjam-ruang" class="group">
                 <div
                     class="h-full bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100">
-                    <div class="h-56 bg-night/10 relative flex items-center justify-center overflow-hidden">
+                    <div class="h-48 bg-night/10 relative flex items-center justify-center overflow-hidden">
                         <div
                             class="absolute inset-0 bg-gradient-to-br from-night/20 to-night/5 group-hover:scale-110 transition-transform duration-500">
                         </div>
                         <div class="relative z-10 text-night">
-                            <div class="relative z-10 text-night">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 mx-auto" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                        d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
-                                </svg>
-                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
+                            </svg>
                         </div>
                     </div>
-                    <div class="p-6">
+                    <div class="p-4">
                         <h3
-                            class="text-2xl text-night font-bold mb-4 group-hover:text-yellow transition-colors duration-300">
+                            class="text-xl lg:text-2xl text-night font-bold mb-2 group-hover:text-yellow transition-colors duration-300">
                             Peminjaman Ruangan</h3>
-                        <p class="text-night/70 mb-6">Ajukan permohonan peminjaman ruangan untuk keperluan akademik
-                            anda.</p>
-
+                        <p class="text-night/70 mb-4 text-sm">Ajukan permohonan peminjaman ruangan untuk keperluan
+                            akademik.</p>
                     </div>
                 </div>
             </a>
@@ -407,24 +417,27 @@
                     dan kesesuaian dengan standar teknis.</p>
                 <ul class="space-y-2 text-night/70">
                     <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-eerieblack flex-shrink-0 mt-0.5"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 mr-2 text-eerieblack flex-shrink-0 mt-0.5" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M5 13l4 4L19 7" />
                         </svg>
                         Pengujian Kuat Tekan Beton
                     </li>
                     <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-eerieblack flex-shrink-0 mt-0.5"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 mr-2 text-eerieblack flex-shrink-0 mt-0.5" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M5 13l4 4L19 7" />
                         </svg>
                         Pengujian Kuat Lentur
                     </li>
                     <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-eerieblack flex-shrink-0 mt-0.5"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 mr-2 text-eerieblack flex-shrink-0 mt-0.5" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M5 13l4 4L19 7" />
                         </svg>
@@ -447,16 +460,18 @@
                     ketahanan, durabilitas, dan properti fisik.</p>
                 <ul class="space-y-2 text-night/70">
                     <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-eerieblack flex-shrink-0 mt-0.5"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 mr-2 text-eerieblack flex-shrink-0 mt-0.5" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M5 13l4 4L19 7" />
                         </svg>
                         Pengujian Ekstraksi
                     </li>
                     <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-eerieblack flex-shrink-0 mt-0.5"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 mr-2 text-eerieblack flex-shrink-0 mt-0.5" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M5 13l4 4L19 7" />
                         </svg>
@@ -479,8 +494,9 @@
                     tingkat akurasi tinggi.</p>
                 <ul class="space-y-2 text-night/70">
                     <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-eerieblack flex-shrink-0 mt-0.5"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 mr-2 text-eerieblack flex-shrink-0 mt-0.5" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M5 13l4 4L19 7" />
                         </svg>
@@ -503,16 +519,18 @@
                     struktur bawah tanah.</p>
                 <ul class="space-y-2 text-night/70">
                     <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-eerieblack flex-shrink-0 mt-0.5"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 mr-2 text-eerieblack flex-shrink-0 mt-0.5" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M5 13l4 4L19 7" />
                         </svg>
                         Pengujian Sondir
                     </li>
                     <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-eerieblack flex-shrink-0 mt-0.5"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 mr-2 text-eerieblack flex-shrink-0 mt-0.5" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M5 13l4 4L19 7" />
                         </svg>

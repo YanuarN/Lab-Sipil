@@ -131,53 +131,55 @@
                 <p class="text-night max-w-2xl mx-auto">Laboratorium Teknik Sipil UMS memiliki berbagai laboratorium yang lengkap untuk mendukung kegiatan akademik dan penelitian.</p>
             </div>
             
-            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                <div class="bg-white rounded-lg shadow-lg p-6 text-center">
-                    <div class="w-20 h-20 bg-yellow/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-yellow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="aspect-[4/5] overflow-hidden">
+                        <img src="{{ asset('image/lab-bahan.jpg') }}" alt="Lab Teknologi Bahan" class="w-full h-full object-cover">
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Lab Tek. Bahan</h3>
-                    <p class="text-night">pengujian Kekuatan Tekan Beton, Pengujian Kuat Lentur, Pengujian Tarik Baja</p>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold mb-2">Lab Tek. Bahan</h3>
+                        <p class="text-night">pengujian Kekuatan Tekan Beton, Pengujian Kuat Lentur, Pengujian Tarik Baja</p>
+                    </div>
                 </div>
                 
-                <div class="bg-white rounded-lg shadow-lg p-6 text-center">
-                    <div class="w-20 h-20 bg-yellow/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-yellow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                        </svg>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="aspect-[4/5] overflow-hidden">
+                        <img src="{{ asset('image/lab-pekerasan.jpg') }}" alt="Lab Bahan Pekerasan" class="w-full h-full object-cover">
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Lab Bahan Pekerasan</h3>
-                    <p class="text-night">Pengujian Ekstraksi, Pengujian Density</p>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold mb-2">Lab Bahan Pekerasan</h3>
+                        <p class="text-night">Pengujian Ekstraksi, Pengujian Density</p>
+                    </div>
                 </div>
                 
-                <div class="bg-white rounded-lg shadow-lg p-6 text-center">
-                    <div class="w-20 h-20 bg-yellow/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-yellow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                        </svg>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="aspect-[4/5] overflow-hidden">
+                        <img src="{{ asset('image/lab-geomatika.jpg') }}" alt="Lab Geomatika" class="w-full h-full object-cover">
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Lab Geomatika</h3>
-                    <p class="text-night">Pengujian Pemetaan</p>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold mb-2">Lab Geomatika</h3>
+                        <p class="text-night">Pengujian Pemetaan</p>
+                    </div>
                 </div>
-                <div class="bg-white rounded-lg shadow-lg p-6 text-center">
-                    <div class="w-20 h-20 bg-yellow/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-yellow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                        </svg>
+
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="aspect-[4/5] overflow-hidden">
+                        <img src="{{ asset('image/lab-tanah.jpg') }}" alt="Lab Mekanika Tanah" class="w-full h-full object-cover">
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Lab Mekanika Tanah</h3>
-                    <p class="text-night">Pengujian Sondir, Pengujian CBR</p>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold mb-2">Lab Mekanika Tanah</h3>
+                        <p class="text-night">Pengujian Sondir, Pengujian CBR</p>
+                    </div>
                 </div>
-                <div class="bg-white rounded-lg shadow-lg p-6 text-center">
-                    <div class="w-20 h-20 bg-yellow/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-yellow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                        </svg>
+
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="aspect-[4/5] overflow-hidden">
+                        <img src="{{ asset('image/lab-jalan.jpg') }}" alt="Lab Jalan Raya" class="w-full h-full object-cover">
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Lab Jalan Raya</h3>
-                    <p class="text-night">Mengelola operasional harian, peralatan, dan membantu kegiatan praktikum mahasiswa.</p>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold mb-2">Lab Jalan Raya</h3>
+                        <p class="text-night">Pengujian kekuatan aspal.</p>
+                    </div>
                 </div>
             </div>
         </div>

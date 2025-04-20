@@ -1,0 +1,15 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@config 'tailwind.config.js';
+
+.fi-ta-header {
+    position: sticky !important;
+    top: 0;
+    z-index: 20;
+    background-color: inherit;
+}
+
+.fi-ta-wrapper {
+    overflow-x: auto;
+    overflow-y: visible;
+}

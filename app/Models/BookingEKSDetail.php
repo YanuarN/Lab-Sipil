@@ -24,17 +24,43 @@ class BookingEKSDetail extends Model
 
     public function jenisTest()
     {
-        return $this->belongsTo(DaftarHarga::class, 'jenis_tes_id', 'id');
+        return $this->belongsTo(DaftarHarga::class, 'jenis_tes', 'id');
     }
 
-    // Method untuk menghitung subtotal
     public function hitungSubtotal()
     {
-        $this->subtotal = $this->jumlah_pengetesan * $this->jenisTest->harga;
-        $this->save();
+        if ($this->jenisTest) {
+            $newSubtotal = $this->jumlah_pengetesan * $this->jenisTest->harga;
+            
+            // Hanya update jika subtotal berubah
+            if ($this->subtotal != $newSubtotal) {
+                $this->subtotal = $newSubtotal;
+                $this->saveQuietly(); // <-- Gunakan saveQuietly()
+            }
+        }
     }
     public function book()
     {
         return $this->belongsTo(BookingEksternal::class, 'booking_id', 'id');
+    }
+
+    protected static function booted()
+    {
+        static::saved(function ($detail) {
+            // Hanya hitung jika ada perubahan di kolom terkait
+            if ($detail->isDirty(['jenis_tes', 'jumlah_pengetesan'])) {
+                $detail->hitungSubtotal();
+            }
+    
+            if ($detail->booking) {
+                $detail->booking->updateTotalBiaya();
+            }
+        });
+    
+        static::deleted(function ($detail) {
+            if ($detail->booking) {
+                $detail->booking->updateTotalBiaya();
+            }
+        });
     }
 }

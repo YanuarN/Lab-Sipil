@@ -15,17 +15,19 @@ class DetailsRelationManager extends RelationManager
     public function form(Form $form): Form
     {
         return $form
-            ->schema([
-                Forms\Components\Select::make('jenis_tes')
-                    ->numeric()
-                    ->required(),
-                Forms\Components\TextInput::make('jumlah_pengetesan')
-                    ->numeric()
-                    ->required(),
-                Forms\Components\TextInput::make('subtotal')
-                    ->numeric()
-                    ->required(),
-            ]);
+        ->schema([
+            Forms\Components\Select::make('jenis_tes')
+                ->label('Jenis Tes')
+                ->relationship('jenisTest', 'order') // Sesuaikan dengan kolom yang ingin ditampilkan
+                ->required()
+                ->searchable()
+                ->preload(),
+            Forms\Components\TextInput::make('jumlah_pengetesan')
+                ->numeric()
+                ->required()
+                ->minValue(1),
+            // Hapus input subtotal karena akan dihitung otomatis
+        ]);
     }
     
     public function table(Table $table): Table
@@ -61,7 +63,6 @@ class DetailsRelationManager extends RelationManager
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ])
-            ->maxWidth('full');
+            ]);
     }
 }

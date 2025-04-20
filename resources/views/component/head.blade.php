@@ -12,8 +12,8 @@
     <!-- Header -->
     <header class="bg-eerieblack fixed w-full z-50">
         <div class="container mx-auto px-4">
-            <nav class="flex justify-between items-center py-5">
-                <div class="flex items-center gap-3 pl-3">
+            <nav class="flex justify-between items-center py-5 px-auto">
+                <div class="flex items-center gap-3 p-auto">
                     <a href="/" class="text-silver text-xl font-bold px-2">Lab <span class="text-yellow">Teknik Sipil UMS</span></a>
                 </div>
                 <!-- Desktop Navigation -->

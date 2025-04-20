@@ -26,9 +26,10 @@ class BookingEksternal extends Model
 
     public function updateTotalBiaya()
     {
-        $this->total_biaya = $this->bookingDetails()->sum('subtotal');
-        $this->save();
+        $this->total_biaya = $this->details()->sum('subtotal');
+        $this->saveQuietly();
     }
+
     public function details()
     {
         return $this->hasMany(BookingEksDetail::class, 'booking_id', 'id');

@@ -6,8 +6,10 @@ use App\Models\Agregat;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 use Exception;
 use PhpOffice\PhpWord\TemplateProcessor;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class AggregatController extends Controller
 {
@@ -181,5 +183,52 @@ class AggregatController extends Controller
         return response()->download($outputPath, $outputFilename, [
             'Content-Type' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
         ])->deleteFileAfterSend(true);
+    }
+
+    public function generatePermohonanBahanPDF(string $id)
+    {      
+        $agregat = Agregat::findOrfail($id);  
+        
+        $userName = Auth::user()->name;
+        
+        $data = [
+            'nama' => $agregat->nama,
+            'nim' => $agregat->nim,
+            'judul_penelitian' => $agregat->judul_penelitian,
+            'instansi_tujuan' => $agregat->instansi_tujuan,
+            'alamat_instansi' => $agregat->alamat_instansi,
+            'anggota' => $agregat->anggota ?? [],
+            'nama_material' => $agregat->nama_material ?? [],
+            'laboran' => $userName, // Add assistant name to data array
+            'tanggal' => now()->format('d F Y')
+        ];
+
+        // Get nomor surat
+        $lastId = DB::table('agregat')->max('id') ?? 0;
+        $data['no_surat'] = "{$lastId}/PA/Lab.Sipil/I/2025";
+
+        // Format anggota list
+        $data['anggota_list'] = collect($data['anggota'])->map(function($item, $index) {
+            return [
+                'no' => $index + 1,
+                'nama' => $item['nama'] ?? '-',
+                'nim' => $item['nim'] ?? '-'
+            ];
+        })->toArray();
+
+        // Format material list
+        $data['material_list'] = collect($data['nama_material'])->map(function($item, $index) {
+            return [
+                'no' => $index + 1,
+                'nama' => $item['nama'] ?? '-',
+                'jumlah' => $item['jumlah'] ?? '-'
+            ];
+        })->toArray();
+
+        // Generate PDF using view
+        $pdf = PDF::loadView('template.bahan', $data);
+        
+        // Stream PDF directly to browser
+        return $pdf->stream('Penelitian_' . str_replace(' ', '_', $data['nama']) . '_' . date('Ymd') . '.pdf');
     }
 }
