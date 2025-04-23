@@ -10,42 +10,34 @@ document.addEventListener('DOMContentLoaded', function() {
     function showSlide(slideNumber) {
         if (isAnimating) return;
         isAnimating = true;
-    
-        // Reset semua slide
+        
+        // Hide all slides
         carouselItems.forEach(item => {
             item.style.opacity = '0';
             item.style.transform = 'rotateY(90deg)';
             item.style.zIndex = '0';
         });
-    
-        // Animasi untuk slide aktif
+        
+        // Show active slide
         const activeSlide = document.querySelector(`.carousel-item-3d[data-slide="${slideNumber}"]`);
-        if(activeSlide) {
-            activeSlide.style.opacity = '1';
-            activeSlide.style.transform = 'rotateY(0deg)';
-            activeSlide.style.zIndex = '10';
-        }
-    
+        activeSlide.style.opacity = '1';
+        activeSlide.style.transform = 'rotateY(0deg)';
+        activeSlide.style.zIndex = '10';
+        
         // Update dots
-        carouselDots.forEach(dot => {
-            dot.classList.remove('active', 'bg-yellow', 'opacity-100');
-            if(parseInt(dot.dataset.dot) === slideNumber) {
-                dot.classList.add('active', 'bg-yellow', 'opacity-100');
-            }
-        });
-    
+        carouselDots.forEach(dot => dot.classList.remove('active', 'bg-yellow', 'opacity-100'));
+        const activeDot = document.querySelector(`.carousel-dot-3d[data-dot="${slideNumber}"]`);
+        activeDot.classList.add('active', 'bg-yellow', 'opacity-100');
+        
+        // Update current slide
+        currentSlide = slideNumber;
+        
+        // Allow animation again after transition completes
         setTimeout(() => {
             isAnimating = false;
         }, 1000);
     }
-    
-    // Di dalam startAutoPlay()
-    function startAutoPlay() {
-        carouselInterval = setInterval(() => {
-            const nextSlide = currentSlide >= carouselItems.length ? 1 : currentSlide + 1;
-            showSlide(nextSlide);
-        }, 5000);
-    }
+
     // Set up click events for dots
     carouselDots.forEach(dot => {
         dot.addEventListener('click', function() {

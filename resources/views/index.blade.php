@@ -60,17 +60,17 @@
                     <div class="carousel-item-3d absolute w-full h-full transition-all duration-1000 opacity-100 transform-style-preserve-3d"
                         data-slide="1">
                         <div class="absolute inset-0 rounded-xl overflow-hidden border-4 border-yellow/50 shadow-2xl">
-                            <img src="{{ asset('image/Budi.jpg') }}"
+                            <img src="{{ asset('image/Budi.jpg') }}" 
                                 class="w-full h-full object-cover">
                         </div>
                     </div>
-                    <div class="carousel-item-3d absolute w-full h-full transition-all duration-1000 opacity-100 transform-style-preserve-3d"
-                    data-slide="2">
-                    <div class="absolute inset-0 rounded-xl overflow-hidden border-4 border-yellow/50 shadow-2xl">
-                        <img src="{{ asset('image/agus.jpg') }}" 
-                            class="w-full h-full object-cover">
+                    <div class="carousel-item-3d absolute w-full h-full transition-all duration-1000 opacity-0 transform-style-preserve-3d"
+                        data-slide="2">
+                        <div class="absolute inset-0 rounded-xl overflow-hidden border-4 border-yellow/50 shadow-2xl">
+                            <img src="{{ asset('image/agus.jpg') }}"
+                                class="w-full h-full object-cover">
+                        </div>
                     </div>
-                </div>
                     <div class="carousel-item-3d absolute w-full h-full transition-all duration-1000 opacity-0 transform-style-preserve-3d"
                         data-slide="3">
                         <div class="absolute inset-0 rounded-xl overflow-hidden border-4 border-yellow/50 shadow-2xl">
@@ -81,7 +81,7 @@
                     <div class="carousel-item-3d absolute w-full h-full transition-all duration-1000 opacity-0 transform-style-preserve-3d"
                         data-slide="4">
                         <div class="absolute inset-0 rounded-xl overflow-hidden border-4 border-yellow/50 shadow-2xl">
-                            <img src="{{ asset('image/laboran1.jpg') }}"
+                            <img src="{{ asset('image/laboran1.jpg') }}" 
                                 class="w-full h-full object-cover">
                         </div>
                     </div>
