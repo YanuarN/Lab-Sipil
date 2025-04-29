@@ -13,14 +13,20 @@
 <body class="bg-davysgray text-eerieblack font-montserrat">
     <!-- Header -->
     <header class="bg-eerieblack fixed w-full z-50">
-        <div class="container mx-auto px-4">
-            <nav class="flex justify-between items-center py-5 px-auto">
-                <div class="flex items-center gap-3 p-auto">
-                    <a href="/" class="text-silver text-xl font-bold px-2">Lab <span class="text-yellow">Teknik
-                            Sipil UMS</span></a>
+        <div class="container mx-auto px-4 lg:px-8">
+            <nav class="flex justify-between items-center py-5">
+                <!-- Logo section -->
+                <div class="flex items-center">
+                    <img src="{{ asset('image/Logo_white.png') }}" alt="Logo" class="h-12 w-auto">
+                    <div class="flex flex-col ml-2">
+                        <span class="text-silver text-lg font-bold leading-tight">Lab Teknik Sipil</span>
+                        <span class="text-yellow text-lg font-bold leading-tight">UMS</span>
+                    </div>
                 </div>
+
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex gap-8">
+                    <!-- [Previous dropdown menus remain the same] -->
                     <!-- Dropdown 1 -->
                     <div class="relative group">
                         <a href="/profil"
@@ -97,17 +103,20 @@
                     </div>
                 </div>
 
-                <button
-                    class="bg-yellow text-eerieblack px-6 py-2 rounded-md font-semibold  text-sm hover:bg-yellow-500 hover:shadow-lg transition-all">
-                    <a href="/#programs">Reservasi</a>
-                </button>
+                <div class="flex items-center gap-4">
+                    <button
+                        class="bg-yellow text-eerieblack px-6 py-2 rounded-md font-semibold text-sm hover:bg-yellow-500 hover:shadow-lg transition-all">
+                        <a href="/#programs">Reservasi</a>
+                    </button>
 
-                <!-- Mobile menu button -->
-                <button class="md:hidden text-silver text-2xl" id="menu-toggle">☰</button>
+                    <!-- Mobile menu button -->
+                    <button class="md:hidden text-silver text-2xl" id="menu-toggle">☰</button>
+                </div>
             </nav>
         </div>
 
         <!-- Mobile Navigation Menu -->
+        <!-- [Rest of the mobile menu code remains the same] -->
         <div class="hidden md:hidden bg-eerieblack w-full border-t border-gray-700 shadow-lg" id="mobile-menu">
             <!-- Mobile dropdown 1 -->
             <div class="mobile-dropdown">
@@ -174,13 +183,6 @@
                 </div>
             </div>
 
-            <!-- Mobile button -->
-            <div class="px-4 py-4">
-                <button
-                    class="bg-yellow text-eerieblack w-full py-2 rounded-md font-semibold  text-sm hover:bg-yellow-500 hover:shadow-lg transition-all">
-                    <a href="reserve">Reservasi</a>
-                </button>
-            </div>
         </div>
     </header>
 

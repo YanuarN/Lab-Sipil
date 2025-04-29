@@ -51,6 +51,14 @@ class PermohonanController extends Controller
         return response()->json($events);
     }
 
+    public function getKepalaLab($labId)
+{
+    $lab = Lab::findOrFail($labId);
+    return response()->json([
+        'kepala_lab_id' => $lab->kepala_lab_id
+    ]);
+}
+
     public function checkKuota(Request $request)
     {
         try {
@@ -302,7 +310,7 @@ class PermohonanController extends Controller
         $nomorSurat = $booking->id . '/Lab. Sipil/BL/' . $bulan[$today->format('n') - 1] . '/' . $today->format('Y');
 
         // Path to the surat template file
-        $templatePath = public_path('BebasLab.docx');
+        $templatePath = storage_path('app/private/BebasLab.docx');
 
         // Create a new TemplateProcessor instance
         $templateProcessor = new TemplateProcessor($templatePath);

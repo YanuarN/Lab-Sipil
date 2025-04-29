@@ -5,8 +5,11 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\KepalaLabResource\Pages;
 use App\Filament\Resources\KepalaLabResource\RelationManagers;
 use App\Models\KepalaLab;
+use App\Models\Lab;
+use Closure;
 use Dom\Text;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Tables\Columns\TextColumn;
@@ -40,6 +43,7 @@ class KepalaLabResource extends Resource
                 TextColumn ::make('nama')->label('Nama')
                 ->sortable()
                 ->searchable(),
+
             ])
             ->filters([
                 //

@@ -201,4 +201,16 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+
+    // Di dalam event listener DOMContentLoaded
+    document.getElementById('lab_tujuan').addEventListener('change', function() {
+        const labId = this.value;
+        if (labId) {
+            fetch(`/get-kepala-lab/${labId}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('kepalalab').value = data.kepala_lab_id;
+                });
+        }
+    });
 });

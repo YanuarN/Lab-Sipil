@@ -12,16 +12,16 @@ class Lab extends Model
     public $timestamps = false;
     protected $table = 'lab';
     protected $fillable = [
-        'nama_lab'
+        'nama_lab',
+        'kepala_lab_id',
     ];
-
-    public function lab()
-    {
-        return $this->hasMany(Lab::class, 'keahlian', 'id');
-    }
 
     public function booking()
     {
         return $this->hasMany(booking::class, 'lab_tujuan', 'id');
+    }
+
+    public function kepalaLab() {
+        return $this->belongsTo(KepalaLab::class, 'kepala_lab_id');
     }
 }

@@ -18,4 +18,8 @@ class KepalaLab extends Model
     {
         return $this->hasMany(booking::class, 'kepala', 'id');
     }
+
+    public function labs() {
+        return $this->hasMany(Lab::class, 'kepala_lab_id');
+    }
 }

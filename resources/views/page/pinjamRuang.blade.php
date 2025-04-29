@@ -55,7 +55,7 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                                @forelse($peminjaman->where('status', 'Disetujui') as $booking)
+                                @forelse($peminjaman as $booking)
                                     <tr class="hover:bg-gray-50">
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                             {{ $booking->ruang->nama_ruang }}
@@ -73,14 +73,19 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {{ $booking->keperluan }}
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {{ $booking->status }}
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
+                                                {{ $booking->status === 'Disetujui' ? 'bg-green-100 text-green-800' : '' }}
+                                                {{ $booking->status === 'Menunggu' ? 'bg-yellow-100 text-yellow-800' : '' }}
+                                                {{ $booking->status === 'Ditolak' ? 'bg-red-100 text-red-800' : '' }}">
+                                                {{ $booking->status }}
+                                            </span>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="5" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                                            Belum ada peminjaman ruangan yang disetujui saat ini.
+                                        <td colspan="6" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                                            Belum ada peminjaman ruangan saat ini.
                                         </td>
                                     </tr>
                                 @endforelse

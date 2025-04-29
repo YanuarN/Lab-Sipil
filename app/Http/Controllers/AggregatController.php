@@ -27,6 +27,7 @@ class AggregatController extends Controller
                 'judul_penelitian' => 'required|string',
                 'instansi_tujuan' => 'required|string',
                 'alamat_instansi' => 'required|string',
+                'nomor' => 'required',
                 'anggota' => 'nullable|array',
                 'anggota.*.nama' => 'nullable|string',
                 'anggota.*.nim' => 'nullable|string',
@@ -47,6 +48,7 @@ class AggregatController extends Controller
             $agregat->email = $data['email'];
             $agregat->nama = $data['nama'];
             $agregat->nim = $data['nim'];
+            $agregat->nomor = $data['nomor'];
             $agregat->judul_penelitian = $data['judul_penelitian'];
             $agregat->instansi_tujuan = $data['instansi_tujuan'];
             $agregat->alamat_instansi = $data['alamat_instansi'];
@@ -66,7 +68,12 @@ class AggregatController extends Controller
     {      
         $agregat = Agregat::findOrfail($id);  
         // Path ke template Word
-        $templatePath = public_path('agregat.docx');
+        $templatePath = storage_path('app/private/agregat.docx');
+        // Get current user name
+        $laboran = Auth::user()->name;
+
+        // Get current date
+        $tanggal = now()->format('d F Y');
     
         $data = [
             'nama' => $agregat->nama,
@@ -74,6 +81,9 @@ class AggregatController extends Controller
             'judul_penelitian' => $agregat->judul_penelitian,
             'instansi_tujuan' => $agregat->instansi_tujuan,
             'alamat_instansi' => $agregat->alamat_instansi,
+            'nomor' => $agregat->nomor,
+            'laboran' => $laboran,
+            'tanggal' => $tanggal,
         ];
         
         // Buat nama file output

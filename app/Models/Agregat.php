@@ -14,6 +14,7 @@ class Agregat extends Model
         'email',
         'nama',
         'nim',
+        'nomor',
         'judul_penelitian',
         'instansi_tujuan',
         'alamata_instansi',

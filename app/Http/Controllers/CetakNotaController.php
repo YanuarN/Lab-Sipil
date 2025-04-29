@@ -27,8 +27,10 @@ class CetakNotaController extends Controller
         $templatePath = storage_path('app/private/NOTAEKS.docx');
         $templateProcessor = new TemplateProcessor($templatePath);
 
-        $today = now();
-        $nomorSurat = $today->format('Ymd') . $booking->id;
+        $tanggalTes = Carbon::parse($booking->tanggal_tes);
+        $nomorSurat = $tanggalTes->format('Ymd') . $booking->id;
+
+        $tanggal = Carbon::now()->format('d-m-Y');
 
         // Mengisi data pemesan
         $templateProcessor->setValue('nama_instansi', $booking->nama_instansi);
@@ -36,6 +38,7 @@ class CetakNotaController extends Controller
         $templateProcessor->setValue('tanggal_tes', $booking->tanggal_tes);
         $templateProcessor->setValue('total_biaya', number_format($booking->total_biaya, 2, ',', '.'));
         $templateProcessor->setValue('noSurat', $nomorSurat);
+        $templateProcessor->setValue('tanggal', $tanggal);
 
         // Mengisi detail pengetesan
         $testDetails = [];

@@ -5,9 +5,11 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\LabResource\Pages;
 use App\Filament\Resources\LabResource\RelationManagers;
 use App\Models\Lab;
+use App\Models\KepalaLab;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Select;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -26,6 +28,14 @@ class LabResource extends Resource
         return $form
             ->schema([
                 TextInput::make('nama_lab')->required(),
+                Select::make('kepala_lab_id')
+                    ->label('Kepala Lab')
+                    ->options(KepalaLab::all()->pluck('nama', 'id'))
+                    ->rules([
+                        'unique:lab,kepala_lab_id,except,id'
+                    ])
+                    ->searchable()
+                    ->nullable(),
             ]);
     }
 
@@ -34,11 +44,14 @@ class LabResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id')->label('ID')
-                ->sortable()
-                ->searchable(),
+                    ->sortable()
+                    ->searchable(),
                 TextColumn::make('nama_lab')->label('Nama')
-                ->sortable()
-                ->searchable(),
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('kepalaLab.nama')
+                    ->label('Kepala Lab')
+                    ->placeholder('-'),
             ])
             ->filters([
                 //

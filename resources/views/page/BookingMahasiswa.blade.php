@@ -191,22 +191,6 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div>
-                                            <label for="kepalalab" class="block text-gray-700 font-medium mb-2">Kepala Laboratorium <span class="text-red-500">*</span></label>
-                                            <p class="text-sm text-gray-600 mb-2">
-                                                <span class="text-red-600">*</span>Jika lab <span class="font-bold">Bahan perkerasan, Transportasi dan Mekanika Tanah serta Geomatika</span> Pilih Kepala Lab. Ir. Agus Riyanto, M.T
-                                            </p>
-                                            <p class="text-sm text-gray-600 mb-2">
-                                                <span class="text-red-600">*</span>Jika lab <span class="font-bold">Teknologi Bahan, Hidraulika, Komputer</span>Pilih Kepala Lab. Ir. Budi Setiawan, S.T., M.T
-                                            </p>
-                                            <select class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow focus:border-transparent transition-all" 
-                                                id="kepalalab" name="kepalalab" required>
-                                                <option value="">-- Pilih Kepala Lab --</option>
-                                                @foreach($kepala_lab as $kl)
-                                                    <option value="{{ $kl->id }}">{{ $kl->nama }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
                                     </div>
                                 </div>
                                 
@@ -228,8 +212,9 @@
                                             <input type="date" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow focus:border-transparent transition-all" 
                                                 id="tanggal_selesai" name="tanggal_selesai" value="{{ old('tanggal_selesai') }}" required min="" onchange="validateDates()">
                                         </div>
+                                    </div>
                                 </div>
-                                
+
                                 <!-- Alat Penelitian Section -->
                                 <div class="mb-8">
                                     <h3 class="text-xl font-bold mb-6 flex items-center text-night">
@@ -258,8 +243,7 @@
                                             Tambah Alat
                                         </button>
                                     </div>
-                                </div>
-                                
+                                </div>    
                                 <!-- Actions -->
                                 <div class="flex justify-center mt-12 space-x-4">
                                     <button type="button" id="tutup-form" class="px-6 py-3 border-2 border-night text-night font-semibold rounded-md hover:bg-night hover:text-white transition-all">

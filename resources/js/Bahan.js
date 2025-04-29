@@ -74,6 +74,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const container = document.getElementById('nama-material-container');
             const index = container.querySelectorAll('.material-item').length;
             
+            // Check if we've reached the maximum of 5 materials
+            if (index >= 5) {
+                return; // Don't add more if already at 5
+            }
+            
             const div = document.createElement('div');
             div.className = 'material-item grid md:grid-cols-2 gap-4 p-4 border border-gray-200 rounded-md bg-gray-50';
             
@@ -99,7 +104,19 @@ document.addEventListener('DOMContentLoaded', function() {
             
             container.appendChild(div);
             addDeleteListeners();
+            checkMaterialLimit(); // Check material limit after adding
         });
+    }
+
+    function checkMaterialLimit() {
+        const container = document.getElementById('nama-material-container');
+        const tambahMaterialBtn = document.getElementById('tambah-material');
+        
+        if (container.querySelectorAll('.material-item').length >= 5) {
+            tambahMaterialBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        } else {
+            tambahMaterialBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
     }
 
     function addDeleteListeners() {
@@ -118,6 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
             button.onclick = function() {
                 this.closest('.material-item').remove();
                 reindexInputs('nama-material-container', 'nama_material');
+                checkMaterialLimit(); // Re-check the limit after deletion
             };
         });
     }
