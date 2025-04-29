@@ -19,8 +19,8 @@
                 <div class="flex items-center">
                     <img src="{{ asset('image/Logo_white.png') }}" alt="Logo" class="h-12 w-auto">
                     <div class="flex flex-col ml-2">
-                        <span class="text-silver text-lg font-bold leading-tight">Lab Teknik Sipil</span>
-                        <span class="text-yellow text-lg font-bold leading-tight">UMS</span>
+                        <a href="/" class="text-silver text-lg font-bold leading-tight">Lab Teknik Sipil</a>
+                        <a href="/" class="text-yellow text-lg font-bold leading-tight">UMS</a>
                     </div>
                 </div>
 

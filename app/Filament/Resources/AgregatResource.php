@@ -176,4 +176,8 @@ class AgregatResource extends Resource
     {
         return 'success';
     }
+    public static function getPluralModelLabel(): string
+    {
+        return 'Permohonan Penelitian';
+    }
 }

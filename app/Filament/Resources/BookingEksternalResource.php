@@ -141,4 +141,8 @@ class BookingEksternalResource extends Resource
     {
         return 'success';
     }
+    public static function getPluralModelLabel(): string
+    {
+        return 'Booking Eksternal';
+    }
 }

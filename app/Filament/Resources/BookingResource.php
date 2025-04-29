@@ -236,4 +236,14 @@ class BookingResource extends Resource
     {
         return 'warning';
     }
+
+    public static function getModelLabel(): string
+    {
+        return 'Permohonan Penelitian';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Permohonan Penelitian';
+    }
 }
