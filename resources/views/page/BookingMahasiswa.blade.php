@@ -141,7 +141,7 @@
                                             </select>
                                         </div>
                                         <div>
-                                            <label for="instansi" class="block text-gray-700 font-medium mb-2">Instansi <span class="text-red-500">*</span></label>
+                                            <label for="instansi" class="block text-gray-700 font-medium mb-2">Pekerjaan <span class="text-red-500">*</span></label>
                                             <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow focus:border-transparent transition-all" 
                                                 id="instansi" name="instansi" value="{{ old('instansi') }}" required>
                                         </div>
