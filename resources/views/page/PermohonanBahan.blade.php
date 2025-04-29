@@ -54,7 +54,7 @@
                         
                         <div class="grid md:grid-cols-2 gap-6">
                             <div>
-                                <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                                <label for="email" class="block text-gray-700 font-medium mb-2">Email <span class="text-red-500">*</span></label>
                                 <input type="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow focus:border-transparent transition-all" 
                                     id="email" name="email" value="{{ old('email') }}" required>
                                 @error('email')
@@ -62,7 +62,7 @@
                                 @enderror
                             </div>
                             <div>
-                                <label for="nama" class="block text-gray-700 font-medium mb-2">Nama Lengkap</label>
+                                <label for="nama" class="block text-gray-700 font-medium mb-2">Nama Lengkap <span class="text-red-500">*</span></label>
                                 <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow focus:border-transparent transition-all" 
                                     id="nama" name="nama" value="{{ old('nama') }}" required>
                                 @error('nama')
@@ -70,7 +70,7 @@
                                 @enderror
                             </div>
                             <div>
-                                <label for="nim" class="block text-gray-700 font-medium mb-2">NIM</label>
+                                <label for="nim" class="block text-gray-700 font-medium mb-2">NIM <span class="text-red-500">*</span></label>
                                 <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow focus:border-transparent transition-all" 
                                     id="nim" name="nim" value="{{ old('nim') }}" required>
                                 @error('nim')
@@ -78,15 +78,15 @@
                                 @enderror
                             </div>
                             <div>
-                                <label for="nomor" class="block text-gray-700 font-medium mb-2">Nomor Telepon</label>
+                                <label for="nomor" class="block text-gray-700 font-medium mb-2">Nomor Telepon <span class="text-red-500">*</span></label>
                                 <input type="tel" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow focus:border-transparent transition-all" 
-                                    id="nomor" name="nomor" value="{{ old('nomor') }}" placeholder="contoh: 081234567890" required>
+                                    id="nomor" name="nomor" value="{{ old('nomor') }}" required>
                                 @error('nomor')
                                     <span class="text-red-500 text-sm mt-1 block">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div>
-                                <label for="judul_penelitian" class="block text-gray-700 font-medium mb-2">Judul Penelitian</label>
+                                <label for="judul_penelitian" class="block text-gray-700 font-medium mb-2">Judul Penelitian <span class="text-red-500">*</span></label>
                                 <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow focus:border-transparent transition-all" 
                                     id="judul_penelitian" name="judul_penelitian" value="{{ old('judul_penelitian') }}" required>
                                 @error('judul_penelitian')
@@ -94,7 +94,7 @@
                                 @enderror
                             </div>
                             <div>
-                                <label for="instansi_tujuan" class="block text-gray-700 font-medium mb-2">Instansi yang Dituju</label>
+                                <label for="instansi_tujuan" class="block text-gray-700 font-medium mb-2">Instansi yang Dituju <span class="text-red-500">*</span></label>
                                 <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow focus:border-transparent transition-all" 
                                     id="instansi_tujuan" name="instansi_tujuan" value="{{ old('instansi_tujuan') }}" required>
                                 @error('instansi_tujuan')
@@ -102,7 +102,7 @@
                                 @enderror
                             </div>
                             <div>
-                                <label for="alamat_instansi" class="block text-gray-700 font-medium mb-2">Alamat Instansi</label>
+                                <label for="alamat_instansi" class="block text-gray-700 font-medium mb-2">Alamat Instansi <span class="text-red-500">*</span></label>
                                 <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow focus:border-transparent transition-all" 
                                     id="alamat_instansi" name="alamat_instansi" value="{{ old('alamat_instansi') }}" required>
                                 @error('alamat_instansi')
@@ -184,12 +184,12 @@
                                 @foreach(old('nama_material') as $index => $material)
                                     <div class="material-item grid md:grid-cols-2 gap-4 p-4 border border-gray-200 rounded-md bg-gray-50">
                                         <div>
-                                            <label class="block text-gray-700 font-medium mb-2">Nama Material</label>
+                                            <label class="block text-gray-700 font-medium mb-2">Nama Material <span class="text-red-500">*</span></label>
                                             <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow focus:border-transparent transition-all" 
                                                 name="nama_material[{{ $index }}][nama]" value="{{ $material['nama'] ?? '' }}" required>
                                         </div>
                                         <div class="relative">
-                                            <label class="block text-gray-700 font-medium mb-2">Jumlah</label>
+                                            <label class="block text-gray-700 font-medium mb-2">Jumlah <span class="text-red-500">*</span></label>
                                             <div class="flex">
                                                 <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-l-md focus:ring-2 focus:ring-yellow focus:border-transparent transition-all" 
                                                     name="nama_material[{{ $index }}][jumlah]" value="{{ $material['jumlah'] ?? '' }}" required>
@@ -205,12 +205,12 @@
                             @else
                                 <div class="material-item grid md:grid-cols-2 gap-4 p-4 border border-gray-200 rounded-md bg-gray-50">
                                     <div>
-                                        <label class="block text-gray-700 font-medium mb-2">Nama Material</label>
+                                        <label class="block text-gray-700 font-medium mb-2">Nama Material <span class="text-red-500">*</span></label>
                                         <input type="text" placeholder="contoh: Agregart Halus" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow focus:border-transparent transition-all" 
                                             name="nama_material[0][nama]" required>
                                     </div>
                                     <div class="relative">
-                                        <label class="block text-gray-700 font-medium mb-2" >Jumlah</label>
+                                        <label class="block text-gray-700 font-medium mb-2">Jumlah <span class="text-red-500">*</span></label>
                                         <div class="flex">
                                             <input type="text" placeholder="*50Kg" class="w-full px-4 py-2 border border-gray-300 rounded-l-md focus:ring-2 focus:ring-yellow focus:border-transparent transition-all" 
                                                 name="nama_material[0][jumlah]" required>
@@ -234,9 +234,6 @@
                     
                     <!-- Actions -->
                     <div class="flex justify-center mt-12 space-x-4">
-                        {{-- <a href="{{ route('permohonan-bahan.index') }}" class="px-6 py-3 border-2 border-night text-night font-semibold rounded-md hover:bg-night hover:text-white transition-all">
-                            Batal
-                        </a> --}}
                         <button type="submit" class="px-6 py-3 bg-yellow text-eerieblack font-semibold rounded-md hover:bg-yellow-500 hover:shadow-lg transition-all">
                             Submit Permohonan
                         </button>

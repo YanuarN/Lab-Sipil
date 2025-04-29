@@ -308,6 +308,7 @@ class PermohonanController extends Controller
         $today = now();
         $bulan = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
         $nomorSurat = $booking->id . '/Lab. Sipil/BL/' . $bulan[$today->format('n') - 1] . '/' . $today->format('Y');
+        $tanggal = $today->format('d F Y');
 
         // Path to the surat template file
         $templatePath = storage_path('app/private/BebasLab.docx');
@@ -321,7 +322,8 @@ class PermohonanController extends Controller
             'nim' => $booking->nim,
             'judul_penelitian' => $booking->judul_penelitian,
             'kepala' => $kepalaLab ? $kepalaLab->nama : 'Unknown',
-            'nomorSurat' => $nomorSurat
+            'nomorSurat' => $nomorSurat,
+            'tanggal' =>$tanggal,
         ];
 
         // Replace placeholders with actual data

@@ -29,18 +29,18 @@
                                 class="text-silver/80 hover:text-yellow transition-colors flex items-center justify-end group">
                                 <span class="mr-2 w-1.5 h-1.5 bg-yellow rounded-full order-first"></span>
                                 <span class="w-24">Beranda</span></a></li>
-                        <li><a href="#"
+                        <li><a href="/#program"
                                 class="text-silver/80 hover:text-yellow transition-colors flex items-center justify-end group">
                                 <span class="mr-2 w-1.5 h-1.5 bg-yellow rounded-full order-first"></span>
                                 <span class="w-24">Fasilitas Lab</span></a></li>
                     </ul>
                     <!-- Kolom Kanan -->
                     <ul class="space-y-2">
-                        <li><a href="#"
+                        <li><a href="/informasi#kontak"
                                 class="text-silver/80 hover:text-yellow transition-colors flex items-center justify-start group">
                                 <span class="mr-2 w-1.5 h-1.5 bg-yellow rounded-full"></span>
-                                <span>Peminjaman Alat</span></a></li>
-                        <li><a href="#"
+                                <span>Kontak Layanan</span></a></li>
+                        <li><a href="/informasi#sop"
                                 class="text-silver/80 hover:text-yellow transition-colors flex items-center justify-start group">
                                 <span class="mr-2 w-1.5 h-1.5 bg-yellow rounded-full"></span>
                                 <span>SOP Praktikum</span></a></li>

@@ -87,7 +87,7 @@ class AggregatController extends Controller
         ];
         
         // Buat nama file output
-        $outputFilename = 'Penelitian_' . str_replace(' ', '_', $data['nama']) . '_' . date('Ymd') . '.docx';
+        $outputFilename = 'Permohonan Bahan_' . str_replace(' ', '_', $data['nama']) . '_' . date('Ymd') . '.docx';
         $outputPath = storage_path('app/temp/' . $outputFilename);
         
         // Pastikan direktori temp ada

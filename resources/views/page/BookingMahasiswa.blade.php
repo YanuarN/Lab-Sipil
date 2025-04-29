@@ -191,6 +191,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
+                                        <input type="hidden" name="kepalalab" id="kepalalab" value="">
                                     </div>
                                 </div>
                                 
