@@ -39,7 +39,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                             </svg>
                         </div>
-                        Jadwal Peminjaman Saat Ini
+                        Daftar Peminjaman Saat Ini
                     </h3>
 
                     <div class="overflow-x-auto bg-gray-50 rounded-lg shadow-sm mb-8">
@@ -91,6 +91,9 @@
                                 @endforelse
                             </tbody>
                         </table>
+                        <div class="px-6 py-4 bg-white border-t">
+                            {{ $peminjaman->links() }}
+                        </div>
                     </div>
                 </div>
 

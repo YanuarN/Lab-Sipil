@@ -88,4 +88,9 @@ class DosenResource extends Resource
         return 'Dosen';
     }
 
+    public static function getPluralModelLabel(): string
+    {
+        return 'Dosen';
+    }
+
 }

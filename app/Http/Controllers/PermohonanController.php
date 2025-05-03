@@ -182,7 +182,7 @@ class PermohonanController extends Controller
             'judul_penelitian' => $booking->judul_penelitian,
             'lab_tujuan' => $lab ? $lab->nama_lab : 'Unknown Lab',
             'dosen' => $pembimbing ? $pembimbing->nama : 'Unknown Dosen',
-            'kepalalab' => $kepalaLab ? $kepalaLab->nama : 'Unknown Kepala Lab',
+            'kepalalab' => $kepalaLab ? $kepalaLab->nama : 'Kepala Lab',
             'instansi' => $booking->instansi,
             'alamat_di_solo' => $booking->alamat_di_solo,
             'alamat_rumah' => $booking->alamat_rumah,

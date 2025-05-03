@@ -165,19 +165,21 @@ class AgregatResource extends Resource
     }
     public static function getLabel(): string
     {
-        return 'Permohonan Bahan'; // label tunggal
+        return 'Permohonan Bahan';
     }
 
-    public static function getNavigationBadge(): ?string
-    {
-        return static::getModel()::count();
-    }
-    public static function getNavigationBadgeColor(): string|array|null
-    {
-        return 'success';
-    }
+    // public static function getNavigationBadge(): ?string
+    // {
+    //     return static::getModel()::count();
+    // }
+
+    // public static function getNavigationBadgeColor(): string|array|null
+    // {
+    //     return 'success';
+    // }
+
     public static function getPluralModelLabel(): string
     {
-        return 'Permohonan Penelitian';
+        return 'Permohonan Bahan';
     }
 }

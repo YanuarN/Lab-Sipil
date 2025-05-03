@@ -133,14 +133,14 @@ class BookingEksternalResource extends Resource
         return false;
     }
 
-    public static function getNavigationBadge(): ?string
-    {
-        return static::getModel()::count();
-    }
-    public static function getNavigationBadgeColor(): string|array|null
-    {
-        return 'success';
-    }
+    // public static function getNavigationBadge(): ?string
+    // {
+    //     return static::getModel()::count();
+    // }
+    // public static function getNavigationBadgeColor(): string|array|null
+    // {
+    //     return 'success';
+    // }
     public static function getPluralModelLabel(): string
     {
         return 'Booking Eksternal';

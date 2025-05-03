@@ -11,17 +11,8 @@ class PinjamRuangController extends Controller
 {
     public function index() {
         $ruang = Ruang::all();
-        $peminjaman = PeminjamanRuang::all();
-        dd($ruang);
-        dd($peminjaman);
+        $peminjaman = PeminjamanRuang::paginate(20);
         return view('page.pinjamRuang', compact('ruang', 'peminjaman'));
-    }
-
-    public function create()
-    {
-        $ruang = Ruang::all();
-        $peminjaman = PeminjamanRuang::all();
-        return view('page.pinjamRuang', compact('ruang','peminjaman'));
     }
 
     public function store(Request $request){
@@ -48,11 +39,11 @@ class PinjamRuangController extends Controller
 
         $phoneNumber = '6282226821294'; 
     
-    // Pesan WhatsApp
-        $message = "Halo, saya ingin mengkonfirmasi peminjaman dengan detail berikut:\n" .
+        $message = "Assalamu’alaikum warahmatullahi wabarakatuh,\n\n" .
+                "saya ingin mengkonfirmasi peminjaman dengan detail berikut:\n" .
                 "Nama: " . $pinjam->nama . "\n" .
+                "Ruangan Yang Dipinjam: " . $pinjam->ruang->nama . "\n" .
                 "Tanggal Peminjaman: " . $pinjam->tanggal . "\n" .
-                // Tambahkan detail lain sesuai kebutuhan
                 "Terima kasih.";
         
         // Encode pesan untuk URL

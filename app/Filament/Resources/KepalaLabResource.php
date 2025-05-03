@@ -78,4 +78,8 @@ class KepalaLabResource extends Resource
     {
         return 'Kepala Lab';
     }
+    public static function getPluralModelLabel(): string
+    {
+        return 'Kepala Lab';
+    }
 }

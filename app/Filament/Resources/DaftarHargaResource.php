@@ -90,4 +90,9 @@ class DaftarHargaResource extends Resource
     {
         return 'Daftar Harga';
     }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Daftar Harga';
+    }
 }

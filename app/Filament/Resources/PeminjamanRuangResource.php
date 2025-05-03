@@ -160,8 +160,14 @@ class PeminjamanRuangResource extends Resource
     {
         return static::getModel()::where('status', 'Menunggu')->count();
     }
+
     public static function getNavigationBadgeColor(): string|array|null
     {
         return 'warning';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Booking Ruangan';
     }
 }

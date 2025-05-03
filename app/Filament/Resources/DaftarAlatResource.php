@@ -75,4 +75,9 @@ class DaftarAlatResource extends Resource
     {
         return 'Daftar Alat';
     }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Daftar Alat';
+    }
 }

@@ -38,10 +38,8 @@ Route::get('/permohonan-bahan', [AggregatController::class, 'create'])->name('pe
 Route::get('/generate-word-document/{id}', [AggregatController::class, 'generatePermohonanBahan'])->name('generate.word.document');
 
 //Route Peminjaman Ruang
-Route::post('/pemijaman-ruang', [PinjamRuangController::class, 'store'])->name('pinjam-ruang.store');
-Route::get('/pinjam-ruang', [PinjamRuangController::class, 'index'])->name('pinjam-ruang');
-Route::get('/pinjam-ruang', [PinjamRuangController::class, 'create'])->name('pinjam.ruang.create');
-
+Route::get('/pinjam-ruang', [PinjamRuangController::class, 'index'])->name('pinjam-ruang.index');
+Route::post('/pinjam-ruang', [PinjamRuangController::class, 'store'])->name('pinjam-ruang.store');
 
 
 

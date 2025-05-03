@@ -86,4 +86,9 @@ class LabResource extends Resource
     {
         return 'Lab';
     }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Lab';
+    }
 }
