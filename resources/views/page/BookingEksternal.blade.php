@@ -1,4 +1,5 @@
-@include('component.head')
+@extends('layouts.app')
+@section('content')
 <section class="page-header bg-eerieblack text-white pt-32 pb-10 relative overflow-hidden">
     <div class="container mx-5 my-10 px-4 py-8">
         <div class="flex flex-col md:flex-row items-center justify-between">
@@ -140,7 +141,8 @@
         </div>
     </div>
 </section>
+@endsection
 
-
-@include('component.footer')
-@vite(['resources/js/BookEksternal.js'])
+@push('scripts')
+    @vite(['resources/js/BookEksternal.js'])
+@endpush

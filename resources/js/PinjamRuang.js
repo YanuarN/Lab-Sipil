@@ -35,4 +35,34 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Jam selesai harus setelah jam mulai');
         }
     });
+
+    const roomSelect = document.getElementById('ruang_id');
+        
+        // When room selection changes, filter the peminjaman table
+        roomSelect.addEventListener('change', function() {
+            filterBookingsByRoom(this.value);
+        });
+        
+        function filterBookingsByRoom(roomId) {
+            // Get all rows in the peminjaman table
+            const rows = document.querySelectorAll('tbody tr');
+            
+            if (!roomId) {
+                // If no room is selected, show all peminjaman
+                rows.forEach(row => {
+                    row.style.display = '';
+                });
+                return;
+            }
+            
+            // Filter rows to show only peminjaman for the selected room
+            rows.forEach(row => {
+                const roomCell = row.querySelector('td:first-child');
+                if (roomCell && roomCell.textContent.trim().endsWith(roomId)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
 });

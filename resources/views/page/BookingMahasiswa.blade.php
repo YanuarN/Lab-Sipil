@@ -9,12 +9,12 @@
                 <p class="text-xl leading-relaxed text-gray-300 mb-8">
                     Selamat datang di sistem reservasi laboratorium! Kami menyediakan fasilitas modern dan lengkap untuk mendukung penelitian Anda. Jadwalkan kunjungan Anda sekarang untuk pengalaman penelitian yang optimal.
                 </p>
-                <div class="flex items-center text-gray-300 text-sm">
+                {{-- <div class="flex items-center text-gray-300 text-sm">
                     <svg class="w-5 h-5 mr-2 text-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
                     <span>Pilih tanggal untuk melihat ketersediaan dan membuat reservasi</span>
-                </div>
+                </div> --}}
             </div>
         </div>
         <div class="absolute bottom-0 left-0 w-full h-24 overflow-hidden">

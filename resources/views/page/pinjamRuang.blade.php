@@ -1,4 +1,6 @@
-@include('component.head')
+@extends('layouts.app')
+
+@section('content')
 <section class="page-header bg-eerieblack text-silver pt-32 pb-10 relative overflow-hidden">
     <div class="container mx-auto px-7 pb-20">
         <h1 class="text-4xl font-bold mb-4">Permohonan Peminjaman <span class="text-yellow">Ruangan</span></h1>
@@ -196,42 +198,8 @@
         </div>
     </div>
 </section>
+@endsection
 
-@include('component.footer')
-@vite(['resources/js/PinjamRuang.js'])
 @push('scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Get the room dropdown element
-        const roomSelect = document.getElementById('ruang_id');
-        
-        // When room selection changes, filter the peminjaman table
-        roomSelect.addEventListener('change', function() {
-            filterBookingsByRoom(this.value);
-        });
-        
-        function filterBookingsByRoom(roomId) {
-            // Get all rows in the peminjaman table
-            const rows = document.querySelectorAll('tbody tr');
-            
-            if (!roomId) {
-                // If no room is selected, show all peminjaman
-                rows.forEach(row => {
-                    row.style.display = '';
-                });
-                return;
-            }
-            
-            // Filter rows to show only peminjaman for the selected room
-            rows.forEach(row => {
-                const roomCell = row.querySelector('td:first-child');
-                if (roomCell && roomCell.textContent.trim().endsWith(roomId)) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
-        }
-    });
-</script>
+    @vite(['resources/js/PinjamRuang.js'])
 @endpush

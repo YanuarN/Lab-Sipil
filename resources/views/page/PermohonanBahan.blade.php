@@ -1,4 +1,6 @@
-@include('component.head')
+@extends('layouts.app')
+
+@section('content')
 <section class="page-header bg-eerieblack text-silver pt-32 pb-10 relative overflow-hidden">
     <div class="container mx-auto px-4 my-16">
         <div class="max-w-3xl">
@@ -243,5 +245,8 @@
         </div>
     </div>
 </section>
-@include('component.footer')
-@vite(['resources/js/Bahan.js'])
+@endsection
+
+@push('scripts')
+    @vite(['resources/js/Bahan.js'])
+@endpush

@@ -29,6 +29,26 @@ document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
     var calendar = new Calendar(calendarEl, {
         plugins: [ dayGridPlugin, interactionPlugin ],
+        eventDidMount: function(info) {
+            info.el.style.cursor = 'pointer'; /* Tampilkan pointer di mobile */
+        },
+        // Add dateClick handler to make dates clickable on mobile
+        dateClick: function(info) {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const selectedDate = new Date(info.dateStr);
+            
+            if (selectedDate < today) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Tanggal Tidak Valid",
+                    text: "Tidak dapat memilih tanggal yang sudah lewat",
+                });
+                return;
+            }
+
+            handleDateSelection(info.dateStr);
+        },
         initialView: 'dayGridMonth',
         headerToolbar: {
             left: 'today',
@@ -201,6 +221,56 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+
+        // Update tanggal_selesai min date when tanggal_mulai changes
+        function updateMinEndDate() {
+            const startDate = document.getElementById('tanggal_mulai').value;
+            document.getElementById('tanggal_selesai').min = startDate;
+            
+            // If end date is before start date, update it
+            const endDate = document.getElementById('tanggal_selesai').value;
+            if (endDate && endDate < startDate) {
+                document.getElementById('tanggal_selesai').value = startDate;
+            }
+        }
+        
+        // Validate that end date is not before start date
+        function validateDates() {
+            const startDate = document.getElementById('tanggal_mulai').value;
+            const endDate = document.getElementById('tanggal_selesai').value;
+            
+            if (endDate < startDate) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Tanggal Tidak Valid",
+                    text: "Tanggal selesai tidak boleh sebelum tanggal mulai",
+                });
+                document.getElementById('tanggal_selesai').value = startDate;
+            }
+        }
+    
+        // Function to handle form submission
+        function handleSubmit() {
+            const startDate = document.getElementById('tanggal_mulai').value;
+            const endDate = document.getElementById('tanggal_selesai').value;
+            
+            if (!startDate || !endDate) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Data Tidak Lengkap",
+                    text: "Mohon pilih tanggal mulai dan tanggal selesai",
+                });
+                return false;
+            }
+            
+            return true;
+        }
+        
+        // Initialize updateMinEndDate once and attach to window
+        updateMinEndDate();
+        window.updateMinEndDate = updateMinEndDate;
+        window.validateDates = validateDates;
+        window.handleSubmit = handleSubmit;
 
     // Di dalam event listener DOMContentLoaded
     document.getElementById('lab_tujuan').addEventListener('change', function() {

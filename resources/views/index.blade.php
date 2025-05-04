@@ -1,4 +1,6 @@
-@include('component.head')
+@extends('layouts.app')
+
+@section('content')
 <!-- Hero Section -->
 <section class="bg-eerieblack text-silver py-28 px-9 relative overflow-hidden">
     <!-- Background animated pattern -->
@@ -672,10 +674,8 @@
         </div>
     </div>
 </section>
+@endsection
 
-<!-- Footer -->
-@include('component.footer')
-@vite(['resources/js/Landing.js'])
-</body>
-
-</html>
+@push('scripts')
+    @vite(['resources/js/Landing.js'])
+@endpush
