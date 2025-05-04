@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Dosen;
 use App\Models\Lab;
-use App\Models\booking;
+use App\Models\Booking;
 use App\Models\DaftarAlat;
 use App\Models\KepalaLab;
 use App\Models\AlatBooking;
