@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BookingEKSDetail;
+use App\Models\BookingEksDetail;
 use App\Models\BookingEksternal;
 use App\Models\DaftarHarga;
 use App\Models\User;

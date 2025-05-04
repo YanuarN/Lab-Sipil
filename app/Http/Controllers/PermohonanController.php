@@ -27,7 +27,7 @@ class PermohonanController extends Controller
         $dosen = Dosen::all();
         $daftar_alat = DaftarAlat::all();
         $kepala_lab = KepalaLab::all();
-        $booking = booking::all();
+        $booking = Booking::all();
         return view('page.BookingMahasiswa', compact('lab', 'dosen', 'daftar_alat', 'kepala_lab', 'booking'));
     }
 
@@ -36,7 +36,7 @@ class PermohonanController extends Controller
     public function getBookingEvents()
     {
         // Get counts of bookings by date
-        $bookings = booking::select('tanggal_mulai', DB::raw('count(*) as count'))
+        $bookings = Booking::select('tanggal_mulai', DB::raw('count(*) as count'))
             ->groupBy('tanggal_mulai')
             ->get();
 
@@ -66,7 +66,7 @@ class PermohonanController extends Controller
             $kuotaMaksimal = 10;
 
             // Sesuaikan model dengan nama tabel booking Anda
-            $jumlahBooking = booking::where('tanggal_mulai', $tanggal)->count();
+            $jumlahBooking = Booking::where('tanggal_mulai', $tanggal)->count();
 
             return response()->json([
                 'status' => ($jumlahBooking >= $kuotaMaksimal) ? 'penuh' : 'tersedia',
@@ -86,7 +86,7 @@ class PermohonanController extends Controller
      */
     public function store(Request $request)
     {
-        $existingBooking = booking::where('nim', $request->nim)
+        $existingBooking = Booking::where('nim', $request->nim)
             ->where('status', '!=', 'selesai')
             ->first();
 
@@ -118,7 +118,7 @@ class PermohonanController extends Controller
         ]);
 
         // Simpan data ke database
-        $booking = new booking();
+        $booking = new Booking();
         $booking->nama = $request->nama;
         $booking->email = $request->email;
         $booking->nim = $request->nim;
@@ -239,7 +239,7 @@ class PermohonanController extends Controller
     // Add new method for URL-based document generation
     public function generateDocumentById($id)
     {
-        $booking = booking::findOrFail($id);
+        $booking = Booking::findOrFail($id);
         return $this->generateDocument($booking);
     }
 
@@ -248,7 +248,7 @@ class PermohonanController extends Controller
         $asisten = Auth::user(); // Mengambil data user yang sedang login
         $asistenNama = $asisten->name;
         // Find the booking by ID
-        $booking = booking::findOrFail($id);
+        $booking = Booking::findOrFail($id);
 
         $kepalaLab = KepalaLab::find($booking->kepala);
 
@@ -297,7 +297,7 @@ class PermohonanController extends Controller
     public function generateBebasLab(string $id)
     {
         // Find the booking by ID
-        $booking = booking::findOrFail($id);
+        $booking = Booking::findOrFail($id);
 
         $kepalaLab = KepalaLab::find($booking->kepala);
 
@@ -349,7 +349,7 @@ class PermohonanController extends Controller
     public function generateBebasLabPDF(string $id)
     {
         // Find the booking by ID
-        $booking = booking::findOrFail($id);
+        $booking = Booking::findOrFail($id);
 
         $kepalaLab = KepalaLab::find($booking->kepala);
 
@@ -396,7 +396,7 @@ class PermohonanController extends Controller
         $laboranNama = $laboran->name;
 
         // Find the booking by ID
-        $booking = booking::findOrFail($id);
+        $booking = Booking::findOrFail($id);
 
         $kepalaLab = KepalaLab::find($booking->kepala);
 

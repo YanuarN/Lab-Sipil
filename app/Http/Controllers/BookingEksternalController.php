@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DaftarHarga;
-use App\Models\BookingEKSDetail;
+use App\Models\BookingEksDetail;
 use App\Models\BookingEksternal;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -54,7 +54,7 @@ class BookingEksternalController extends Controller
                 $subtotal = $jenisTes->harga * $jumlah;
                 $totalBiaya += $subtotal;
 
-                BookingEKSDetail::create([
+                BookingEksDetail::create([
                     'booking_id' => $booking->id,
                     'jenis_tes' => $jenisTesId,
                     'jumlah_pengetesan' => $jumlah,

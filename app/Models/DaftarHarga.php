@@ -18,6 +18,6 @@ class DaftarHarga extends Model
 
     public function bookingDetails()
     {
-        return $this->hasMany(BookingEKSDetail::class, 'jenis_tes', 'id');
+        return $this->hasMany(BookingEksDetail::class, 'jenis_tes', 'id');
     }
 }

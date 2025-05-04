@@ -4,7 +4,13 @@ import laravel from 'laravel-vite-plugin';
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js'],
+            input: ['resources/css/app.css', 
+                    'resources/js/app.js',
+                    'resources/js/Bahan.js',
+                    'resources/js/BookEksternal.js',
+                    'resources/js/BookingMhs.js',
+                    'resources/js/Landing.js',
+                    'resources/js/PinjamRuang.js'],
             refresh: true,
         }),
     ],

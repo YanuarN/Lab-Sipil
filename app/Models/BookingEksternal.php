@@ -21,7 +21,7 @@ class BookingEksternal extends Model
 
     public function bookingDetails()
     {
-        return $this->hasMany(BookingEKSDetail::class, 'booking_id');
+        return $this->hasMany(BookingEksDetail::class, 'booking_id');
     }
 
     public function updateTotalBiaya()
