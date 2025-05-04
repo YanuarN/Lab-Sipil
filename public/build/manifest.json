@@ -4,11 +4,7 @@
     "name": "sweetalert2.esm.all"
   },
   "resources/css/app.css": {
-<<<<<<< HEAD
     "file": "assets/app-BVNJO08y.css",
-=======
-    "file": "assets/app-DBsnXacd.css",
->>>>>>> 6bec5973e673a473f323a534352d4b7ebfdb28c0
     "src": "resources/css/app.css",
     "isEntry": true
   },
@@ -31,11 +27,7 @@
     ]
   },
   "resources/js/BookingMhs.js": {
-<<<<<<< HEAD
-    "file": "assets/BookingMhs-n2zXi89g.js",
-=======
-    "file": "assets/BookingMhs-UUvkdTCE.js",
->>>>>>> 6bec5973e673a473f323a534352d4b7ebfdb28c0
+    "file": "assets/BookingMhs-CNXo9p6g.js",
     "name": "BookingMhs",
     "src": "resources/js/BookingMhs.js",
     "isEntry": true,

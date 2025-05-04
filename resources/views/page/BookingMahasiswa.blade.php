@@ -279,37 +279,19 @@
                                     <div class="mb-4">
                                         <div id="alat-container" class="space-y-3">
                                             <!-- Item alat pertama -->
-<<<<<<< HEAD
-                                            <div
-                                                class="alat-item flex flex-col sm:flex-row gap-3 p-3 bg-gray-50 rounded-md">
-                                                <select name="alat[]"
-                                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow focus:border-transparent transition-all"
-                                                    required>
-=======
                                             <div class="alat-item flex flex-col sm:flex-row gap-3 p-3 bg-gray-50 rounded-md">
                                                 <select name="alat[]" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow focus:border-transparent transition-all" required>
->>>>>>> 6bec5973e673a473f323a534352d4b7ebfdb28c0
                                                     <option value="">-- Pilih Alat --</option>
                                                     @foreach ($daftar_alat as $item)
                                                         <option value="{{ $item->id }}">{{ $item->nama_alat }}</option>
                                                     @endforeach
                                                 </select>
-<<<<<<< HEAD
-                                                <button type="button"
-                                                    class="hapus-alat w-full sm:w-auto px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-all">
-=======
                                                 <button type="button" class="hapus-alat w-full sm:w-auto px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-all">
->>>>>>> 6bec5973e673a473f323a534352d4b7ebfdb28c0
                                                     Hapus
                                                 </button>
                                             </div>
                                         </div>
-<<<<<<< HEAD
-                                        <button type="button" id="tambah-alat"
-                                            class="mt-4 w-full sm:w-auto flex items-center justify-center px-4 py-2 bg-yellow text-eerieblack rounded-md hover:bg-amber-400 transition-all">
-=======
                                         <button type="button" id="tambah-alat" class="mt-4 w-full sm:w-auto flex items-center justify-center px-4 py-2 bg-yellow text-eerieblack rounded-md hover:bg-amber-400 transition-all">
->>>>>>> 6bec5973e673a473f323a534352d4b7ebfdb28c0
                                             <span class="text-lg mr-2">+</span>
                                             Tambah Alat
                                         </button>
