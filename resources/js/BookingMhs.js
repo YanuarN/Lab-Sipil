@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     tambahAlatButton.addEventListener('click', function() {
         let alatItem = document.createElement('div');
-        alatItem.classList.add('alat-item', 'flex', 'items-center', 'space-x-2', 'p-3', 'bg-gray-50', 'rounded-md');
+        alatItem.classList.add('alat-item', 'flex', 'flex-col', 'sm:flex-row', 'gap-3', 'p-3', 'bg-gray-50', 'rounded-md');
         
         // Build options HTML
         let optionsHtml = '<option value="">-- Pilih Alat --</option>';
@@ -202,13 +202,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         alatItem.innerHTML = `
-            <select name="alat[]" class="flex-grow px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow focus:border-transparent transition-all" required>
+            <select name="alat[]" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow focus:border-transparent transition-all" required>
                 ${optionsHtml}
             </select>
-            <button type="button" class="hapus-alat px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition-all">Hapus</button>
+            <button type="button" class="hapus-alat w-full sm:w-auto px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-all">
+                Hapus
+            </button>
         `;
         alatContainer.appendChild(alatItem);
-        index++;
     });
 
     // Delete equipment field
@@ -217,7 +218,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (alatContainer.querySelectorAll('.alat-item').length > 1) {
                 e.target.parentElement.remove();
             } else {
-                alert('Minimal satu alat harus dipilih.');
+                Swal.fire({
+                    icon: "warning",
+                    title: "Peringatan",
+                    text: "Minimal satu alat harus dipilih."
+                });
             }
         }
     });

@@ -79,7 +79,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
-                        <span class="text-silver/80">labsipil@ums.ac.id</span>
+                        <a href="mailto:labsipil@ums.ac.id" class="text-silver/80">labsipil@ums.ac.id</a>
                     </li>
                 </ul>
             </div>
@@ -88,9 +88,9 @@
 
         <!-- Copyright -->
         <div class="border-t border-silver/10 pt-6 text-center">
-            <p class="text-xs text-silver/60">
+            <a href="/admin" class="text-xs text-silver/60">
                 &copy; 2025 Laboratorium Teknik Sipil Universitas Muhammadiyah Surakarta. All rights reserved.
-            </p>
+            </a>
         </div>
     </div>
 </footer>
