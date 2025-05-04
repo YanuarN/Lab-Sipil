@@ -278,32 +278,25 @@
 
                                     <div class="mb-4">
                                         <div id="alat-container" class="space-y-3">
-                                            <div class="alat-item flex items-center space-x-2 p-3 bg-gray-50 rounded-md">
-                                                <select name="alat[]"
-                                                    class="flex-grow px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow focus:border-transparent transition-all"
-                                                    required>
+                                            <!-- Item alat pertama -->
+                                            <div class="alat-item flex flex-col sm:flex-row gap-3 p-3 bg-gray-50 rounded-md">
+                                                <select name="alat[]" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow focus:border-transparent transition-all" required>
                                                     <option value="">-- Pilih Alat --</option>
                                                     @foreach ($daftar_alat as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->nama_alat }}
-                                                        </option>
+                                                        <option value="{{ $item->id }}">{{ $item->nama_alat }}</option>
                                                     @endforeach
                                                 </select>
-                                                <button type="button"
-                                                    class="hapus-alat px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition-all">
+                                                <button type="button" class="hapus-alat w-full sm:w-auto px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-all">
                                                     Hapus
                                                 </button>
                                             </div>
                                         </div>
-                                        <button type="button" id="tambah-alat"
-                                            class="mt-4 flex items-center px-4 py-2 bg-yellow text-eerieblack rounded-md hover:bg-amber-400 transition-all">
-                                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor"
-                                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                                            </svg>
+                                        <button type="button" id="tambah-alat" class="mt-4 w-full sm:w-auto flex items-center justify-center px-4 py-2 bg-yellow text-eerieblack rounded-md hover:bg-amber-400 transition-all">
+                                            <span class="text-lg mr-2">+</span>
                                             Tambah Alat
                                         </button>
                                     </div>
+                                </div>
                                 </div>
                                 <!-- Actions -->
                                 <div class="flex justify-center mt-12 space-x-4">
