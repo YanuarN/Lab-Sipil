@@ -1,4 +1,4 @@
-@extends('lauyouts.app')
+@extends('layouts.app')
 
 @section('content')
     <!-- Hero Section -->
@@ -732,6 +732,4 @@
     </section>
 @endsection
 
-@push('scripts')
-    @include('component.footer')
-@endpush
+
